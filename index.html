@@ -3,19 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thanh Lan — Chăm Sóc Mẹ và Bé Tại Nhà | Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà</title>
+  <title>Thanh Lan — Câu chuyện &amp; Chăm sóc Mẹ Bé tại nhà</title>
+  <meta name="description" content="Thanh Lan — Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà. Câu chuyện thương hiệu, bảng giá, kiến thức sau sinh và đặt lịch chăm sóc mẹ bé tại nhà." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      /* Màu chủ đạo đồng bộ từ Logo Thanh Lan */
       --brand-blue: #34A8E2;
       --brand-blue-dark: #1E88C4;
       --brand-pink: #E84C7C;
-      --brand-pink-dark: #D13667;
-
-      /* Sắc màu Pastel thư thái, ấm áp */
+      --brand-pink-dark: #C72E62;
       --bg-cream: #FFFBF8;
       --bg-white: #FFFFFF;
       --pastel-blue: #EAF6FD;
@@ -24,1262 +22,943 @@
       --pastel-pink-soft: #FDE0EA;
       --pastel-peach: #FFF5EE;
       --pastel-mint: #EDF9F4;
-
-      /* Màu chữ & viền */
       --text-dark: #283848;
       --text-body: #4A5B6C;
       --text-muted: #738496;
       --border-soft: #E9EFF5;
-
-      --radius-lg: 20px;
+      --radius-lg: 22px;
       --radius-md: 14px;
       --radius-pill: 999px;
-      --shadow-soft: 0 10px 30px rgba(52, 168, 226, 0.08);
+      --shadow-soft: 0 10px 30px rgba(52, 168, 226, 0.1);
       --shadow-card: 0 8px 24px rgba(40, 56, 72, 0.06);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 88px; }
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
-      background-color: var(--bg-cream);
+      background: var(--bg-cream);
       color: var(--text-body);
       line-height: 1.7;
-      overflow-x: hidden;
     }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; color: var(--text-dark); line-height: 1.28; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font-family: inherit; }
+    .container { width: min(1140px, calc(100% - 32px)); margin: 0 auto; }
 
-    h1, h2, h3, .font-serif {
-      font-family: 'Playfair Display', Georgia, serif;
-      color: var(--text-dark);
-      line-height: 1.3;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Badges & Buttons */
-    .section-badge {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 16px;
+      padding: 6px 14px;
       border-radius: var(--radius-pill);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-bottom: 14px;
+      letter-spacing: 0.02em;
     }
-
-    .badge-blue {
-      background: var(--pastel-blue);
-      color: var(--brand-blue-dark);
-    }
-
-    .badge-pink {
-      background: var(--pastel-pink);
-      color: var(--brand-pink-dark);
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 48px;
-    }
-
-    .section-header h2 {
-      font-size: clamp(1.75rem, 3vw, 2.4rem);
-      margin-bottom: 12px;
-    }
-
-    .section-header p {
-      font-size: 1.02rem;
-      color: var(--text-muted);
-    }
+    .badge-pink { background: var(--pastel-pink); color: var(--brand-pink-dark); }
+    .badge-blue { background: var(--pastel-blue); color: var(--brand-blue-dark); }
+    .section-head { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+    .section-head h2 { font-size: clamp(1.7rem, 3vw, 2.35rem); margin: 10px 0 12px; }
+    .section-head p { color: var(--text-muted); }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 13px 26px;
+      padding: 12px 22px;
       border-radius: var(--radius-pill);
       font-weight: 600;
       font-size: 0.95rem;
-      cursor: pointer;
       border: none;
-      transition: all 0.25s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--brand-pink), #F26B94);
       color: #fff;
       box-shadow: 0 8px 20px rgba(232, 76, 124, 0.28);
     }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(232, 76, 124, 0.35);
-    }
-
+    .btn-primary:hover { transform: translateY(-2px); }
     .btn-secondary {
-      background: var(--pastel-blue);
+      background: #fff;
       color: var(--brand-blue-dark);
       border: 1px solid var(--pastel-blue-soft);
     }
+    .btn-secondary:hover { background: var(--brand-blue); color: #fff; }
+    .btn-block { width: 100%; }
 
-    .btn-secondary:hover {
-      background: var(--brand-blue);
-      color: #fff;
-    }
-
-    /* ================= HEADER ================= */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-soft);
     }
-
-    .nav-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 78px;
-      gap: 16px;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-logo img {
-      height: 58px;
-      width: auto;
-      border-radius: 10px;
-      object-fit: contain;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-text strong {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--brand-blue-dark);
-      line-height: 1.1;
-    }
-
-    .brand-text span {
-      font-size: 0.76rem;
-      color: var(--brand-pink);
-      font-weight: 500;
-    }
-
-    nav.main-nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    nav.main-nav a {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: var(--text-dark);
-      transition: color 0.2s;
-    }
-
-    nav.main-nav a:hover {
-      color: var(--brand-pink);
-    }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* ================= HERO + BRAND STORY (Yêu cầu 1) ================= */
-    .hero-section {
-      padding: 56px 0 72px;
-      background: radial-gradient(circle at top left, var(--pastel-blue) 0%, transparent 45%),
-                  radial-gradient(circle at bottom right, var(--pastel-pink) 0%, transparent 45%),
-                  var(--bg-cream);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2rem, 3.6vw, 2.9rem);
-      margin-bottom: 18px;
-    }
-
-    .hero-content h1 span {
-      color: var(--brand-pink);
-    }
-
-    .hero-lead {
-      font-size: 1.06rem;
-      color: var(--text-body);
-      margin-bottom: 24px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-
-    .trust-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      padding-top: 20px;
-      border-top: 1px dashed var(--pastel-blue-soft);
-    }
-
-    .stat-item strong {
-      display: block;
-      font-size: 1.35rem;
-      color: var(--brand-blue-dark);
-    }
-
-    .stat-item span {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-
-    .hero-visual {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .photo-frame {
-      background: #fff;
-      padding: 10px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      border: 1px solid var(--border-soft);
-    }
-
-    .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 4 / 5;
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; min-height: 78px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { height: 62px; width: auto; }
+    .brand strong { display: block; font-family: 'Great Vibes', cursive; font-size: 1.85rem; font-weight: 400; color: var(--brand-blue); line-height: 1; }
+    .brand span { display: block; font-size: 0.72rem; color: var(--brand-pink); font-weight: 600; margin-top: 2px; }
+    .main-nav { display: flex; align-items: center; gap: 20px; }
+    .main-nav a { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
+    .main-nav a:hover { color: var(--brand-pink); }
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background: #fff;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .intro {
+      padding: 48px 0 28px;
+      background:
+        radial-gradient(circle at 8% 10%, var(--pastel-blue) 0%, transparent 36%),
+        radial-gradient(circle at 92% 80%, var(--pastel-pink) 0%, transparent 34%),
+        var(--bg-cream);
+    }
+    .intro-kicker { color: var(--brand-pink); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.78rem; }
+    .intro h1 { font-size: clamp(2.1rem, 4vw, 3.2rem); margin: 8px 0 10px; }
+    .intro-sub { font-size: 1.15rem; color: var(--brand-blue-dark); font-weight: 600; margin-bottom: 18px; }
+    .intro-lead { max-width: 760px; font-size: 1.05rem; margin-bottom: 22px; }
+    .intro-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+    .stat {
+      padding: 22px 18px;
+      text-align: center;
+      border-right: 1px solid var(--border-soft);
+    }
+    .stat:last-child { border-right: none; }
+    .stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--brand-blue-dark); }
+    .stat span { display: block; margin-top: 4px; font-size: 0.86rem; color: var(--text-muted); }
+
+    .photo-band { padding: 10px 0 56px; }
+    .photo-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; }
+    .photo-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 10px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-card);
+    }
+    .photo-slot {
+      min-height: 240px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 18px;
-      font-size: 0.88rem;
+      justify-content: flex-end;
+      padding: 20px;
       color: var(--text-dark);
     }
-
-    .photo-placeholder.blue {
-      background: linear-gradient(160deg, var(--pastel-blue), #F7FCFF);
+    .photo-slot.blue { background: linear-gradient(160deg, #d7f0fb, #fff 70%); }
+    .photo-slot.pink { background: linear-gradient(160deg, #ffe3ee, #fff 72%); min-height: 280px; }
+    .photo-slot small { font-weight: 700; color: var(--brand-pink-dark); letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.72rem; }
+    .photo-slot p { font-weight: 600; color: var(--text-dark); margin-top: 4px; }
+    @media (min-width: 681px) {
+      .photo-grid .photo-card:last-child .photo-slot small,
+      .photo-grid .photo-card:last-child .photo-slot p { max-width: calc(100% - 170px); }
     }
 
-    .photo-placeholder.pink {
-      background: linear-gradient(160deg, var(--pastel-pink), #FFF9FB);
-    }
-
-    .photo-frame.offset {
-      transform: translateY(24px);
-    }
-
-    .photo-caption {
-      margin-top: 10px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      text-align: center;
-    }
-
-    /* Brand Story Block (Phong cách Home Care) */
-    .story-section {
-      padding: 72px 0;
-      background: var(--bg-white);
-    }
-
-    .story-box {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 40px;
-      align-items: center;
-      background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--bg-cream) 55%, var(--pastel-pink) 100%);
-      padding: 40px;
-      border-radius: 28px;
-      border: 1px solid var(--border-soft);
-    }
-
-    .story-quote {
+    section.block { padding: 72px 0; }
+    .paper {
       background: #fff;
-      padding: 28px;
-      border-radius: var(--radius-lg);
+      border-radius: 28px;
+      padding: 40px;
+      border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-card);
+    }
+    .letter-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: start; }
+    .letter h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); margin: 12px 0 16px; text-transform: uppercase; letter-spacing: 0.01em; }
+    .letter p + p { margin-top: 12px; }
+    .signoff { margin-top: 18px; font-weight: 700; color: var(--brand-blue-dark); }
+    .quote {
+      background: linear-gradient(180deg, var(--pastel-pink), #fff);
+      border-radius: 20px;
+      padding: 26px;
       border-left: 4px solid var(--brand-pink);
     }
+    .quote p { font-style: italic; color: var(--text-dark); }
+    .quote span { display: block; margin-top: 14px; font-weight: 700; font-size: 0.9rem; color: var(--brand-pink-dark); }
 
-    .story-quote p {
-      font-style: italic;
-      font-size: 1.02rem;
-      margin-bottom: 14px;
-    }
-
-    .story-author {
-      font-weight: 700;
-      color: var(--brand-blue-dark);
-      font-size: 0.92rem;
-    }
-
-    .story-pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .pillar-card {
-      background: rgba(255, 255, 255, 0.88);
-      padding: 16px;
-      border-radius: var(--radius-md);
-      border: 1px solid #fff;
-    }
-
-    .pillar-card h4 {
-      font-size: 0.95rem;
-      color: var(--brand-pink-dark);
-      margin-bottom: 4px;
-    }
-
-    .pillar-card p {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* ================= BẢNG GIÁ & ĐẶT LỊCH NHANH (Yêu cầu 5) ================= */
-    .pricing-section {
-      padding: 76px 0;
-      background: var(--bg-cream);
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .price-card {
-      background: #fff;
-      border-radius: var(--radius-lg);
-      padding: 30px 26px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      transition: transform 0.25s ease;
-    }
-
-    .price-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .price-card.featured {
-      border: 2px solid var(--brand-pink);
-      background: linear-gradient(180deg, #FFF9FB 0%, #FFFFFF 35%);
-    }
-
-    .popular-tag {
+    .timeline { display: grid; gap: 0; margin-top: 8px; }
+    .step { display: grid; grid-template-columns: 92px 1fr; gap: 16px; }
+    .step-mark { position: relative; text-align: center; }
+    .step-mark::after {
+      content: "";
       position: absolute;
-      top: -13px;
-      right: 22px;
-      background: var(--brand-pink);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: var(--radius-pill);
+      left: 50%;
+      top: 42px;
+      bottom: 0;
+      width: 2px;
+      background: var(--pastel-blue-soft);
+      transform: translateX(-50%);
     }
-
-    .price-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-    }
-
-    .price-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
-
-    .price-amount {
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: var(--brand-blue-dark);
-      margin-bottom: 18px;
-    }
-
-    .price-amount span {
-      font-size: 0.88rem;
-      font-weight: 400;
-      color: var(--text-muted);
-    }
-
-    .price-features {
-      list-style: none;
-      margin-bottom: 24px;
-    }
-
-    .price-features li {
-      font-size: 0.9rem;
-      padding: 7px 0;
-      border-bottom: 1px dashed var(--border-soft);
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .price-features li::before {
-      content: "✓";
-      color: var(--brand-pink);
-      font-weight: 700;
-    }
-
-    /* ================= GÓC CHIA SẺ KIẾN THỨC SAU SINH (Yêu cầu 2) ================= */
-    .knowledge-section {
-      padding: 76px 0;
-      background: var(--pastel-blue);
-    }
-
-    .filter-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 34px;
-    }
-
-    .tab-btn {
-      padding: 9px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--pastel-blue-soft);
-      background: #fff;
-      color: var(--text-dark);
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
+    .step:last-child .step-mark::after { display: none; }
+    .step-no {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto;
+      border-radius: 50%;
       background: var(--brand-blue);
       color: #fff;
-      border-color: var(--brand-blue);
-    }
-
-    .articles-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      place-items: center;
+      font-weight: 700;
     }
+    .step article { background: #fff; border: 1px solid var(--border-soft); border-radius: 16px; padding: 16px 18px; margin-bottom: 14px; }
+    .step h3 { font-size: 1.05rem; margin-bottom: 4px; }
 
-    .article-card {
+    .trio { display: grid; grid-template-columns: 0.8fr 1.2fr 0.9fr; gap: 16px; }
+    .panel { background: #fff; border-radius: 20px; padding: 22px; border: 1px solid var(--border-soft); }
+    .panel h3 { margin: 8px 0 10px; font-size: 1.25rem; }
+    .values { list-style: none; display: grid; gap: 10px; }
+    .values li { background: var(--bg-cream); border-radius: 12px; padding: 10px 12px; }
+    .values strong { color: var(--brand-pink-dark); }
+    .duty { list-style: none; display: grid; gap: 8px; }
+    .duty li::before { content: "• "; color: var(--brand-blue); font-weight: 700; }
+
+    .pricing { background: var(--bg-cream); }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .price-card {
       background: #fff;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
+      border-radius: 20px;
+      padding: 26px 22px;
+      border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-card);
-      transition: transform 0.25s;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
-
-    .article-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .article-thumb {
-      height: 170px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--brand-blue-dark);
-      background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue));
-    }
-
-    .article-body {
-      padding: 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .article-cat {
-      font-size: 0.78rem;
+    .price-card.featured { border: 2px solid var(--brand-pink); background: linear-gradient(180deg, #fff7fa, #fff 40%); }
+    .tag {
+      position: absolute;
+      top: -12px;
+      right: 18px;
+      background: var(--brand-pink);
+      color: #fff;
+      font-size: 0.75rem;
       font-weight: 700;
-      color: var(--brand-pink);
-      text-transform: uppercase;
-      margin-bottom: 8px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
     }
+    .price-card h3 { font-size: 1.25rem; }
+    .muted { color: var(--text-muted); font-size: 0.9rem; margin: 6px 0 12px; }
+    .amount { font-size: 1.7rem; font-weight: 700; color: var(--brand-blue-dark); margin-bottom: 12px; }
+    .amount span { display: block; font-size: 0.82rem; font-weight: 500; color: var(--text-muted); }
+    .features { list-style: none; margin-bottom: 18px; flex: 1; }
+    .features li { padding: 7px 0; border-bottom: 1px dashed var(--border-soft); font-size: 0.92rem; }
+    .features li::before { content: "✓ "; color: var(--brand-pink); font-weight: 700; }
 
-    .article-body h3 {
-      font-size: 1.12rem;
-      margin-bottom: 10px;
-    }
-
-    .article-body p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      flex: 1;
-    }
-
-    .read-more {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--brand-blue-dark);
-    }
-
-    /* ================= NHẬT KÝ CHĂM SÓC MẸ & BÉ (Yêu cầu 4) ================= */
-    .diary-section {
-      padding: 76px 0;
-      background: var(--bg-white);
-    }
-
-    .diary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .diary-card {
-      background: var(--bg-cream);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      border: 1px solid var(--pastel-pink-soft);
-      box-shadow: var(--shadow-card);
-    }
-
-    .diary-photo {
-      height: 190px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(145deg, var(--pastel-peach), var(--pastel-pink));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 16px;
-      font-size: 0.86rem;
-      color: var(--brand-pink-dark);
-      margin-bottom: 16px;
-    }
-
-    .diary-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .diary-card h4 {
-      font-size: 1.04rem;
+    .knowledge { background: linear-gradient(180deg, var(--pastel-blue), #f7fbfe); }
+    .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 22px; }
+    .tab {
+      border: 1px solid transparent;
+      background: #fff;
       color: var(--text-dark);
-      margin-bottom: 8px;
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      font-weight: 600;
+      cursor: pointer;
     }
+    .tab[aria-selected="true"], .tab:hover { background: var(--brand-blue); color: #fff; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid var(--border-soft); display: flex; flex-direction: column; }
+    .thumb { min-height: 120px; padding: 18px; font-weight: 700; color: var(--brand-blue-dark); background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue)); }
+    .card-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .cat { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--brand-pink); }
+    .card h3 { font-size: 1.08rem; }
+    .linkish { margin-top: auto; background: none; border: none; color: var(--brand-blue-dark); font-weight: 700; cursor: pointer; text-align: left; padding: 0; }
 
-    .diary-card p {
-      font-size: 0.9rem;
-      font-style: italic;
-      color: var(--text-body);
-    }
-
-    /* ================= FORM NHẬN CẨM NANG MIỄN PHÍ (Yêu cầu 6) ================= */
-    .lead-section {
-      padding: 76px 0;
-      background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pastel-blue) 100%);
-    }
-
-    .lead-box {
-      background: #fff;
-      border-radius: 28px;
-      padding: 44px;
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .lead-info h2 {
-      font-size: clamp(1.6rem, 2.8vw, 2.15rem);
-      margin-bottom: 14px;
-    }
-
-    .lead-list {
-      list-style: none;
+    .reader {
+      display: none;
       margin-top: 18px;
-    }
-
-    .lead-list li {
-      padding: 6px 0;
-      font-size: 0.94rem;
-      display: flex;
-      gap: 10px;
-    }
-
-    .lead-form {
-      background: var(--bg-cream);
-      padding: 28px;
-      border-radius: var(--radius-lg);
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px;
       border: 1px solid var(--border-soft);
     }
+    .reader.open { display: block; }
+    .reader p + p { margin-top: 10px; }
 
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
+    .diary { background: #fff; }
+    .diary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .diary-card { background: var(--bg-cream); border: 1px solid var(--pastel-pink-soft); border-radius: 18px; padding: 16px; }
+    .diary-photo {
+      min-height: 140px;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-end;
+      background: linear-gradient(145deg, var(--pastel-peach), var(--pastel-pink));
       font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid #D8E2EC;
-      font-family: inherit;
-      font-size: 0.94rem;
-      background: #fff;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: 2px solid var(--pastel-blue-soft);
-      border-color: var(--brand-blue);
-    }
-
-    .form-success {
-      display: none;
-      margin-top: 12px;
-      padding: 12px 14px;
-      background: var(--pastel-mint);
-      color: #1B6B4A;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    /* ================= FOOTER ================= */
-    footer {
-      background: #22313F;
-      color: #D7E1EA;
-      padding: 48px 0 28px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 32px;
-    }
-
-    .footer-grid h4 {
-      color: #fff;
+      color: var(--brand-pink-dark);
       margin-bottom: 12px;
-      font-size: 1.05rem;
     }
+    .meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); }
+    .diary-card h3 { font-size: 1.05rem; margin: 6px 0; }
+    .diary-card p { font-style: italic; }
 
-    .footer-grid p, .footer-grid li {
-      font-size: 0.9rem;
-      line-height: 1.8;
-      list-style: none;
+    .lead {
+      background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue));
     }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding-top: 18px;
-      text-align: center;
-      font-size: 0.84rem;
-      color: #9FB0C0;
+    .lead-box { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; background: #fff; border-radius: 28px; padding: 36px; }
+    .gift { list-style: none; margin-top: 14px; }
+    .gift li { padding: 5px 0; }
+    form { background: var(--bg-cream); border-radius: 18px; padding: 20px; border: 1px solid var(--border-soft); }
+    label { display: block; font-size: 0.84rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+    .field { margin-bottom: 12px; }
+    input, select {
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 10px;
+      border: 1px solid #d8e2ec;
+      background: #fff;
+      font-size: 0.95rem;
     }
+    input:focus, select:focus { outline: 2px solid var(--pastel-blue-soft); border-color: var(--brand-blue); }
+    .note { display: none; margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: var(--pastel-mint); color: #1b6b4a; font-weight: 600; }
+    .note.show { display: block; }
+    .error { color: var(--brand-pink-dark); font-size: 0.82rem; min-height: 1.1em; }
 
-    /* ================= FLOATING SOCIAL BAR (Yêu cầu 3) ================= */
-    .floating-social {
+    footer { background: #22313f; color: #d7e1ea; padding: 42px 0 22px; }
+    .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 24px; }
+    footer h2, footer h3 { color: #fff; font-family: 'Be Vietnam Pro', sans-serif; font-size: 1rem; margin-bottom: 8px; }
+    footer a:hover { color: #fff; }
+    footer li { list-style: none; }
+    .legal { margin-top: 22px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.82rem; color: #9fb0c0; text-align: center; }
+
+    .dock {
       position: fixed;
-      right: 20px;
-      bottom: 24px;
-      z-index: 999;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
     }
-
-    .float-btn {
+    .dock a {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 11px 16px;
-      border-radius: var(--radius-pill);
+      gap: 8px;
       color: #fff;
-      font-weight: 600;
-      font-size: 0.88rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
-      transition: transform 0.2s;
+      border-radius: var(--radius-pill);
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.16);
     }
+    .zalo { background: #0068ff; }
+    .fb { background: #1877f2; }
+    .call { background: var(--brand-pink); }
 
-    .float-btn:hover {
-      transform: translateX(-4px);
-    }
-
-    .float-zalo {
-      background: #0068FF;
-    }
-
-    .float-fb {
-      background: #1877F2;
-    }
-
-    .float-hotline {
-      background: var(--brand-pink);
-    }
-
-    /* ================= MODAL ĐẶT LỊCH NHANH ================= */
-    .modal-overlay {
+    .overlay {
       position: fixed;
       inset: 0;
       background: rgba(34, 49, 63, 0.55);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
-      padding: 20px;
+      padding: 16px;
+      z-index: 80;
     }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    .modal-card {
+    .overlay.open { display: flex; }
+    .modal {
       background: #fff;
-      border-radius: 24px;
-      max-width: 480px;
-      width: 100%;
-      padding: 32px;
+      width: min(480px, 100%);
+      border-radius: 22px;
+      padding: 26px;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     }
-
-    .modal-close {
+    .close {
       position: absolute;
-      top: 16px;
-      right: 18px;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
       background: var(--pastel-pink);
       color: var(--brand-pink-dark);
-      border: none;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      font-size: 1.1rem;
       cursor: pointer;
+      font-size: 1rem;
     }
 
-    /* Responsive */
     @media (max-width: 960px) {
-      .hero-grid, .story-box, .lead-box {
-        grid-template-columns: 1fr;
+      .menu-toggle { display: grid; place-items: center; }
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px 18px;
+        border-bottom: 1px solid var(--border-soft);
+        gap: 12px;
       }
-      .pricing-grid, .articles-grid, .diary-grid, .footer-grid {
+      .main-nav.open { display: flex; }
+      .nav-cta { display: none; }
+      .stat-row, .photo-grid, .letter-grid, .trio, .price-grid, .cards, .diary-grid, .lead-box, .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
-      nav.main-nav {
-        display: none;
-      }
+      .letter-grid, .lead-box, .photo-grid, .trio { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 640px) {
-      .pricing-grid, .articles-grid, .diary-grid, .footer-grid, .story-pillars {
-        grid-template-columns: 1fr;
-      }
-      .hero-visual {
-        grid-template-columns: 1fr;
-      }
-      .photo-frame.offset {
-        transform: none;
-      }
-      .lead-box, .story-box {
-        padding: 24px;
-      }
-      .float-btn span.label {
-        display: none;
-      }
+    @media (max-width: 680px) {
+      .stat-row, .price-grid, .cards, .diary-grid, .footer-grid { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border-soft); }
+      .paper, .lead-box { padding: 22px; }
+      .dock a span { display: none; }
+      .dock a { width: 46px; height: 46px; justify-content: center; padding: 0; border-radius: 50%; }
     }
   </style>
 </head>
 <body>
-
-  <!-- HEADER -->
   <header>
     <div class="container nav-wrap">
-      <a href="#" class="brand-logo">
-        <img src="assets/logo-thanh-lan.jpg" alt="Logo Thanh Lan Mẹ và Bé" />
-        <div class="brand-text">
+      <a class="brand" href="#gioi-thieu">
+        <img src="assets/logo-thanh-lan.jpg" alt="Logo Thanh Lan, mẹ ôm bé trong hình trái tim" />
+        <div>
           <strong>Thanh Lan</strong>
           <span>Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà</span>
         </div>
       </a>
-      <nav class="main-nav">
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">Menu</button>
+      <nav class="main-nav" id="mainNav">
         <a href="#cau-chuyen">Câu chuyện</a>
+        <a href="#gia-tri">Tầm nhìn</a>
         <a href="#bang-gia">Bảng giá</a>
-        <a href="#kien-thuc">Kiến thức sau sinh</a>
-        <a href="#nhat-ky">Nhật ký Mẹ &amp; Bé</a>
-        <a href="#cam-nang">Nhận Cẩm Nang</a>
+        <a href="#kien-thuc">Kiến thức</a>
+        <a href="#nhat-ky">Nhật ký</a>
+        <a href="#cam-nang">Cẩm nang</a>
       </nav>
       <div class="nav-cta">
-        <button class="btn btn-primary" onclick="openBookingModal('Tư vấn gói chăm sóc phù hợp')">Đặt lịch ngay</button>
+        <button class="btn btn-primary" type="button" data-book="Tư vấn gói chăm sóc phù hợp">Đặt lịch ngay</button>
       </div>
     </div>
   </header>
 
-  <!-- 1. HERO + HÌNH ẢNH THỰC TẾ -->
-  <section class="hero-section">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="section-badge badge-pink">🌸 Chăm Sóc Mẹ &amp; Bé Tại Nhà Chuẩn Y Khoa</div>
-        <h1>Trao sự an tâm, nâng niu từng khoảnh khắc <span>làm mẹ đầu đời</span></h1>
-        <p class="hero-lead">
-          Tại <strong>Thanh Lan</strong>, mỗi liệu trình không chỉ là massage hay tắm bé — mà là sự đồng hành tận tâm như người thân trong gia đình, giúp mẹ phục hồi nhanh chóng và bé yêu khỏe mạnh, ngủ ngon.
-        </p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" onclick="openBookingModal('Đặt lịch chăm sóc tại nhà')">Đặt lịch chăm sóc ngay</button>
-          <a href="#cam-nang" class="btn btn-secondary">Nhận Cẩm Nang Sau Sinh Miễn Phí</a>
+  <main>
+    <section class="intro" id="gioi-thieu">
+      <div class="container">
+        <p class="intro-kicker">Giới thiệu</p>
+        <h1>Thanh Lan</h1>
+        <p class="intro-sub">Dịch vụ chăm sóc mẹ và bé tại nhà</p>
+        <p class="intro-lead">Thanh Lan đồng hành cùng mẹ từ những ngày ở cữ: phục hồi cơ thể, thông tắc tia sữa và tắm bé sơ sinh ngay tại nhà, với chuyên viên được đào tạo về sản và nhi.</p>
+        <div class="intro-actions">
+          <button class="btn btn-primary" type="button" data-book="Đặt lịch chăm sóc tại nhà">Đặt lịch chăm sóc</button>
+          <a class="btn btn-secondary" href="#cam-nang">Nhận cẩm nang sau sinh</a>
         </div>
-        <div class="trust-stats">
-          <div class="stat-item">
-            <strong>100%</strong>
-            <span>Kỹ thuật viên điều dưỡng/nữ hộ sinh</span>
-          </div>
-          <div class="stat-item">
-            <strong>Thảo dược</strong>
-            <span>Lành tính, an toàn cho mẹ &amp; trẻ sơ sinh</span>
-          </div>
-          <div class="stat-item">
-            <strong>Tại nhà</strong>
-            <span>Đúng giờ, chu đáo, bảo mật riêng tư</span>
-          </div>
+        <div class="stat-row">
+          <div class="stat"><strong>Tại nhà</strong><span>Chăm sóc đúng giờ, riêng tư</span></div>
+          <div class="stat"><strong>Điều dưỡng</strong><span>Chuyên viên sản – nhi</span></div>
+          <div class="stat"><strong>Thảo dược</strong><span>Lành tính cho mẹ và bé</span></div>
+          <div class="stat"><strong>Cả nhà</strong><span>Mẹ đẹp, bé khỏe, vui vẻ</span></div>
         </div>
       </div>
+    </section>
 
-      <div class="hero-visual">
-        <div class="photo-frame">
-          <div class="photo-placeholder blue">
-            <strong>📸 Ảnh thực tế 1</strong>
-            <p>Kỹ thuật viên Thanh Lan đang nhẹ nhàng tắm &amp; massage cho bé sơ sinh tại nhà mẹ</p>
-          </div>
-          <div class="photo-caption">Bé ngủ ngoan sau khi tắm &amp; massage</div>
-        </div>
-        <div class="photo-frame offset">
-          <div class="photo-placeholder pink">
-            <strong>📸 Ảnh thực tế 2</strong>
-            <p>Chăm sóc mẹ sau sinh: xông hơi thảo dược, massage thông tắc tia sữa &amp; phục hồi</p>
-          </div>
-          <div class="photo-caption">Mẹ thư giãn, khỏe khoắn ngay tại nhà</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 1B. CÂU CHUYỆN THƯƠNG HIỆU (Phong cách truyền thông Home Care) -->
-  <section id="cau-chuyen" class="story-section">
-    <div class="container">
-      <div class="story-box">
-        <div>
-          <div class="section-badge badge-blue">💙 Câu chuyện của Thanh Lan</div>
-          <h2 style="font-size: 2rem; margin-bottom: 14px;">Khởi nguồn từ trái tim người mẹ thấu hiểu</h2>
-          <p style="margin-bottom: 14px;">
-            Giống như hành trình của bao người phụ nữ sau ngày vượt cạn, đội ngũ sáng lập <strong>Thanh Lan</strong> hiểu rõ những đêm trắng mất ngủ, nỗi lo tắc tia sữa, cơ thể đau nhức và sự bỡ ngỡ khi đón thiên thần nhỏ chào đời.
-          </p>
-          <p>
-            Chúng tôi ra đời với mong muốn trở thành điểm tựa ấm áp, mang dịch vụ chăm sóc chuẩn y khoa kết hợp thảo mộc thiên nhiên đến tận giường cho mẹ — để hành trình ở cữ trở thành khoảng thời gian nhẹ nhàng, hạnh phúc nhất.
-          </p>
-          <div class="story-pillars">
-            <div class="pillar-card">
-              <h4>An lành</h4>
-              <p>Nguyên liệu thảo dược sạch, quy trình vệ sinh chuẩn bệnh viện.</p>
-            </div>
-            <div class="pillar-card">
-              <h4>Chân thành</h4>
-              <p>Lắng nghe, sẻ chia và chăm sóc mẹ bằng tất cả sự dịu dàng.</p>
-            </div>
-            <div class="pillar-card">
-              <h4>Chuyên môn</h4>
-              <p>100% chuyên viên được đào tạo bài bản về sản - nhi.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="story-quote">
-          <p>
-            “Mỗi lần nhìn thấy người mẹ mỉm cười nhẹ nhõm sau khi thông tia sữa, hay ngắm em bé ngủ say trong vòng tay mẹ, đó là động lực lớn nhất để Thanh Lan giữ trọn tâm huyết với nghề mỗi ngày.”
-          </p>
-          <div class="story-author">— Đội ngũ sáng lập &amp; Chuyên viên Thanh Lan</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. BẢNG GIÁ DỊCH VỤ RÕ RÀNG + ĐẶT LỊCH NHANH TẠI CHỖ -->
-  <section id="bang-gia" class="pricing-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge badge-pink">✨ Minh bạch &amp; Tiện lợi</div>
-        <h2>Bảng Giá Dịch Vụ Chăm Sóc Mẹ &amp; Bé</h2>
-        <p>Chọn gói phù hợp và bấm đặt lịch ngay tại chỗ — chuyên viên Thanh Lan sẽ liên hệ xác nhận trong 15 phút.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <!-- Gói 1 -->
-        <div class="price-card">
-          <div>
-            <h3>Tắm &amp; Massage Bé Sơ Sinh</h3>
-            <p class="price-desc">Giúp bé sạch sẽ, rụng rốn an toàn, hết vàng da sinh lý và ngủ sâu giấc.</p>
-            <div class="price-amount">250.000đ <span>/ buổi (hoặc theo gói 10 buổi)</span></div>
-            <ul class="price-features">
-              <li>Massage toàn thân kích thích giác quan</li>
-              <li>Tắm nước lá thảo dược ấm áp</li>
-              <li>Vệ sinh mắt, mũi, miệng, chăm sóc rốn</li>
-              <li>Hơ trầu không giữ ấm &amp; kiểm tra chỉ số bé</li>
-            </ul>
-          </div>
-          <button class="btn btn-secondary" style="width: 100%;" onclick="openBookingModal('Tắm & Massage Bé Sơ Sinh (250.000đ/buổi)')">Đặt lịch nhanh</button>
-        </div>
-
-        <!-- Gói 2 (Nổi bật) -->
-        <div class="price-card featured">
-          <span class="popular-tag">Mẹ chọn nhiều nhất</span>
-          <div>
-            <h3>Chăm Sóc Mẹ Sau Sinh Toàn Diện</h3>
-            <p class="price-desc">Phục hồi sức khỏe, giảm đau mỏi, săn chắc vòng eo và gọi sữa về dồi dào.</p>
-            <div class="price-amount">4.500.000đ <span>/ liệu trình 10 buổi</span></div>
-            <ul class="price-features">
-              <li>Xông hơi thảo dược đào thải sản dịch</li>
-              <li>Massage body đá nóng thư giãn cổ vai gáy</li>
-              <li>Chăm sóc vùng bụng, đắp muối thảo dược</li>
-              <li>Chăm sóc da mặt thiên nhiên sáng khỏe</li>
-              <li>Tặng kèm 3 buổi hơ mặt &amp; tư vấn kích sữa</li>
-            </ul>
-          </div>
-          <button class="btn btn-primary" style="width: 100%;" onclick="openBookingModal('Chăm Sóc Mẹ Sau Sinh Toàn Diện (4.500.000đ/10 buổi)')">Đặt lịch gói này ngay</button>
-        </div>
-
-        <!-- Gói 3 -->
-        <div class="price-card">
-          <div>
-            <h3>Thông Tắc Tia Sữa Chuyên Sâu</h3>
-            <p class="price-desc">Xử lý nhanh cương tức, tắc sữa, ít sữa không đau, an toàn cho tuyến sữa.</p>
-            <div class="price-amount">450.000đ <span>/ buổi tại nhà</span></div>
-            <ul class="price-features">
-              <li>Kiểm tra mô tuyến vú &amp; chườm ấm thảo dược</li>
-              <li>Massage khai thông nhẹ nhàng không gây bầm</li>
-              <li>Kết hợp sóng siêu âm / hút sữa hỗ trợ</li>
-              <li>Hướng dẫn mẹ cách cho bé ngậm bắt vú đúng</li>
-            </ul>
-          </div>
-          <button class="btn btn-secondary" style="width: 100%;" onclick="openBookingModal('Thông Tắc Tia Sữa Chuyên Sâu (450.000đ/buổi)')">Đặt lịch khẩn cấp</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. GÓC CHIA SẺ KIẾN THỨC CHĂM SÓC SAU SINH MIỄN PHÍ -->
-  <section id="kien-thuc" class="knowledge-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge badge-blue" style="background: #fff;">📚 Thư viện miễn phí cho mẹ</div>
-        <h2>Góc Chia Sẻ Kiến Thức Chăm Sóc Sau Sinh</h2>
-        <p>Những bài viết dễ hiểu, khoa học được đúc kết từ kinh nghiệm chăm sóc hàng ngàn mẹ và bé.</p>
-      </div>
-
-      <div class="filter-tabs">
-        <button class="tab-btn active" onclick="filterArticles('all', this)">Tất cả</button>
-        <button class="tab-btn" onclick="filterArticles('o-cu', this)">Ở cữ khoa học</button>
-        <button class="tab-btn" onclick="filterArticles('sua-me', this)">Kích sữa &amp; Thông tắc</button>
-        <button class="tab-btn" onclick="filterArticles('cham-be', this)">Chăm bé sơ sinh</button>
-      </div>
-
-      <div class="articles-grid" id="articlesGrid">
-        <article class="article-card" data-cat="sua-me">
-          <div class="article-thumb">🤱 Hướng dẫn thực hành tại nhà</div>
-          <div class="article-body">
-            <span class="article-cat">Kích sữa &amp; Thông tắc</span>
-            <h3>5 dấu hiệu tắc tia sữa sớm và cách xử lý đúng trong 24 giờ đầu</h3>
-            <p>Đừng cố nặn mạnh hay chườm nóng quá mức — đây là những bước nhẹ nhàng giúp mẹ khai thông tuyến sữa an toàn.</p>
-            <a href="#cam-nang" class="read-more">Xem chi tiết &amp; nhận tài liệu →</a>
+    <section class="photo-band" aria-label="Vị trí ảnh thực tế">
+      <div class="container photo-grid">
+        <article class="photo-card">
+          <div class="photo-slot blue">
+            <small>Ảnh thực tế · Bé sơ sinh</small>
+            <p>Kỹ thuật viên tắm và massage cho bé ngay tại nhà mẹ.</p>
           </div>
         </article>
-
-        <article class="article-card" data-cat="o-cu">
-          <div class="article-thumb">🌿 Thực đơn &amp; Kiêng cữ đúng cách</div>
-          <div class="article-body">
-            <span class="article-cat">Ở cữ khoa học</span>
-            <h3>Ở cữ hiện đại: Nên kiêng gì và không cần kiêng gì để mẹ mau hồi phục?</h3>
-            <p>Giải đáp thắc mắc về tắm gội, nằm điều hòa, vận động nhẹ và dinh dưỡng lợi sữa không gây tăng cân.</p>
-            <a href="#cam-nang" class="read-more">Xem chi tiết &amp; nhận tài liệu →</a>
-          </div>
-        </article>
-
-        <article class="article-card" data-cat="cham-be">
-          <div class="article-thumb">👶 Chăm sóc bé 0–3 tháng</div>
-          <div class="article-body">
-            <span class="article-cat">Chăm bé sơ sinh</span>
-            <h3>Chu trình E.A.S.Y &amp; cách massage giúp bé sơ sinh ngủ xuyên đêm</h3>
-            <p>Hướng dẫn mẹ từng động tác massage bụng giảm đầy hơi, vỗ ợ hơi và tạo nếp sinh hoạt êm ái cho bé.</p>
-            <a href="#cam-nang" class="read-more">Xem chi tiết &amp; nhận tài liệu →</a>
+        <article class="photo-card">
+          <div class="photo-slot pink">
+            <small>Ảnh thực tế · Mẹ sau sinh</small>
+            <p>Xông hơi thảo dược, massage và hỗ trợ thông tắc tia sữa.</p>
           </div>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 4. NHẬT KÝ CHĂM SÓC MẸ & BÉ (CÂU CHUYỆN & ẢNH THẬT) -->
-  <section id="nhat-ky" class="diary-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-badge badge-pink">💌 Kỷ niệm yêu thương</div>
-        <h2>Nhật Ký Chăm Sóc Mẹ &amp; Bé</h2>
-        <p>Những khoảnh khắc dễ thương và lời chia sẻ chân thật từ chính các mẹ đã trải nghiệm dịch vụ tại Thanh Lan.</p>
+    <section class="block" id="cau-chuyen" style="background:#fff; padding-top: 20px;">
+      <div class="container">
+        <div class="paper letter-grid">
+          <div class="letter">
+            <span class="badge badge-blue">Thư ngỏ</span>
+            <h2>Khởi nguồn từ trái tim người mẹ thấu hiểu</h2>
+            <p>Kính gửi quý mẹ và gia đình,</p>
+            <p>Thanh Lan bắt đầu từ những đêm trắng, nỗi lo tắc tia sữa và sự bỡ ngỡ khi đón con đầu lòng. Chúng tôi muốn mẹ có một người đồng hành dịu dàng, làm việc chuẩn mực, và coi việc chăm mẹ bé như chăm người thân trong nhà.</p>
+            <p>Mỗi buổi tắm bé, mỗi lần thông tia sữa hay liệu trình phục hồi sau sinh đều hướng tới một điều: mẹ được nghỉ ngơi thật sự, bé được nâng niu an toàn.</p>
+            <p class="signoff">Trân trọng,<br />Đội ngũ Thanh Lan<br />Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà</p>
+          </div>
+          <aside class="quote">
+            <p>“Mỗi lần mẹ thở phào sau khi thông tia sữa, hay bé ngủ say sau buổi tắm lá, là lý do Thanh Lan giữ nghề bằng sự nhẹ nhàng.”</p>
+            <span>Đội ngũ sáng lập và chuyên viên Thanh Lan</span>
+          </aside>
+        </div>
+
+        <div class="section-head" style="margin-top: 56px;">
+          <span class="badge badge-pink">Hành trình</span>
+          <h2>Quá trình hình thành và cách Thanh Lan đồng hành</h2>
+          <p>Bốn chặng mẹ sẽ đi cùng Thanh Lan, từ lần gặp đầu đến những ngày ở cữ ổn định.</p>
+        </div>
+        <div class="timeline">
+          <div class="step">
+            <div class="step-mark"><div class="step-no">1</div></div>
+            <article>
+              <h3>Lắng nghe mẹ</h3>
+              <p>Mẹ kể giai đoạn hiện tại: sắp sinh, tuần đầu sau sinh, hoặc đang tắc sữa. Thanh Lan gợi ý buổi hoặc liệu trình phù hợp, không gói dịch vụ thừa.</p>
+            </article>
+          </div>
+          <div class="step">
+            <div class="step-mark"><div class="step-no">2</div></div>
+            <article>
+              <h3>Chuyên viên tới nhà</h3>
+              <p>Điều dưỡng hoặc nữ hộ sinh đã được đào tạo mang dụng cụ sạch, đúng giờ, và làm việc trong không gian riêng của gia đình.</p>
+            </article>
+          </div>
+          <div class="step">
+            <div class="step-mark"><div class="step-no">3</div></div>
+            <article>
+              <h3>Chăm mẹ và bé trong cùng một buổi</h3>
+              <p>Tắm bé, massage, xông thảo dược hoặc thông tắc tia sữa theo nhu cầu. Mẹ được hướng dẫn cách làm lại những động tác an toàn.</p>
+            </article>
+          </div>
+          <div class="step">
+            <div class="step-mark"><div class="step-no">4</div></div>
+            <article>
+              <h3>Ở lại bằng kiến thức và nhật ký</h3>
+              <p>Sau buổi chăm, mẹ nhận gợi ý theo dõi tại nhà, bài viết miễn phí và có thể lưu lại cảm nhận trong nhật ký Thanh Lan.</p>
+            </article>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="diary-grid">
-        <div class="diary-card">
-          <div class="diary-photo">📸 Ảnh thực tế: Bé Bắp 12 ngày tuổi cười tít mắt sau buổi tắm lá</div>
-          <div class="diary-meta">
-            <span>Mẹ Minh Anh &amp; Bé Bắp</span>
-            <span>★★★★★</span>
-          </div>
-          <h4>“Nhờ các cô Thanh Lan mà mình hết sợ mỗi lần tắm cho con”</h4>
-          <p>“Sinh bé đầu nên hai vợ chồng lóng ngóng lắm. Cô điều dưỡng qua tắm nhẹ nhàng, bé thích mê xong ngủ một mạch 4 tiếng luôn.”</p>
-        </div>
-
-        <div class="diary-card">
-          <div class="diary-photo">📸 Ảnh thực tế: Mẹ Thảo Vy thư giãn cùng liệu trình sau sinh</div>
-          <div class="diary-meta">
-            <span>Mẹ Thảo Vy &amp; Bé Sữa</span>
-            <span>★★★★★</span>
-          </div>
-          <h4>“Thông tia sữa nhẹ tênh, không hề đau như mình từng lo lắng”</h4>
-          <p>“Ngày thứ 4 sau sinh mình bị căng tức phát sốt. Gọi Thanh Lan là có cô tới ngay trong 1 tiếng, làm xong nhẹ cả người.”</p>
-        </div>
-
-        <div class="diary-card">
-          <div class="diary-photo">📸 Ảnh thực tế: Góc ảnh kỷ niệm đầy tháng của Bé Khoai Tây</div>
-          <div class="diary-meta">
-            <span>Mẹ Ngọc Hà &amp; Bé Khoai Tây</span>
-            <span>★★★★★</span>
-          </div>
-          <h4>“Hết 10 buổi mà bụng gọn hẳn, tinh thần mẹ cũng vui vẻ hơn”</h4>
-          <p>“Mỗi ngày mong tới giờ cô qua xông hơi, massage cổ vai gáy rồi tâm sự chuyện bỉm sữa. Cảm giác được nâng niu thật sự.”</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. FORM NHẬN CẨM NANG CHĂM SÓC SAU SINH MIỄN PHÍ -->
-  <section id="cam-nang" class="lead-section">
-    <div class="container">
-      <div class="lead-box">
-        <div class="lead-info">
-          <div class="section-badge badge-pink">🎁 Quà tặng miễn phí từ Thanh Lan</div>
-          <h2>Nhận Bộ Cẩm Nang Chăm Sóc Mẹ &amp; Bé Sau Sinh</h2>
-          <p>Tài liệu PDF được biên soạn ngắn gọn, dễ áp dụng ngay tại nhà dành riêng cho mẹ bầu và mẹ mới sinh.</p>
-          <ul class="lead-list">
-            <li>✅ Lịch sinh hoạt chuẩn cho bé 0–3 tháng tuổi</li>
-            <li>✅ Thực đơn 30 ngày ở cữ lợi sữa, mẹ không lo tăng cân</li>
-            <li>✅ 7 bước xử lý nhanh khi bé khóc dạ đề hoặc đầy hơi</li>
-            <li>✅ Voucher ưu đãi 15% cho buổi chăm sóc trải nghiệm đầu tiên</li>
+    <section class="block" id="gia-tri" style="background: var(--bg-cream);">
+      <div class="container trio">
+        <article class="panel">
+          <span class="badge badge-blue">Tầm nhìn</span>
+          <h3>Điểm tựa sau sinh của từng gia đình</h3>
+          <p>Thanh Lan muốn mẹ nhớ giai đoạn ở cữ như khoảng thời gian được nâng đỡ, bé được chăm sạch sẽ và cả nhà bớt lo.</p>
+        </article>
+        <article class="panel">
+          <span class="badge badge-pink">Giá trị cốt lõi</span>
+          <h3>Năm điều giữ trong mỗi buổi</h3>
+          <ul class="values">
+            <li><strong>An lành.</strong> Thảo dược rõ nguồn, dụng cụ sạch, thao tác phù hợp mẹ và trẻ sơ sinh.</li>
+            <li><strong>Chân thành.</strong> Nói rõ mẹ cần gì, không hứa kết quả vượt quá buổi chăm sóc.</li>
+            <li><strong>Chuyên môn.</strong> Người làm việc được đào tạo về chăm sóc sau sinh và tắm bé.</li>
+            <li><strong>Nhẹ nhàng.</strong> Thông tắc và massage theo ngưỡng mẹ chịu được.</li>
+            <li><strong>Cả nhà.</strong> Cha hoặc người thân được hướng dẫn để tiếp tục chăm khi chuyên viên về.</li>
           </ul>
-        </div>
+        </article>
+        <article class="panel">
+          <span class="badge badge-blue">Trách nhiệm</span>
+          <h3>Ba việc Thanh Lan nhận</h3>
+          <ul class="duty">
+            <li>Sản phẩm và thảo dược dùng trên da mẹ, bé phải lành tính.</li>
+            <li>Dịch vụ mẹ bầu, mẹ sau sinh và tắm bé làm tại nhà theo quy trình đã thống nhất.</li>
+            <li>Ở lại cùng mẹ bằng cẩm nang và bài viết mẹ đọc được ngay, không cần đăng ký tài khoản.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <form class="lead-form" id="handbookForm" onsubmit="submitHandbook(event)">
-          <h3 style="margin-bottom: 14px; font-size: 1.25rem;">Điền thông tin để nhận link tải ngay</h3>
-          <div class="form-group">
-            <label for="leadName">Họ và tên của mẹ *</label>
-            <input type="text" id="leadName" placeholder="Ví dụ: Nguyễn Minh Anh" required />
+    <section class="block pricing" id="bang-gia">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge badge-pink">Bảng giá</span>
+          <h2>Chọn gói và đặt lịch tại chỗ</h2>
+          <p>Giá hiển thị để mẹ đối chiếu. Bấm đặt lịch, điền tên và số điện thoại, Thanh Lan gọi hoặc nhắn Zalo để chốt giờ.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+            <h3>Tắm và massage bé sơ sinh</h3>
+            <p class="muted">Bé sạch, rốn được chăm, dễ ngủ sau buổi tắm.</p>
+            <div class="amount">250.000đ <span>mỗi buổi, hoặc theo gói 10 buổi</span></div>
+            <ul class="features">
+              <li>Massage kích thích giác quan</li>
+              <li>Tắm nước lá thảo dược</li>
+              <li>Vệ sinh mắt, mũi, miệng và chăm rốn</li>
+              <li>Giữ ấm và xem lại các mốc của bé</li>
+            </ul>
+            <button class="btn btn-secondary btn-block" type="button" data-book="Tắm và massage bé sơ sinh (250.000đ/buổi)">Đặt lịch nhanh</button>
+          </article>
+          <article class="price-card featured">
+            <span class="tag">Mẹ chọn nhiều</span>
+            <h3>Chăm sóc mẹ sau sinh</h3>
+            <p class="muted">Xông, massage và hỗ trợ gọi sữa trong liệu trình 10 buổi.</p>
+            <div class="amount">4.500.000đ <span>liệu trình 10 buổi</span></div>
+            <ul class="features">
+              <li>Xông hơi thảo dược</li>
+              <li>Massage cổ vai gáy</li>
+              <li>Chăm vùng bụng, đắp muối thảo dược</li>
+              <li>Chăm da mặt dịu</li>
+              <li>Kèm buổi hơ mặt và tư vấn kích sữa</li>
+            </ul>
+            <button class="btn btn-primary btn-block" type="button" data-book="Chăm sóc mẹ sau sinh (4.500.000đ/10 buổi)">Đặt lịch gói này</button>
+          </article>
+          <article class="price-card">
+            <h3>Thông tắc tia sữa</h3>
+            <p class="muted">Khi mẹ cương tức hoặc sữa về ít, làm nhẹ, không nặn mạnh.</p>
+            <div class="amount">450.000đ <span>mỗi buổi tại nhà</span></div>
+            <ul class="features">
+              <li>Kiểm tra vùng ngực và chườm ấm</li>
+              <li>Massage khai thông theo ngưỡng mẹ</li>
+              <li>Hỗ trợ hút sữa khi cần</li>
+              <li>Hướng dẫn tư thế ngậm ti</li>
+            </ul>
+            <button class="btn btn-secondary btn-block" type="button" data-book="Thông tắc tia sữa (450.000đ/buổi)">Đặt lịch buổi này</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block knowledge" id="kien-thuc">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge badge-blue">Đọc miễn phí</span>
+          <h2>Góc kiến thức chăm sóc sau sinh</h2>
+          <p>Ba nhóm bài mẹ lọc được ngay trên trang. Bấm đọc để mở nội dung, không cần rời trang.</p>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab" type="button" role="tab" aria-selected="true" data-filter="all">Tất cả</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-filter="o-cu">Ở cữ</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-filter="sua-me">Sữa mẹ</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-filter="cham-be">Chăm bé</button>
+        </div>
+        <div class="cards" id="articleList"></div>
+        <article class="reader" id="reader" aria-live="polite">
+          <span class="cat" id="readerCat"></span>
+          <h3 id="readerTitle" style="margin: 8px 0 12px;"></h3>
+          <div id="readerBody"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block diary" id="nhat-ky">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge badge-pink">Nhật ký</span>
+          <h2>Nhật ký chăm sóc mẹ và bé</h2>
+          <p>Chỗ dành cho ảnh thật và lời mẹ sau buổi chăm. Bản demo đang dùng lời mẫu để chị xem bố cục.</p>
+        </div>
+        <div class="diary-grid">
+          <article class="diary-card">
+            <div class="diary-photo">Ảnh thật: bé sau buổi tắm lá</div>
+            <div class="meta"><span>Mẹ Minh Anh và bé</span><span>Gói tắm bé</span></div>
+            <h3>Hết sợ mỗi lần tắm cho con</h3>
+            <p>“Sinh con đầu, hai vợ chồng lóng ngóng. Cô tắm nhẹ, bé ngủ một mạch sau đó.”</p>
+          </article>
+          <article class="diary-card">
+            <div class="diary-photo">Ảnh thật: mẹ trong buổi thông tắc</div>
+            <div class="meta"><span>Mẹ Thảo Vy</span><span>Thông tắc tia sữa</span></div>
+            <h3>Nhẹ, không nặn đến bầm</h3>
+            <p>“Ngày thứ tư bị căng tức. Làm xong ngực mềm hơn và mình biết cách cho bé ngậm.”</p>
+          </article>
+          <article class="diary-card">
+            <div class="diary-photo">Ảnh thật: mẹ sau liệu trình 10 buổi</div>
+            <div class="meta"><span>Mẹ Ngọc Hà</span><span>Chăm mẹ sau sinh</span></div>
+            <h3>Mỗi ngày có một khoảng được nghỉ</h3>
+            <p>“Xông, massage vai, rồi được nghe lại cách ăn uống lợi sữa. Tinh thần mẹ đỡ chùng.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block lead" id="cam-nang">
+      <div class="container lead-box">
+        <div>
+          <span class="badge badge-pink">Quà trên trang</span>
+          <h2 class="serif" style="font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin: 10px 0;">Cẩm nang chăm sóc sau sinh</h2>
+          <p>Mẹ để lại tên và số Zalo. Thanh Lan ghi nhận trên trình duyệt của mẹ và hiện nội dung cẩm nang ngay phía dưới, để chị xem luồng nhận quà.</p>
+          <ul class="gift">
+            <li>Nhịp sinh hoạt gợi ý cho bé trong những tuần đầu.</li>
+            <li>Gợi ý bữa ăn ở cữ, ưu tiên món mẹ nấu được.</li>
+            <li>Việc làm khi bé khóc nhiều hoặc đầy hơi.</li>
+            <li>Nhắc lịch buổi chăm trải nghiệm khi mẹ muốn đặt.</li>
+          </ul>
+          <div class="reader" id="handbookPreview">
+            <h3>Nội dung mẹ vừa mở</h3>
+            <p id="handbookText"></p>
           </div>
-          <div class="form-group">
-            <label for="leadPhone">Số điện thoại / Zalo nhận file *</label>
-            <input type="tel" id="leadPhone" placeholder="Ví dụ: 09xx xxx xxx" required />
+        </div>
+        <form id="handbookForm">
+          <h3 class="serif" style="font-size: 1.25rem; margin-bottom: 12px;">Nhận cẩm nang</h3>
+          <div class="field">
+            <label for="leadName">Họ và tên</label>
+            <input id="leadName" name="name" autocomplete="name" required placeholder="Nguyễn Minh Anh" />
           </div>
-          <div class="form-group">
-            <label for="leadStage">Giai đoạn hiện tại của mẹ</label>
-            <select id="leadStage">
-              <option value="Mẹ bầu sắp sinh">Mẹ bầu (đang chuẩn bị đi sinh)</option>
-              <option value="Mẹ vừa sinh 0-1 tháng">Mẹ vừa sinh (bé dưới 1 tháng)</option>
-              <option value="Mẹ sau sinh 1-6 tháng">Mẹ sau sinh (bé 1 - 6 tháng)</option>
+          <div class="field">
+            <label for="leadPhone">Số điện thoại hoặc Zalo</label>
+            <input id="leadPhone" name="phone" inputmode="tel" autocomplete="tel" required placeholder="09xx xxx xxx" />
+            <div class="error" id="leadPhoneError"></div>
+          </div>
+          <div class="field">
+            <label for="leadStage">Giai đoạn của mẹ</label>
+            <select id="leadStage" name="stage">
+              <option>Mẹ bầu, đang chuẩn bị sinh</option>
+              <option>Bé dưới 1 tháng</option>
+              <option>Bé từ 1 đến 6 tháng</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Gửi Cẩm Nang Miễn Phí Cho Mẹ</button>
-          <div class="form-success" id="handbookSuccess">
-            🌸 Cảm ơn mẹ! Thanh Lan đã ghi nhận thông tin và sẽ gửi Bộ Cẩm Nang PDF qua Zalo của mẹ ngay nhé.
-          </div>
+          <button class="btn btn-primary btn-block" type="submit">Gửi và xem cẩm nang</button>
+          <p class="note" id="leadNote"></p>
         </form>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>Thanh Lan — Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà</h4>
-          <p>Dịch vụ chăm sóc mẹ bầu, mẹ sau sinh và tắm bé sơ sinh tại nhà chuẩn y khoa, tận tâm và an lành.</p>
-        </div>
-        <div>
-          <h4>Liên kết nhanh</h4>
-          <ul>
-            <li><a href="#cau-chuyen">Câu chuyện thương hiệu</a></li>
-            <li><a href="#bang-gia">Bảng giá dịch vụ</a></li>
-            <li><a href="#kien-thuc">Kiến thức chăm sóc sau sinh</a></li>
-            <li><a href="#nhat-ky">Nhật ký Mẹ &amp; Bé</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Kết nối với Thanh Lan</h4>
-          <p>Hotline / Zalo: <strong>0859 790 625</strong></p>
-          <p>Fanpage: <strong>Thanh Lan Mẹ và Bé</strong></p>
-          <p>Giờ phục vụ: 08:00 – 20:00 (Thứ 2 – Chủ Nhật)</p>
-        </div>
+    <div class="container footer-grid">
+      <div>
+        <h2>Thanh Lan</h2>
+        <p>Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà. Chăm sóc mẹ sau sinh và tắm bé sơ sinh tại nhà.</p>
       </div>
-      <div class="footer-bottom">
-        © 2026 Thanh Lan Mẹ và Bé. Bản thiết kế cấu trúc Website truyền thông &amp; đặt lịch.
+      <div>
+        <h3>Trong trang</h3>
+        <ul>
+          <li><a href="#cau-chuyen">Câu chuyện</a></li>
+          <li><a href="#bang-gia">Bảng giá</a></li>
+          <li><a href="#kien-thuc">Kiến thức sau sinh</a></li>
+          <li><a href="#nhat-ky">Nhật ký</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Liên hệ</h3>
+        <p>Hotline / Zalo: <a href="tel:0859790625"><strong>0859 790 625</strong></a></p>
+        <p>Fanpage: Thanh Lan Mẹ và Bé</p>
+        <p>Giờ phục vụ: 08:00 – 20:00, cả tuần</p>
       </div>
     </div>
+    <p class="legal">Bản demo cấu trúc website Thanh Lan. Ảnh nhật ký và lời mẹ là mẫu để xem bố cục, chờ ảnh thật của chị.</p>
   </footer>
 
-  <!-- 3. THANH MẠNG XÃ HỘI NỔI Ở GÓC MÀN HÌNH -->
-  <div class="floating-social" aria-label="Kết nối nhanh">
-    <a href="https://zalo.me/0859790625" target="_blank" rel="noopener" class="float-btn float-zalo">
-      <span>💬</span> <span class="label">Chat Zalo ngay</span>
-    </a>
-    <a href="https://facebook.com" target="_blank" rel="noopener" class="float-btn float-fb">
-      <span>📘</span> <span class="label">Fanpage Facebook</span>
-    </a>
-    <a href="tel:0859790625" class="float-btn float-hotline">
-      <span>📞</span> <span class="label">0859 790 625</span>
-    </a>
+  <div class="dock" aria-label="Liên hệ nhanh">
+    <a class="zalo" href="https://zalo.me/0859790625" target="_blank" rel="noopener">Zalo <span>Chat ngay</span></a>
+    <a class="fb" href="https://facebook.com" target="_blank" rel="noopener">Facebook <span>Fanpage</span></a>
+    <a class="call" href="tel:0859790625">Gọi <span>0859 790 625</span></a>
   </div>
 
-  <!-- MODAL ĐẶT LỊCH NHANH -->
-  <div class="modal-overlay" id="bookingModal">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeBookingModal()" aria-label="Đóng">✕</button>
-      <div class="section-badge badge-pink" style="margin-bottom: 8px;">📅 Đặt lịch nhanh</div>
-      <h3 style="margin-bottom: 14px;">Đặt Lịch Chăm Sóc Tại Nhà</h3>
-      <form onsubmit="submitBooking(event)">
-        <div class="form-group">
-          <label for="bookService">Dịch vụ mẹ chọn</label>
-          <input type="text" id="bookService" readonly style="background: var(--pastel-blue); font-weight: 600;" />
+  <div class="overlay" id="bookingModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+      <button class="close" type="button" id="closeBooking" aria-label="Đóng">×</button>
+      <span class="badge badge-pink">Đặt lịch</span>
+      <h3 id="bookTitle" class="serif" style="margin: 8px 0 14px;">Đặt lịch chăm sóc tại nhà</h3>
+      <form id="bookingForm">
+        <div class="field">
+          <label for="bookService">Dịch vụ</label>
+          <input id="bookService" readonly />
         </div>
-        <div class="form-group">
-          <label for="bookName">Họ và tên của mẹ *</label>
-          <input type="text" id="bookName" placeholder="Nhập tên của mẹ" required />
+        <div class="field">
+          <label for="bookName">Họ và tên</label>
+          <input id="bookName" required autocomplete="name" />
         </div>
-        <div class="form-group">
-          <label for="bookPhone">Số điện thoại / Zalo *</label>
-          <input type="tel" id="bookPhone" placeholder="Nhập số điện thoại liên hệ" required />
+        <div class="field">
+          <label for="bookPhone">Số điện thoại hoặc Zalo</label>
+          <input id="bookPhone" required inputmode="tel" autocomplete="tel" />
+          <div class="error" id="bookPhoneError"></div>
         </div>
-        <div class="form-group">
-          <label for="bookDate">Thời gian mong muốn</label>
-          <input type="date" id="bookDate" />
+        <div class="field">
+          <label for="bookDate">Ngày mong muốn</label>
+          <input id="bookDate" type="date" />
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Xác nhận đặt lịch</button>
-        <div class="form-success" id="bookingSuccess">
-          💙 Đặt lịch thành công! Chuyên viên Thanh Lan sẽ gọi/nhắn Zalo xác nhận trong ít phút.
-        </div>
+        <button class="btn btn-primary btn-block" type="submit">Xác nhận</button>
+        <p class="note" id="bookNote"></p>
       </form>
     </div>
   </div>
 
   <script>
-    function filterArticles(category, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('#articlesGrid .article-card').forEach(card => {
-        if (category === 'all' || card.dataset.cat === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+    const articles = [
+      {
+        id: "tac-sua",
+        cat: "sua-me",
+        catLabel: "Sữa mẹ",
+        thumb: "Năm dấu hiệu tắc tia sữa",
+        title: "Dấu hiệu tắc tia sữa sớm và việc mẹ làm trong ngày đầu",
+        summary: "Căng, nóng, sốt nhẹ hoặc bé nuốt ít hơn. Mẹ chườm ấm ngắn, cho bú hoặc hút thường, và gọi người hỗ trợ nếu đau tăng.",
+        body: [
+          "Tắc sớm thường bắt đầu bằng một vùng ngực cứng, da nóng và sữa chảy một bên kém hơn. Mẹ không nặn mạnh đến bầm.",
+          "Chườm ấm vài phút trước khi cho bú hoặc hút. Xoa từ phía ngoài vào phía núm, đủ để mẹ vẫn nói chuyện được.",
+          "Nếu sốt cao, vùng đỏ lan nhanh hoặc đau tăng sau một ngày, mẹ nên được nhân viên đã học về thông tắc xem trực tiếp."
+        ]
+      },
+      {
+        id: "o-cu",
+        cat: "o-cu",
+        catLabel: "Ở cữ",
+        thumb: "Ở cữ cho mẹ mau hồi",
+        title: "Ở cữ: việc nên giữ và việc mẹ không cần kiêng cứng",
+        summary: "Nghỉ, ăn ấm, tắm gội sạch và đi lại nhẹ thường giúp mẹ hồi hơn là nằm yên cả ngày.",
+        body: [
+          "Mẹ có thể tắm bằng nước ấm trong phòng kín gió, lau khô tóc và mặc áo ngay. Giữ người sạch giúp vết thương và tinh thần dễ chịu hơn.",
+          "Đi lại trong nhà, ngồi cho bú đúng lưng, và ngủ khi bé ngủ. Nằm liệt một chỗ dễ làm vai mỏi và sữa về chậm.",
+          "Bữa ăn ưu tiên món mẹ tiêu hóa được: cháo, thịt nạc, rau xanh nấu chín. Nhờ người nhà nấu giúp trong hai tuần đầu."
+        ]
+      },
+      {
+        id: "ngu-be",
+        cat: "cham-be",
+        catLabel: "Chăm bé",
+        thumb: "Massage và giấc ngủ",
+        title: "Massage bụng và nhịp bú – ngủ cho bé những tuần đầu",
+        summary: "Xoa bụng theo chiều kim đồng hồ, vỗ ợ, rồi đặt bé nằm nơi yên sau khi bú no.",
+        body: [
+          "Tay mẹ ấm, dầu chỉ dùng loại dành cho trẻ sơ sinh và tránh mặt. Xoa bụng bé theo vòng tròn nhẹ để đỡ đầy hơi.",
+          "Bú, ợ, thay bỉm, rồi mới dỗ ngủ. Giữ chuỗi này trong ngày giúp bé phân biệt lúc chơi và lúc nghỉ.",
+          "Nếu bé bú kém, sốt, thở nhanh hoặc rốn có mùi, mẹ đưa bé đi khám thay vì chỉ massage tại nhà."
+        ]
+      }
+    ];
+
+    const list = document.getElementById("articleList");
+    const reader = document.getElementById("reader");
+
+    function renderArticles(filter) {
+      list.innerHTML = "";
+      articles.filter(item => filter === "all" || item.cat === filter).forEach(item => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="thumb"></div>
+          <div class="card-body">
+            <span class="cat"></span>
+            <h3></h3>
+            <p class="muted"></p>
+            <button class="linkish" type="button">Đọc bài này</button>
+          </div>`;
+        card.querySelector(".thumb").textContent = item.thumb;
+        card.querySelector(".cat").textContent = item.catLabel;
+        card.querySelector("h3").textContent = item.title;
+        card.querySelector(".muted").textContent = item.summary;
+        card.querySelector("button").addEventListener("click", () => openArticle(item));
+        list.appendChild(card);
       });
     }
 
-    function openBookingModal(serviceName) {
-      document.getElementById('bookService').value = serviceName;
-      document.getElementById('bookingSuccess').style.display = 'none';
-      document.getElementById('bookingModal').classList.add('open');
+    function openArticle(item) {
+      document.getElementById("readerCat").textContent = item.catLabel;
+      document.getElementById("readerTitle").textContent = item.title;
+      const body = document.getElementById("readerBody");
+      body.innerHTML = "";
+      item.body.forEach(paragraph => {
+        const p = document.createElement("p");
+        p.textContent = paragraph;
+        body.appendChild(p);
+      });
+      reader.classList.add("open");
+      reader.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    function closeBookingModal() {
-      document.getElementById('bookingModal').classList.remove('open');
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(other => other.setAttribute("aria-selected", "false"));
+        tab.setAttribute("aria-selected", "true");
+        reader.classList.remove("open");
+        renderArticles(tab.dataset.filter);
+      });
+    });
+    renderArticles("all");
+
+    const menu = document.getElementById("mainNav");
+    const menuToggle = document.getElementById("menuToggle");
+    menuToggle.addEventListener("click", () => {
+      const open = menu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+    });
+    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      menu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }));
+
+    const modal = document.getElementById("bookingModal");
+    const bookingForm = document.getElementById("bookingForm");
+    function openBooking(service) {
+      document.getElementById("bookService").value = service;
+      document.getElementById("bookNote").classList.remove("show");
+      document.getElementById("bookPhoneError").textContent = "";
+      modal.classList.add("open");
+      document.getElementById("bookName").focus();
+    }
+    function closeBooking() { modal.classList.remove("open"); }
+    document.querySelectorAll("[data-book]").forEach(button => {
+      button.addEventListener("click", () => openBooking(button.dataset.book));
+    });
+    document.getElementById("closeBooking").addEventListener("click", closeBooking);
+    modal.addEventListener("click", event => { if (event.target === modal) closeBooking(); });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") closeBooking(); });
+
+    function validPhone(value) {
+      const digits = value.replace(/\D/g, "");
+      return digits.length >= 9 && digits.length <= 12;
     }
 
-    function submitBooking(e) {
-      e.preventDefault();
-      document.getElementById('bookingSuccess').style.display = 'block';
-    }
+    bookingForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const phone = document.getElementById("bookPhone").value;
+      const error = document.getElementById("bookPhoneError");
+      if (!validPhone(phone)) {
+        error.textContent = "Nhập số điện thoại từ 9 đến 12 chữ số.";
+        return;
+      }
+      error.textContent = "";
+      const note = document.getElementById("bookNote");
+      const requests = JSON.parse(localStorage.getItem("thanhLanBookings") || "[]");
+      requests.push({
+        service: document.getElementById("bookService").value,
+        name: document.getElementById("bookName").value.trim(),
+        phone: phone.trim(),
+        date: document.getElementById("bookDate").value,
+        at: new Date().toISOString()
+      });
+      localStorage.setItem("thanhLanBookings", JSON.stringify(requests));
+      note.textContent = "Đã lưu lịch trên máy mẹ. Thanh Lan sẽ gọi hoặc nhắn Zalo " + phone.trim() + " để chốt giờ. Bản demo chưa gửi về tổng đài.";
+      note.classList.add("show");
+      bookingForm.reset();
+      document.getElementById("bookService").value = requests[requests.length - 1].service;
+    });
 
-    function submitHandbook(e) {
-      e.preventDefault();
-      document.getElementById('handbookSuccess').style.display = 'block';
-    }
+    const guides = {
+      "Mẹ bầu, đang chuẩn bị sinh": "Chuẩn bị túi đồ sinh, chọn tư thế nằm cho bú, và ghi số Zalo Thanh Lan để gọi tắm bé trong tuần đầu.",
+      "Bé dưới 1 tháng": "Bú theo nhu cầu, theo dõi rốn khô, tắm khi phòng kín gió, và gọi hỗ trợ nếu ngực căng quá một ngày.",
+      "Bé từ 1 đến 6 tháng": "Giữ nhịp bú và ngủ, tập tummy time lúc bé tỉnh, và massage bụng khi bé đầy hơi sau khi đã ợ."
+    };
 
-    window.addEventListener('click', function(e) {
-      const modal = document.getElementById('bookingModal');
-      if (e.target === modal) closeBookingModal();
+    document.getElementById("handbookForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const phone = document.getElementById("leadPhone").value;
+      const error = document.getElementById("leadPhoneError");
+      if (!validPhone(phone)) {
+        error.textContent = "Nhập số điện thoại từ 9 đến 12 chữ số.";
+        return;
+      }
+      error.textContent = "";
+      const stage = document.getElementById("leadStage").value;
+      const name = document.getElementById("leadName").value.trim();
+      const leads = JSON.parse(localStorage.getItem("thanhLanLeads") || "[]");
+      leads.push({ name, phone: phone.trim(), stage, at: new Date().toISOString() });
+      localStorage.setItem("thanhLanLeads", JSON.stringify(leads));
+      const preview = document.getElementById("handbookPreview");
+      document.getElementById("handbookText").textContent = name + " ơi, với giai đoạn “" + stage + "”: " + guides[stage];
+      preview.classList.add("open");
+      const note = document.getElementById("leadNote");
+      note.textContent = "Đã ghi tên và số trên máy này. Nội dung cẩm nang hiện bên cạnh. Bản demo chưa gửi file qua Zalo.";
+      note.classList.add("show");
     });
   </script>
 </body>
