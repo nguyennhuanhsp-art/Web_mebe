@@ -1,3 +1,7 @@
+if (window.location.hash === "#admin") {
+  window.location.replace("/wp-admin/edit.php?post_type=product");
+}
+
 const pages = [
   ["Trang chủ", "index.html", "Thanh Lan Spa chăm sóc mẹ và bé trước và sau sinh"],
   ["Giới thiệu", "gioi-thieu.html", "Tô Lan đại diện thương hiệu Thanh Lan Spa"],
