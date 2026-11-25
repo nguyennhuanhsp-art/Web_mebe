@@ -24,8 +24,7 @@ if (!function_exists('thanh_lan_cau_chuyen_html')) {
             . '<p>Trước khi Thanh Lan Spa ra đời, chị Tô Lan có một công việc văn phòng ổn định và một nhịp sống bình lặng. Trong vòng quay ấy, chị vẫn tự hỏi liệu mình chỉ dừng ở một cuộc đời an toàn, hay còn có thể làm một việc thực sự chạm tới người khác. Chị muốn công việc vừa lo được cuộc sống, vừa khiến trái tim ấm lại mỗi khi kết thúc một ngày.</p>'
             . '<h2>Bước ngoặt: phụ nữ sau sinh cần được yêu thương</h2>'
             . '<p>Chị rẽ sang chăm sóc mẹ và bé không phải vì một bài toán kinh doanh. Chị thấy người mẹ, sau hành trình vượt cạn, thường mệt, nhạy cảm, có khi cô đơn, và rất dễ bị lãng quên. Chị chọn đứng cạnh, lắng nghe và chăm sóc, để mỗi mẹ cảm nhận được một điều rõ ràng: mình xứng đáng được trân trọng và yêu thương.</p>'
-            . '</div><figure class="panel">' . thanh_lan_anh('doi-ngu-4.jpg', 'Đội ngũ Thanh Lan trong ngày khai trương', 'cover')
-            . '<figcaption class="caption">Ngày khai trương, đội ngũ đứng cùng khách.</figcaption></figure></div>'
+            . '</div><figure class="panel">' . thanh_lan_anh('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa', 'cover') . '</figure></div>'
             . '<aside class="quote" style="margin-top:18px"><p>“Tôi không nhận mình là người giỏi nhất, nhưng tôi tự hào vì luôn làm nghề bằng tất cả sự tử tế. Thanh Lan không chỉ cung cấp dịch vụ chăm sóc mẹ và bé, mà là tổ ấm thứ hai, nơi phụ nữ được yêu thương đúng nghĩa.”</p><span>Tô Thị Lan, CEO và Founder</span></aside>'
             . '<div class="split" style="margin-top:22px"><div class="panel">'
             . '<h2>Đi lên từ năm 2018</h2>'
