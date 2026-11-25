@@ -10,6 +10,7 @@ if (PHP_SAPI !== 'cli') {
 
 require '/home/giqisvhphosting/public_html/wp-load.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
+require __DIR__ . '/thanh-lan-cau-chuyen.php';
 
 $admin = get_user_by('login', 'tolan');
 if ($admin) {
@@ -135,7 +136,7 @@ foreach ($services as $item) {
 $front = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicker">Thanh Lan Spa</p><h1>Chăm mẹ và bé trước và sau sinh</h1>'
     . '<p class="lead">Tô Thị Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
     . '<div class="actions"><a class="btn" href="' . esc_url($u('dich-vu/')) . '">Xem Dịch Vụ</a><a class="btn light" href="' . esc_url($u('tu-van/')) . '">Nhận tư vấn</a></div>'
-    . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2019</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article><article><strong>0975.399.319</strong><span>Hotline Ms Tô Lan</span></article></div></div>'
+    . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2018</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article><article><strong>0975.399.319</strong><span>Hotline Ms Tô Lan</span></article></div></div>'
     . '<figure class="frame"><div class="hero-slides">'
     . tl_img('doi-ngu-1.jpg', 'Đội Ngũ Thanh Lan Spa')
     . tl_img('doi-ngu-2.jpg', 'Đội Ngũ Thanh Lan Spa')
@@ -154,19 +155,7 @@ $front = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicke
 $pages = array();
 $pages['__front__'] = $front;
 
-$pages['gioi-thieu'] = '<section class="page-hero"><div class="wrap"><p class="crumbs"><a href="' . esc_url($home) . '">Trang chủ</a> / Giới thiệu</p><p class="kicker">Giới thiệu</p><h1>Thanh Lan Spa</h1>'
-    . '<p class="lead">Câu chuyện về CEO và Founder Tô Thị Lan. Thanh Lan Spa chăm sóc mẹ và bé trước và sau sinh.</p>'
-    . '<div class="split" style="margin-top:18px"><div class="panel"><p>Kính gửi quý mẹ và gia đình,</p>'
-    . '<p>Thanh Lan Spa bắt đầu từ những đêm trắng, nỗi lo tắc tia sữa và sự bỡ ngỡ khi đón con. Tô Lan muốn mỗi mẹ có một người đồng hành dịu dàng, từ lúc còn bầu đến khi bé đã về nhà.</p>'
-    . '<p>Mỗi buổi massage mẹ bầu, thông tia sữa, phục hồi hay tắm bé đều hướng tới một điều: mẹ được nghỉ, bé được nâng niu an toàn.</p>'
-    . '<p><strong>Trân trọng,<br />Tô Thị Lan<br />CEO và Founder, Thanh Lan Spa</strong></p>'
-    . '<p>CÔNG TY TNHH TM&amp;DV THANH LAN<br />MST 0319180928, đăng ký 25/9/2025<br />Số 77, đường 537, Ấp Bàu Trăn, Xã Nhuận Đức, TPHCM<br />thanhlanspa238@gmail.com</p></div>'
-    . '<figure class="panel">' . tl_img('doi-ngu-4.jpg', 'Đội ngũ và khách trong ngày khai trương Thanh Lan', 'cover') . '<figcaption class="caption">Ngày khai trương, đội ngũ đứng cùng khách.</figcaption></figure></div>'
-    . '<div class="shots">'
-    . tl_fig('doi-ngu-1.jpg', 'Kỹ thuật viên trong lễ tốt nghiệp', 'Lễ tốt nghiệp của kỹ thuật viên.')
-    . tl_fig('doi-ngu-3.jpg', 'Đội ngũ trước biển hiệu Thanh Lan', 'Biển hiệu Spa chăm sóc và thư giãn Thanh Lan.')
-    . tl_fig('day-thang-be-2.jpg', 'Gia đình và kỹ thuật viên trong lễ đầy tháng', 'Một lễ đầy tháng đội ngũ có mặt cùng gia đình.')
-    . '</div></div></section>';
+$pages['gioi-thieu'] = thanh_lan_cau_chuyen_html($home);
 
 $pages['dich-vu'] = '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . esc_url($home) . '">Trang chủ</a> / Dịch Vụ</p><h2>Dịch Vụ</h2>'
     . '<p class="intro">Mỗi dịch vụ một trang. Bảng gói nằm ở <a href="https://canva.link/evxg6qiebmgc9hh" target="_blank" rel="noopener">Canva</a>. Giá dưới đây là mức đang ghi trên website.</p>'
@@ -365,9 +354,11 @@ $posts = array(
         'title' => 'Dấu ấn đội ngũ Thanh Lan',
         'cat' => 'dau-an-thanh-lan',
         'thumb' => 'doi-ngu-3.jpg',
-        'excerpt' => 'Lễ tốt nghiệp, khai trương và những buổi đầy tháng đội ngũ đứng cùng gia đình.',
-        'html' => '<p>Thanh Lan Spa do Tô Thị Lan sáng lập, tên giao dịch quốc tế THANH LAN MOM BABY CARE, tên thương mại Mẹ và Bé Thanh Lan. Công ty TNHH TM&amp;DV Thanh Lan, mã số thuế 0319180928, đăng ký ngày 25/9/2025. Spa hoạt động với mẹ và bé từ năm 2019 và có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
-            . '<p>Ảnh đội ngũ trong thư viện gồm lễ tốt nghiệp kỹ thuật viên, ngày khai trương với hoa và khách, và ảnh đứng trước biển hiệu “Spa chăm sóc và thư giãn Thanh Lan”.</p>'
+        'excerpt' => 'Năm 2018 chị Tô Lan dựng Thanh Lan từ đôi bàn tay và sự tử tế. Hôm nay thương hiệu đồng hành cùng hơn 20.000 mẹ và bé.',
+        'html' => '<p>Năm 2018, chị Tô Lan bắt đầu Thanh Lan Spa từ con số không: chưa có vốn lớn, chưa có mối quan hệ, chưa có kinh nghiệm thương trường. Tài sản lúc ấy là đôi bàn tay tận tụy và một tấm lòng chân thành. Chị tự chăm từng sản phụ, tự học và sửa từ những buổi làm thật.</p>'
+            . '<p>Thanh Lan không lớn bằng một chiến dịch rầm rộ. Thương hiệu lớn lên từ sự tin của khách hàng, và đã trở thành người bạn đồng hành của hơn 20.000 em bé và bà mẹ, có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
+            . '<p>Tên quốc tế là THANH LAN MOM BABY CARE, tên thương mại là Mẹ và Bé Thanh Lan. Công ty TNHH TM&amp;DV Thanh Lan, mã số thuế 0319180928, đăng ký ngày 25/9/2025. Câu chuyện đầy đủ của chị Tô Lan nằm ở trang <a href="' . esc_url($u('gioi-thieu/')) . '">Giới thiệu</a>.</p>'
+            . '<p>Ảnh đội ngũ trong thư viện gồm lễ tốt nghiệp kỹ thuật viên, ngày khai trương, và ảnh đứng trước biển hiệu Spa chăm sóc và thư giãn Thanh Lan.</p>'
             . '<div class="shots">'
             . tl_fig('doi-ngu-1.jpg', 'Lễ tốt nghiệp kỹ thuật viên', 'Lễ tốt nghiệp.')
             . tl_fig('doi-ngu-4.jpg', 'Khai trương Thanh Lan', 'Ngày khai trương.')
