@@ -111,7 +111,7 @@ main { padding-right: 58px; }
 }
 .lead { font-size: 1.05rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
-.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 8px; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
 .facts article { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px 8px; text-align: center; }
 .facts strong { display: block; color: var(--blue-dark); font-size: 1rem; }
 .facts span { display: block; font-size: 0.78rem; color: var(--muted); }

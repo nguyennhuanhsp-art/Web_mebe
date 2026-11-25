@@ -18,7 +18,7 @@ add_action('wp_enqueue_scripts', function () {
         array(),
         null
     );
-    wp_enqueue_style('thanh-lan-site', get_template_directory_uri() . '/assets/site.css', array('thanh-lan-fonts'), '1.3.0');
+    wp_enqueue_style('thanh-lan-site', get_template_directory_uri() . '/assets/site.css', array('thanh-lan-fonts'), '1.4.0');
     wp_enqueue_style('thanh-lan', get_stylesheet_uri(), array('thanh-lan-site'), '1.2.0');
     wp_enqueue_script('thanh-lan-site', get_template_directory_uri() . '/assets/site.js', array(), '1.2.0', true);
 });
