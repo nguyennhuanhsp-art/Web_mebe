@@ -32,7 +32,8 @@ function tl_card($file, $alt, $title, $text, $url, $label) {
 }
 
 function thanh_lan_home_layout_run() {
-    if (get_option('thanh_lan_home_layout_v') === '2') {
+    global $home, $u;
+    if (get_option('thanh_lan_home_layout_v') === '3') {
         return;
     }
     if (get_transient('thanh_lan_home_layout_lock')) {
@@ -207,7 +208,26 @@ function thanh_lan_home_layout_run() {
         $write('page ' . $slug . ' ' . $page->ID);
     }
 
+    $css_path = get_stylesheet_directory() . '/assets/site.css';
+    if (is_readable($css_path) && is_writable($css_path)) {
+        $css = file_get_contents($css_path);
+        $css = str_replace(
+            'footer { background: #22313f; color: #d7e1ea;',
+            'footer { background: var(--blue-dark); color: #eaf6fd;',
+            $css
+        );
+        file_put_contents($css_path, $css);
+        $write('css footer');
+    }
+    $functions_path = get_stylesheet_directory() . '/functions.php';
+    if (is_readable($functions_path) && is_writable($functions_path)) {
+        $functions = file_get_contents($functions_path);
+        $functions = str_replace("array('thanh-lan-fonts'), '1.4.0'", "array('thanh-lan-fonts'), '1.5.0'", $functions);
+        file_put_contents($functions_path, $functions);
+        $write('css version');
+    }
+
     do_action('litespeed_purge_all');
-        $write('done');
-        update_option('thanh_lan_home_layout_v', '2', false);
+    $write('done');
+    update_option('thanh_lan_home_layout_v', '3', false);
 }

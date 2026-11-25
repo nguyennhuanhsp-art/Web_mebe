@@ -157,7 +157,7 @@ textarea { min-height: 90px; }
 .note.show { display: block; }
 .error { color: var(--pink-dark); font-size: 0.8rem; min-height: 1em; }
 
-footer { background: #22313f; color: #d7e1ea; padding: 36px 0 18px; margin-top: 20px; }
+footer { background: var(--blue-dark); color: #eaf6fd; padding: 36px 0 18px; margin-top: 20px; }
 footer h2, footer h3 { color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-size: 1rem; }
 footer .company { margin: 0 0 4px; }
 footer .grid { grid-template-columns: 1.3fr 1fr 1fr; }
