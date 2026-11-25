@@ -2,6 +2,22 @@ if (window.location.hash === "#admin") {
   window.location.replace("/wp-admin/edit.php?post_type=product");
 }
 
+document.querySelectorAll(".hero-slides").forEach((box) => {
+  const shots = Array.from(box.querySelectorAll("img"));
+  if (!shots.length) return;
+  let index = Math.floor(Math.random() * shots.length);
+  const show = (next) => {
+    shots.forEach((img, i) => img.classList.toggle("is-on", i === next));
+    box.classList.add("is-ready");
+  };
+  show(index);
+  if (shots.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  setInterval(() => {
+    index = (index + 1) % shots.length;
+    show(index);
+  }, 4000);
+});
+
 const pages = [
   ["Trang chủ", "index.html", "Thanh Lan Spa chăm sóc mẹ và bé trước và sau sinh"],
   ["Giới thiệu", "gioi-thieu.html", "Tô Lan đại diện thương hiệu Thanh Lan Spa"],

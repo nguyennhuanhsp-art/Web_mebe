@@ -136,7 +136,14 @@ $front = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicke
     . '<p class="lead">Tô Thị Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
     . '<div class="actions"><a class="btn" href="' . esc_url($u('dich-vu/')) . '">Xem Dịch Vụ</a><a class="btn light" href="' . esc_url($u('tu-van/')) . '">Nhận tư vấn</a></div>'
     . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2019</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article><article><strong>0975.399.319</strong><span>Hotline Ms Tô Lan</span></article></div></div>'
-    . '<figure class="frame">' . tl_img('doi-ngu-3.jpg', 'Đội ngũ Thanh Lan Spa đứng trước biển hiệu') . '<figcaption class="caption">Đội ngũ Thanh Lan trước biển hiệu spa.</figcaption></figure></div></section>'
+    . '<figure class="frame"><div class="hero-slides">'
+    . tl_img('doi-ngu-1.jpg', 'Đội Ngũ Thanh Lan Spa')
+    . tl_img('doi-ngu-2.jpg', 'Đội Ngũ Thanh Lan Spa')
+    . tl_img('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa')
+    . tl_img('doi-ngu-4.jpg', 'Đội Ngũ Thanh Lan Spa')
+    . tl_img('doi-ngu-5.jpg', 'Đội Ngũ Thanh Lan Spa')
+    . tl_img('doi-ngu-6.jpg', 'Đội Ngũ Thanh Lan Spa')
+    . '</div><figcaption class="caption">Đội Ngũ Thanh Lan Spa</figcaption></figure></div></section>'
     . '<section class="section"><div class="wrap"><h2>Dịch Vụ</h2><p class="intro">Mẹ chọn một dịch vụ để xem nội dung và đặt lịch.</p><div class="grid services">' . $cards . '</div></div></section>'
     . '<section class="section" style="background:#fff"><div class="wrap"><h2>Trong thư viện ảnh</h2><p class="intro">Ảnh chị đã tải lên, gắn đúng việc đang làm.</p><div class="shots">'
     . tl_fig('day-thang-be-2.jpg', 'Kỹ thuật viên bế bé cùng gia đình', 'Lễ đầy tháng, kỹ thuật viên đứng cùng gia đình.')
