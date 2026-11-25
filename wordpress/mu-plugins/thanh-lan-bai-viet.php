@@ -34,7 +34,7 @@ add_shortcode('thanh_lan_bai_viet', function () {
                 the_post_thumbnail('medium_large');
             }
             echo '<div class="pad"><h3><a href="' . esc_url(get_permalink()) . '">' . esc_html(get_the_title()) . '</a></h3>';
-            echo '<p>' . esc_html($label) . '</p>';
+            echo '<p>' . esc_html(wp_trim_words(wp_strip_all_tags(get_the_excerpt() ?: get_the_content()), 26)) . '</p>';
             echo '<a class="more" href="' . esc_url($link) . '">Mở chuyên mục</a></div>';
             wp_reset_postdata();
         } else {

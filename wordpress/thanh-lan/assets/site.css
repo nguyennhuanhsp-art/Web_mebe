@@ -136,6 +136,10 @@ main { padding-right: 58px; }
 .split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 22px; align-items: start; }
 .panel { background: #fff; border: 1px solid var(--line); border-radius: 18px; }
 .panel img.cover { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; }
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; }
+.shots figcaption, .caption { color: var(--muted); font-size: 0.82rem; margin-top: 6px; }
 ul.clean { margin: 0 0 12px; padding-left: 18px; }
 .quote { border-left: 4px solid var(--pink); background: #fff; padding: 16px 18px; border-radius: 12px; }
 .quote span { display: block; margin-top: 8px; font-weight: 700; color: var(--pink-dark); }
@@ -154,6 +158,7 @@ textarea { min-height: 90px; }
 
 footer { background: #22313f; color: #d7e1ea; padding: 36px 0 18px; margin-top: 20px; }
 footer h2, footer h3 { color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-size: 1rem; }
+footer .company { margin: 0 0 4px; }
 footer .grid { grid-template-columns: 1.3fr 1fr 1fr; }
 footer a:hover { color: #fff; }
 footer li { list-style: none; }
@@ -186,13 +191,13 @@ footer ul { margin: 0; padding: 0; }
   .sub { width: 100%; }
   .search { display: none; }
   main { padding-right: 0; }
-  .hero-grid, .split, .band-box, .grid.services, .grid.four, .grid.three, footer .grid { grid-template-columns: 1fr 1fr; }
+  .hero-grid, .split, .band-box, .grid.services, .grid.four, .grid.three, .shots, footer .grid { grid-template-columns: 1fr 1fr; }
   .hero-grid, .split, .band-box { grid-template-columns: 1fr; }
   .facts { grid-template-columns: 1fr 1fr; }
   .nav-cta { display: none; }
 }
 @media (max-width: 680px) {
-  .grid.services, .grid.four, .grid.three, footer .grid, .facts { grid-template-columns: 1fr; }
+  .grid.services, .grid.four, .grid.three, .shots, footer .grid, .facts { grid-template-columns: 1fr; }
   .frame img, .card img, .panel img.cover { height: 210px; }
   .dock a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .dock a { width: 46px; height: 46px; border-radius: 50%; padding: 0; display: grid; place-items: center; }

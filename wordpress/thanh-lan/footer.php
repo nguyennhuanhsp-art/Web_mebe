@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) { exit; } ?>
   <footer>
     <div class="wrap grid">
-      <div><h2>Thanh Lan Spa</h2><p>CÔNG TY TNHH TM&amp;DV THANH LAN. MST 0319180928, đăng ký ngày 25/9/2025. Số 77, đường 537, Ấp Bàu Trăn, Xã Nhuận Đức, TPHCM.</p><p>CEO &amp; Founder: Tô Thị Lan.</p></div>
+      <div><h2>Thanh Lan Spa</h2><p class="company">CÔNG TY TNHH TM&amp;DV THANH LAN.</p><p class="company">MST 0319180928, đăng ký ngày 25/9/2025.</p><p class="company">Số 77, đường 537, Ấp Bàu Trăn, Xã Nhuận Đức, TPHCM.</p><p>CEO &amp; Founder: Tô Thị Lan.</p></div>
       <div><h3>Menu</h3><ul>
         <li><a href="<?php echo esc_url(home_url('/gioi-thieu/')); ?>">Giới thiệu</a></li>
         <li><a href="<?php echo esc_url(home_url('/dich-vu/')); ?>">Dịch Vụ</a></li>
@@ -11,7 +11,7 @@
       </ul></div>
       <div><h3>Liên hệ</h3><p>Hotline / Zalo: <a href="tel:0975399319"><strong>0975.399.319</strong></a> (Ms Tô Lan)</p><p>Mail: <a href="mailto:thanhlanspa238@gmail.com">thanhlanspa238@gmail.com</a></p><p><a href="https://www.facebook.com/photo/?fbid=910401714429198&amp;set=a.481696227299751" target="_blank" rel="noopener">Fanpage</a> · <a href="https://www.tiktok.com/@anhxuan.mkt" target="_blank" rel="noopener">TikTok</a></p></div>
     </div>
-    <p class="legal">Nội dung lấy từ bảng thông tin của chị. Ảnh vẫn là minh họa vì ảnh thật gửi qua Zalo, chưa có trong bảng. Slogan trên logo: Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà. Ô slogan trong bảng đang để trống. Sản phẩm trong cửa hàng do admin đăng, sửa và xóa.</p>
+    <p class="legal">Ảnh trên trang lấy từ thư viện WordPress của Thanh Lan Spa. Giá dịch vụ là mức đang ghi trên website. Sản phẩm trong cửa hàng do admin đăng, sửa và xóa.</p>
   </footer>
   <div class="dock">
     <a class="zalo" href="https://zalo.me/0975399319" target="_blank" rel="noopener">Zalo <span>Chat</span></a>
