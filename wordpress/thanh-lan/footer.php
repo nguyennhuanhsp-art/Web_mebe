@@ -22,6 +22,7 @@
       <button class="close" id="closeBooking" type="button" aria-label="Đóng">×</button>
       <h3 id="bookTitle">Đặt lịch Thanh Lan Spa</h3>
       <form id="bookingForm">
+        <div class="field hp" aria-hidden="true"><label for="bookWebsite">Website</label><input id="bookWebsite" name="website" tabindex="-1" autocomplete="off" /></div>
         <div class="field"><label for="bookService">Dịch vụ</label><input id="bookService" readonly /></div>
         <div class="field"><label for="bookName">Họ và tên</label><input id="bookName" required /></div>
         <div class="field"><label for="bookPhone">Số điện thoại hoặc Zalo</label><input id="bookPhone" required inputmode="tel" /><div class="error" id="bookPhoneError"></div></div>

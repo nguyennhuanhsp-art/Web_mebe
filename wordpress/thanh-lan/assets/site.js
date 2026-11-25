@@ -48,6 +48,20 @@ function digitsOk(value) {
   return n.length >= 9 && n.length <= 12;
 }
 
+function postLead(fields) {
+  if (!window.thanhLanLead) {
+    return Promise.resolve({ ok: false, offline: true, message: "Đã lưu trên máy này." });
+  }
+  const body = new URLSearchParams(fields);
+  body.set("action", "thanh_lan_lead");
+  body.set("nonce", thanhLanLead.nonce);
+  return fetch(thanhLanLead.ajax, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body
+  }).then((response) => response.json()).catch(() => ({ ok: false, message: "Mạng đang bận. Chị thử lại hoặc gọi 0975.399.319." }));
+}
+
 document.querySelectorAll(".menu-btn").forEach((button) => {
   button.addEventListener("click", () => {
     const menu = document.getElementById("menu");
@@ -97,18 +111,32 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
     service: document.getElementById("bookService").value,
     name: document.getElementById("bookName").value.trim(),
     phone: phone.trim(),
-    date: document.getElementById("bookDate").value,
-    at: new Date().toISOString()
+    date: document.getElementById("bookDate").value
   };
-  const list = JSON.parse(localStorage.getItem("thanhLanBookings") || "[]");
-  list.push(item);
-  localStorage.setItem("thanhLanBookings", JSON.stringify(list));
   const note = document.getElementById("bookNote");
-  note.textContent = "Đã lưu trên máy này. Thanh Lan Spa sẽ gọi hoặc nhắn Zalo " + item.phone + ". Bản demo chưa gửi tổng đài.";
-  note.classList.add("show");
+  const website = document.getElementById("bookWebsite");
+  postLead({
+    name: item.name,
+    phone: item.phone,
+    service: item.service,
+    date: item.date,
+    stage: "Đặt lịch",
+    source: "Đặt lịch",
+    website: website ? website.value : ""
+  }).then((result) => {
+    if (result.offline) {
+      const list = JSON.parse(localStorage.getItem("thanhLanBookings") || "[]");
+      list.push(item);
+      localStorage.setItem("thanhLanBookings", JSON.stringify(list));
+      note.textContent = "Đã lưu trên máy này. Thanh Lan sẽ gọi hoặc nhắn Zalo " + item.phone + ".";
+    } else {
+      note.textContent = result.message || "Đã nhận.";
+    }
+    note.classList.add("show");
+  });
 });
 
-const handbook = document.getElementById("handbookForm");
+const handbook = document.getElementById("leadForm") || document.getElementById("handbookForm");
 if (handbook) {
   const guides = {
     "Mẹ bầu": "Nằm nghiêng khi nghỉ, chuẩn bị túi đồ sinh, và nhắn Tô Lan để hẹn chăm sóc tuần cuối.",
@@ -126,12 +154,37 @@ if (handbook) {
     error.textContent = "";
     const name = document.getElementById("leadName").value.trim();
     const stage = document.getElementById("leadStage").value;
-    const leads = JSON.parse(localStorage.getItem("thanhLanLeads") || "[]");
-    leads.push({ name, phone: phone.trim(), stage, at: new Date().toISOString() });
-    localStorage.setItem("thanhLanLeads", JSON.stringify(leads));
-    document.getElementById("handbookText").textContent = name + " ơi, với giai đoạn " + stage + ": " + guides[stage];
-    document.getElementById("handbookPreview").hidden = false;
-    document.getElementById("leadNote").classList.add("show");
+    const note = document.getElementById("leadNote");
+    const service = document.getElementById("leadService");
+    const district = document.getElementById("leadDistrict");
+    const message = document.getElementById("leadMessage");
+    const website = document.getElementById("leadWebsite");
+    postLead({
+      name,
+      phone: phone.trim(),
+      stage,
+      service: service ? service.value : stage,
+      district: district ? district.value : "",
+      message: message ? message.value : "",
+      source: "Form tư vấn",
+      website: website ? website.value : ""
+    }).then((result) => {
+      if (result.offline) {
+        const leads = JSON.parse(localStorage.getItem("thanhLanLeads") || "[]");
+        leads.push({ name, phone: phone.trim(), stage, at: new Date().toISOString() });
+        localStorage.setItem("thanhLanLeads", JSON.stringify(leads));
+        const preview = document.getElementById("handbookPreview");
+        const text = document.getElementById("handbookText");
+        if (preview && text && guides[stage]) {
+          text.textContent = name + " ơi, với giai đoạn " + stage + ": " + guides[stage];
+          preview.hidden = false;
+        }
+        note.textContent = "Đã lưu trên máy này.";
+      } else {
+        note.textContent = result.message || "Đã nhận.";
+      }
+      note.classList.add("show");
+    });
   });
 }
 

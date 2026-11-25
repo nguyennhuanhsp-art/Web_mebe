@@ -161,6 +161,7 @@ ul.clean { margin: 0 0 12px; padding-left: 18px; }
 .band { background: linear-gradient(135deg, #fff0f5, #eaf6fd); }
 .band-box { background: #fff; border-radius: 24px; padding: 28px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
 form .field { margin-bottom: 12px; }
+.hp { position: absolute; left: -9999px; height: 0; width: 0; overflow: hidden; }
 label { display: block; font-size: 0.84rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 input, select, textarea { width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #d5e2ec; background: #fff; }
 textarea { min-height: 90px; }
