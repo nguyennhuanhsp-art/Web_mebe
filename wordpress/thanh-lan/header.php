@@ -13,6 +13,16 @@ $cat = function ($slug) {
     }
     return home_url('/product-category/' . $slug . '/');
 };
+$topic = function ($slug) {
+    $term = get_term_by('slug', $slug, 'category');
+    if ($term && !is_wp_error($term)) {
+        $link = get_term_link($term);
+        if (!is_wp_error($link)) {
+            return $link;
+        }
+    }
+    return home_url('/category/' . $slug . '/');
+};
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -56,11 +66,11 @@ $cat = function ($slug) {
           <a href="<?php echo esc_url(home_url('/kien-thuc/')); ?>">Kiến thức</a>
           <button class="sub-btn" type="button" aria-expanded="false" aria-label="Mở menu Kiến thức">+</button>
           <ul class="sub">
-            <li><a href="<?php echo esc_url(home_url('/cham-soc-be/')); ?>">Hướng dẫn chăm sóc bé</a></li>
-            <li><a href="<?php echo esc_url(home_url('/huong-dan-me/')); ?>">Hướng dẫn mẹ</a></li>
-            <li><a href="<?php echo esc_url(home_url('/me-bau/')); ?>">Mẹ bầu cần biết</a></li>
-            <li><a href="<?php echo esc_url(home_url('/me-sau-sinh/')); ?>">Mẹ sau sinh cần biết</a></li>
-            <li><a href="<?php echo esc_url(home_url('/dau-an/')); ?>">Dấu ấn Thanh Lan Spa</a></li>
+            <li><a href="<?php echo esc_url($topic('huong-dan-cham-soc-be')); ?>">Hướng dẫn chăm sóc bé</a></li>
+            <li><a href="<?php echo esc_url($topic('huong-dan-me')); ?>">Hướng dẫn mẹ</a></li>
+            <li><a href="<?php echo esc_url($topic('me-bau-can-biet')); ?>">Mẹ bầu cần biết</a></li>
+            <li><a href="<?php echo esc_url($topic('me-sau-sinh-can-biet')); ?>">Mẹ sau sinh cần biết</a></li>
+            <li><a href="<?php echo esc_url($topic('dau-an-thanh-lan')); ?>">Dấu ấn Thanh Lan Spa</a></li>
           </ul>
         </li>
         <li><a href="<?php echo esc_url(home_url('/tu-van/')); ?>">Nhận tư vấn</a></li>
