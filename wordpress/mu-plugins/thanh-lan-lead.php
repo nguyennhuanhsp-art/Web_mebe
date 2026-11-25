@@ -39,13 +39,14 @@ add_shortcode('thanh_lan_tu_van', function () {
       <div>
         <p class="kicker">Nhận tư vấn</p>
         <h2 style="text-align:left">Để lại số, Tô Lan gọi lại</h2>
-        <p>Chị điền tên và số Zalo. Lead được lưu trong quản trị và gửi về mail thanhlanspa238@gmail.com.</p>
+        <p>Chị điền tên, email và số Zalo. Ngay khi gửi, hộp thư của chị nhận một thư cảm ơn.</p>
         <p>Hotline: <a href="tel:0975399319"><strong>0975.399.319</strong></a></p>
       </div>
       <form id="leadForm">
         <div class="field hp" aria-hidden="true"><label for="leadWebsite">Website</label><input id="leadWebsite" name="website" tabindex="-1" autocomplete="off" /></div>
         <div class="field"><label for="leadName">Họ và tên</label><input id="leadName" name="name" required /></div>
         <div class="field"><label for="leadPhone">Số điện thoại hoặc Zalo</label><input id="leadPhone" name="phone" required inputmode="tel" /><div class="error" id="leadPhoneError"></div></div>
+        <div class="field"><label for="leadEmail">Email nhận thư cảm ơn</label><input id="leadEmail" name="email" type="email" required autocomplete="email" /><div class="error" id="leadEmailError"></div></div>
         <div class="field"><label for="leadStage">Giai đoạn</label>
           <select id="leadStage" name="stage">
             <option>Mẹ bầu</option>
@@ -79,6 +80,7 @@ function thanh_lan_lead_text($data) {
     $lines = array(
         'Có lead mới trên Thanh Lan Spa.',
         'Tên: ' . $data['name'],
+        'Email khách: ' . $data['customer_email'],
         'Điện thoại / Zalo: ' . $data['phone'],
         'Giai đoạn: ' . $data['stage'],
         'Dịch vụ: ' . $data['service'],
@@ -112,6 +114,35 @@ add_action('phpmailer_init', function ($phpmailer) {
         $phpmailer->FromName = 'Thanh Lan Spa';
     }
 });
+
+function thanh_lan_lead_thanks($data) {
+    $to = sanitize_email($data['customer_email']);
+    if ($to === '' || !is_email($to)) {
+        return 'Khách chưa để email';
+    }
+    $service = ($data['service'] !== '' && $data['service'] !== 'Chưa chọn') ? $data['service'] : '';
+    $detail = 'Em đã ghi nhận số Zalo ' . $data['phone'];
+    if ($service !== '') {
+        $detail .= ', dịch vụ ' . $service;
+    }
+    $detail .= '.';
+    $body = "Chào chị " . $data['name'] . ",\n\n"
+        . "Cảm ơn chị đã đăng ký nhận tư vấn tại Thanh Lan Spa.\n\n"
+        . $detail . "\n"
+        . "Ms Tô Lan sẽ gọi hoặc nhắn Zalo để hẹn lịch phù hợp.\n"
+        . "Nếu chị cần gấp, gọi 0975.399.319.\n\n"
+        . "Thanh Lan Spa\n"
+        . "Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà\n";
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'Reply-To: Thanh Lan Spa <' . THANH_LAN_LEAD_EMAIL . '>',
+    );
+    $sent = wp_mail($to, 'Thanh Lan Spa đã nhận đăng ký tư vấn của chị', $body, $headers);
+    if ($sent) {
+        return 'Đã gửi cảm ơn tới ' . $to;
+    }
+    return 'Thư cảm ơn chưa đi';
+}
 
 function thanh_lan_lead_mail($text) {
     $to = sanitize_email(get_option('thanh_lan_lead_email', THANH_LAN_LEAD_EMAIL));
@@ -185,17 +216,19 @@ function thanh_lan_lead_store($data) {
     if (is_wp_error($id)) {
         return $id;
     }
-    foreach (array('phone', 'stage', 'service', 'district', 'message', 'date', 'source') as $key) {
+    foreach (array('phone', 'customer_email', 'stage', 'service', 'district', 'message', 'date', 'source') as $key) {
         update_post_meta($id, '_tl_' . $key, $data[$key]);
     }
     $text = thanh_lan_lead_text($data);
+    $thanks = thanh_lan_lead_thanks($data);
     $mail = thanh_lan_lead_mail($text);
     $telegram = thanh_lan_lead_telegram($text);
     $zalo = thanh_lan_lead_zalo($text);
+    update_post_meta($id, '_tl_thanks', $thanks);
     update_post_meta($id, '_tl_email', $mail);
     update_post_meta($id, '_tl_telegram', $telegram);
     update_post_meta($id, '_tl_zalo', $zalo);
-    return array('id' => $id, 'email' => $mail, 'telegram' => $telegram, 'zalo' => $zalo);
+    return array('id' => $id, 'thanks' => $thanks, 'email' => $mail, 'telegram' => $telegram, 'zalo' => $zalo);
 }
 
 function thanh_lan_lead_from_request() {
@@ -211,15 +244,24 @@ function thanh_lan_lead_from_request() {
         $value = isset($_POST[$key]) ? sanitize_text_field(wp_unslash($_POST[$key])) : '';
         return $value === '' ? $fallback : $value;
     };
+    $source = $pick('source', 'Form tư vấn');
+    $customer_email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+    if ($source === 'Form tư vấn' && !is_email($customer_email)) {
+        return new WP_Error('email', 'Nhập email để nhận thư cảm ơn.');
+    }
+    if ($customer_email !== '' && !is_email($customer_email)) {
+        return new WP_Error('email', 'Email chưa đúng.');
+    }
     return array(
         'name' => $name,
         'phone' => $phone,
+        'customer_email' => $customer_email,
         'stage' => $pick('stage', 'Chưa chọn'),
         'service' => $pick('service', 'Chưa chọn'),
         'district' => $pick('district', 'Chưa ghi'),
         'date' => $pick('date', 'Chưa chọn'),
         'message' => isset($_POST['message']) ? sanitize_textarea_field(wp_unslash($_POST['message'])) : '',
-        'source' => $pick('source', 'Form tư vấn'),
+        'source' => $source,
     );
 }
 
@@ -246,7 +288,14 @@ function thanh_lan_lead_ajax() {
         wp_send_json(array('ok' => false, 'message' => 'Chưa lưu được. Chị gọi 0975.399.319 giúp em.'));
     }
     set_transient($key, $count + 1, HOUR_IN_SECONDS);
-    wp_send_json(array('ok' => true, 'message' => 'Đã nhận. Thanh Lan sẽ gọi hoặc nhắn Zalo số ' . $data['phone'] . '.'));
+    if (strpos($saved['thanks'], 'Đã gửi cảm ơn') === 0) {
+        $message = 'Đã nhận đăng ký. Thư cảm ơn đã gửi tới ' . $data['customer_email'] . '.';
+    } elseif ($data['customer_email'] !== '') {
+        $message = 'Đã nhận đăng ký. Thư cảm ơn chưa gửi được lúc này. Thanh Lan sẽ gọi số ' . $data['phone'] . '.';
+    } else {
+        $message = 'Đã nhận. Thanh Lan sẽ gọi hoặc nhắn Zalo số ' . $data['phone'] . '.';
+    }
+    wp_send_json(array('ok' => true, 'message' => $message));
 }
 add_action('wp_ajax_thanh_lan_lead', 'thanh_lan_lead_ajax');
 add_action('wp_ajax_nopriv_thanh_lan_lead', 'thanh_lan_lead_ajax');
@@ -268,7 +317,7 @@ add_action('manage_tl_lead_posts_custom_column', function ($column, $post_id) {
     } elseif ($column === 'service') {
         echo esc_html(get_post_meta($post_id, '_tl_service', true) . ' · ' . get_post_meta($post_id, '_tl_stage', true));
     } elseif ($column === 'mail') {
-        echo esc_html(get_post_meta($post_id, '_tl_email', true));
+        echo esc_html(get_post_meta($post_id, '_tl_thanks', true) . ' · ' . get_post_meta($post_id, '_tl_email', true));
     } elseif ($column === 'chat') {
         echo esc_html(get_post_meta($post_id, '_tl_telegram', true) . ' / ' . get_post_meta($post_id, '_tl_zalo', true));
     }
@@ -309,6 +358,7 @@ function thanh_lan_lead_settings_page() {
             $sample = array(
                 'name' => 'Tin thử',
                 'phone' => '0975399319',
+                'customer_email' => THANH_LAN_LEAD_EMAIL,
                 'stage' => 'Thử kênh',
                 'service' => 'Không phải khách',
                 'district' => 'Quản trị',

@@ -115,9 +115,11 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
   };
   const note = document.getElementById("bookNote");
   const website = document.getElementById("bookWebsite");
+  const bookEmail = document.getElementById("bookEmail");
   postLead({
     name: item.name,
     phone: item.phone,
+    email: bookEmail ? bookEmail.value.trim() : "",
     service: item.service,
     date: item.date,
     stage: "Đặt lịch",
@@ -152,6 +154,14 @@ if (handbook) {
       return;
     }
     error.textContent = "";
+    const emailInput = document.getElementById("leadEmail");
+    const emailError = document.getElementById("leadEmailError");
+    const email = emailInput ? emailInput.value.trim() : "";
+    if (emailInput && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (emailError) emailError.textContent = "Nhập email để nhận thư cảm ơn.";
+      return;
+    }
+    if (emailError) emailError.textContent = "";
     const name = document.getElementById("leadName").value.trim();
     const stage = document.getElementById("leadStage").value;
     const note = document.getElementById("leadNote");
@@ -162,6 +172,7 @@ if (handbook) {
     postLead({
       name,
       phone: phone.trim(),
+      email,
       stage,
       service: service ? service.value : stage,
       district: district ? district.value : "",

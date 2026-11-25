@@ -26,6 +26,7 @@
         <div class="field"><label for="bookService">Dịch vụ</label><input id="bookService" readonly /></div>
         <div class="field"><label for="bookName">Họ và tên</label><input id="bookName" required /></div>
         <div class="field"><label for="bookPhone">Số điện thoại hoặc Zalo</label><input id="bookPhone" required inputmode="tel" /><div class="error" id="bookPhoneError"></div></div>
+        <div class="field"><label for="bookEmail">Email nhận thư cảm ơn</label><input id="bookEmail" type="email" autocomplete="email" /></div>
         <div class="field"><label for="bookDate">Ngày mong muốn</label><input id="bookDate" type="date" /></div>
         <button class="btn block" type="submit">Xác nhận</button>
         <p class="note" id="bookNote"></p>
