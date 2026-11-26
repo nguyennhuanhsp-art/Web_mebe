@@ -104,14 +104,26 @@ if (handbook) {
       return;
     }
     error.textContent = "";
+    const when = document.getElementById("leadWhen");
+    const note = document.getElementById("leadNote");
+    if (when && !when.value) {
+      note.textContent = "Chọn ngày giờ có thể nghe máy.";
+      note.classList.add("show");
+      return;
+    }
     const name = document.getElementById("leadName").value.trim();
     const stage = document.getElementById("leadStage").value;
     const leads = JSON.parse(localStorage.getItem("thanhLanLeads") || "[]");
-    leads.push({ name, phone: phone.trim(), stage, at: new Date().toISOString() });
+    leads.push({ name, phone: phone.trim(), stage, when: when ? when.value : "", at: new Date().toISOString() });
     localStorage.setItem("thanhLanLeads", JSON.stringify(leads));
-    document.getElementById("handbookText").textContent = name + " ơi, với giai đoạn " + stage + ": " + guides[stage];
-    document.getElementById("handbookPreview").hidden = false;
-    document.getElementById("leadNote").classList.add("show");
+    const preview = document.getElementById("handbookPreview");
+    const text = document.getElementById("handbookText");
+    if (preview && text && guides[stage]) {
+      text.textContent = name + " ơi, với giai đoạn " + stage + ": " + guides[stage];
+      preview.hidden = false;
+    }
+    note.textContent = "Đã ghi nhận. Trợ lý Ms Tô Lan sẽ liên hệ vào giờ Anh/Chị chọn.";
+    note.classList.add("show");
   });
 }
 

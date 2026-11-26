@@ -56,21 +56,29 @@
       <a class="btn nav-cta" href="tu-van.html">Nhận tư vấn</a>
     </div>
   </header>
-  <main><section class="section band"><div class="wrap band-box">
+  <main><section class="section band"><div class="wrap">
+    <div class="band-box">
     <div>
-      <p class="kicker">Nhận tư vấn</p>
-      <h2 style="text-align:left">Để lại số, Tô Lan gọi lại</h2>
-      <p>Chọn giai đoạn để xem gợi ý cẩm nang ngay trên trang. Bản demo lưu trên trình duyệt, chưa gửi Zalo.</p>
-      <div id="handbookPreview" hidden class="quote"><h3>Cẩm nang vừa mở</h3><p id="handbookText"></p></div>
+      <h2 class="consult-title">ĐĂNG KÍ NHẬN TƯ VẤN</h2>
+      <p>Anh/Chị vui lòng để lại thông tin để Trợ Lý Ms. Tô Lan - Thanh Lan Spa liên hệ lại tư vấn cụ thể cho mình nhé!</p>
     </div>
     <form id="handbookForm">
       <div class="field"><label for="leadName">Họ và tên</label><input id="leadName" required /></div>
       <div class="field"><label for="leadPhone">Số điện thoại hoặc Zalo</label><input id="leadPhone" required inputmode="tel" /><div class="error" id="leadPhoneError"></div></div>
-      <div class="field"><label for="leadStage">Giai đoạn</label><select id="leadStage"><option>Mẹ bầu</option><option>Tuần đầu sau sinh</option><option>Bé 1 đến 6 tháng</option></select></div>
-      <button class="btn block" type="submit">Xem cẩm nang</button>
-      <p class="note" id="leadNote">Đã ghi trên máy này. Nội dung hiện bên cạnh.</p>
-      <p style="margin-top:12px"><button class="btn light" type="button" data-book="Tư vấn gói chăm sóc phù hợp">Hoặc đặt lịch dịch vụ</button></p>
+      <div class="field"><label for="leadEmail">Email</label><input id="leadEmail" type="email" required /></div>
+      <div class="field"><label for="leadStage">Giai đoạn</label><select id="leadStage"><option>Mẹ bầu</option><option>Mẹ sau sinh</option><option>Bé sơ sinh</option><option>Muốn hỏi gói</option></select></div>
+      <div class="field"><label for="leadService">Dịch vụ quan tâm</label><select id="leadService"><option>Chưa chọn</option><option>Tắm và massage bé</option><option>Chăm sóc mẹ sau sinh</option><option>Combo mẹ và bé</option><option>Chăm sóc bầu tại nhà</option><option>Thông tắc tia sữa</option><option>Giảm eo sau sinh</option></select></div>
+      <div class="field"><label for="leadWhen">Ngày giờ có thể nghe máy</label><input id="leadWhen" type="datetime-local" required /></div>
+      <div class="field"><label for="leadMessage">Lời nhắn</label><textarea id="leadMessage"></textarea></div>
+      <button class="btn block" type="submit">Đăng ký nhận tư vấn</button>
+      <p class="note" id="leadNote"></p>
     </form>
+    </div>
+    <div class="consult-foot">
+      <img src="assets/apple-touch-icon.png" alt="Logo Thanh Lan Spa" />
+      <p class="slogan">“Đồng hành chăm sóc và nâng đỡ người mẹ từ gốc rễ, để ươm mầm thế hệ tương lai khỏe mạnh, trí tuệ và nhân ái.”</p>
+      <p class="hotline">Hotline: <a href="tel:0975399319"><strong>0975.399.319</strong></a></p>
+    </div>
   </div></section></main>
   <footer>
     <div class="wrap grid">

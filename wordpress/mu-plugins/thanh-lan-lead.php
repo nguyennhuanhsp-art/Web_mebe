@@ -10,6 +10,9 @@ if (!defined('ABSPATH')) {
 }
 
 const THANH_LAN_LEAD_EMAIL = 'thanhlanspa238@gmail.com';
+const THANH_LAN_FACEBOOK = 'https://www.facebook.com/photo/?fbid=910401714429198&set=a.481696227299751';
+const THANH_LAN_TIKTOK = 'https://www.tiktok.com/@anhxuan.mkt';
+const THANH_LAN_SLOGAN = 'Đồng hành chăm sóc và nâng đỡ người mẹ từ gốc rễ, để ươm mầm thế hệ tương lai khỏe mạnh, trí tuệ và nhân ái.';
 
 add_action('init', function () {
     register_post_type('tl_lead', array(
@@ -35,18 +38,17 @@ add_action('init', function () {
 add_shortcode('thanh_lan_tu_van', function () {
     ob_start();
     ?>
-    <section class="section band"><div class="wrap band-box">
+    <section class="section band"><div class="wrap">
+      <div class="band-box">
       <div>
-        <p class="kicker">Nhận tư vấn</p>
-        <h2 style="text-align:left">Để lại số, Tô Lan gọi lại</h2>
-        <p>Chị điền tên, email và số Zalo. Ngay khi gửi, hộp thư của chị nhận một thư cảm ơn.</p>
-        <p>Hotline: <a href="tel:0975399319"><strong>0975.399.319</strong></a></p>
+        <h2 class="consult-title">ĐĂNG KÍ NHẬN TƯ VẤN</h2>
+        <p>Anh/Chị vui lòng để lại thông tin để Trợ Lý Ms. Tô Lan - Thanh Lan Spa liên hệ lại tư vấn cụ thể cho mình nhé!</p>
       </div>
       <form id="leadForm">
         <div class="field hp" aria-hidden="true"><label for="leadWebsite">Website</label><input id="leadWebsite" name="website" tabindex="-1" autocomplete="off" /></div>
         <div class="field"><label for="leadName">Họ và tên</label><input id="leadName" name="name" required /></div>
         <div class="field"><label for="leadPhone">Số điện thoại hoặc Zalo</label><input id="leadPhone" name="phone" required inputmode="tel" /><div class="error" id="leadPhoneError"></div></div>
-        <div class="field"><label for="leadEmail">Email nhận thư cảm ơn</label><input id="leadEmail" name="email" type="email" required autocomplete="email" /><div class="error" id="leadEmailError"></div></div>
+        <div class="field"><label for="leadEmail">Email</label><input id="leadEmail" name="email" type="email" required autocomplete="email" /><div class="error" id="leadEmailError"></div></div>
         <div class="field"><label for="leadStage">Giai đoạn</label>
           <select id="leadStage" name="stage">
             <option>Mẹ bầu</option>
@@ -67,10 +69,17 @@ add_shortcode('thanh_lan_tu_van', function () {
           </select>
         </div>
         <div class="field"><label for="leadDistrict">Quận đang ở</label><input id="leadDistrict" name="district" placeholder="Ví dụ Củ Chi" /></div>
+        <div class="field"><label for="leadWhen">Ngày giờ có thể nghe máy</label><input id="leadWhen" name="when" type="datetime-local" required /></div>
         <div class="field"><label for="leadMessage">Lời nhắn</label><textarea id="leadMessage" name="message"></textarea></div>
-        <button class="btn block" type="submit">Gửi để được tư vấn</button>
+        <button class="btn block" type="submit">Đăng ký nhận tư vấn</button>
         <p class="note" id="leadNote"></p>
       </form>
+      </div>
+      <div class="consult-foot">
+        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/apple-touch-icon.png'); ?>" alt="Logo Thanh Lan Spa" />
+        <p class="slogan">“<?php echo esc_html(THANH_LAN_SLOGAN); ?>”</p>
+        <p class="hotline">Hotline: <a href="tel:0975399319"><strong>0975.399.319</strong></a></p>
+      </div>
     </div></section>
     <?php
     return ob_get_clean();
@@ -85,7 +94,7 @@ function thanh_lan_lead_text($data) {
         'Giai đoạn: ' . $data['stage'],
         'Dịch vụ: ' . $data['service'],
         'Quận: ' . $data['district'],
-        'Ngày mong muốn: ' . $data['date'],
+        'Giờ có thể nghe máy: ' . $data['date'],
         'Lời nhắn: ' . $data['message'],
         'Nguồn: ' . $data['source'],
         'Lúc: ' . wp_date('H:i d/m/Y'),
@@ -93,55 +102,90 @@ function thanh_lan_lead_text($data) {
     return implode("\n", $lines);
 }
 
-add_action('phpmailer_init', function ($phpmailer) {
+function thanh_lan_mail_fail($error) {
+    $GLOBALS['thanh_lan_mail_error'] = $error->get_error_message();
+}
+add_action('wp_mail_failed', 'thanh_lan_mail_fail');
+
+function thanh_lan_smtp_ready() {
+    $user = trim((string) get_option('thanh_lan_smtp_user', ''));
     $host = trim((string) get_option('thanh_lan_smtp_host', ''));
-    if ($host === '') {
+    if ($host === '' && $user !== '') {
+        $host = 'smtp.gmail.com';
+    }
+    $pass = preg_replace('/\s+/', '', (string) get_option('thanh_lan_smtp_pass', ''));
+    return array(
+        'host' => $host,
+        'port' => (int) get_option('thanh_lan_smtp_port', 587) ?: 587,
+        'user' => $user,
+        'pass' => $pass,
+        'secure' => trim((string) get_option('thanh_lan_smtp_secure', 'tls')) ?: 'tls',
+    );
+}
+
+add_action('phpmailer_init', function ($phpmailer) {
+    $smtp = thanh_lan_smtp_ready();
+    if ($smtp['host'] === '' || $smtp['user'] === '' || $smtp['pass'] === '') {
         return;
     }
     $phpmailer->isSMTP();
-    $phpmailer->Host = $host;
-    $phpmailer->Port = (int) get_option('thanh_lan_smtp_port', 587);
+    $phpmailer->Host = $smtp['host'];
+    $phpmailer->Port = $smtp['port'];
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Username = (string) get_option('thanh_lan_smtp_user', '');
-    $phpmailer->Password = (string) get_option('thanh_lan_smtp_pass', '');
-    $secure = (string) get_option('thanh_lan_smtp_secure', 'tls');
-    if ($secure !== '') {
-        $phpmailer->SMTPSecure = $secure;
-    }
-    $from = (string) get_option('thanh_lan_smtp_user', '');
-    if ($from !== '') {
-        $phpmailer->From = $from;
-        $phpmailer->FromName = 'Thanh Lan Spa';
-    }
+    $phpmailer->Username = $smtp['user'];
+    $phpmailer->Password = $smtp['pass'];
+    $phpmailer->SMTPSecure = $smtp['secure'];
+    $phpmailer->Timeout = 15;
+    $phpmailer->From = $smtp['user'];
+    $phpmailer->FromName = 'Thanh Lan Spa';
 });
+
+function thanh_lan_format_when($raw) {
+    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/', (string) $raw, $m)) {
+        return $m[4] . ':' . $m[5] . ' ngày ' . $m[3] . '/' . $m[2] . '/' . $m[1];
+    }
+    return (string) $raw;
+}
+
+function thanh_lan_mail_button($url, $label, $color) {
+    return '<a href="' . esc_url($url) . '" style="display:inline-block;margin:6px 8px 6px 0;padding:12px 22px;border-radius:8px;background:' . esc_attr($color) . ';color:#ffffff;font-weight:700;text-decoration:none;">' . esc_html($label) . '</a>';
+}
 
 function thanh_lan_lead_thanks($data) {
     $to = sanitize_email($data['customer_email']);
     if ($to === '' || !is_email($to)) {
         return 'Khách chưa để email';
     }
-    $service = ($data['service'] !== '' && $data['service'] !== 'Chưa chọn') ? $data['service'] : '';
-    $detail = 'Em đã ghi nhận số Zalo ' . $data['phone'];
-    if ($service !== '') {
-        $detail .= ', dịch vụ ' . $service;
-    }
-    $detail .= '.';
-    $body = "Chào chị " . $data['name'] . ",\n\n"
-        . "Cảm ơn chị đã đăng ký nhận tư vấn tại Thanh Lan Spa.\n\n"
-        . $detail . "\n"
-        . "Ms Tô Lan sẽ gọi hoặc nhắn Zalo để hẹn lịch phù hợp.\n"
-        . "Nếu chị cần gấp, gọi 0975.399.319.\n\n"
-        . "Thanh Lan Spa\n"
-        . "Mẹ Đẹp Bé Khỏe Vui Vẻ Cả Nhà\n";
+    $service = ($data['service'] !== '' && $data['service'] !== 'Chưa chọn') ? $data['service'] : 'Chưa chọn';
+    $when = isset($data['date']) ? trim((string) $data['date']) : '';
+    $when_line = ($when !== '' && $when !== 'Chưa chọn')
+        ? '<p style="margin:0 0 14px;">Thời gian Anh/Chị có thể nghe máy: ' . esc_html($when) . '.</p>'
+        : '';
+    $logo = get_template_directory_uri() . '/assets/apple-touch-icon.png';
+    $body = '<div style="font-family:Arial,Helvetica,sans-serif;color:#17324a;line-height:1.6;font-size:16px;max-width:560px;">'
+        . '<p style="margin:0 0 16px;"><img src="' . esc_url($logo) . '" alt="Thanh Lan Spa" width="72" height="72" style="display:block;border:0;" /></p>'
+        . '<p style="margin:0 0 14px;">Chào chị ' . esc_html($data['name']) . ',</p>'
+        . '<p style="margin:0 0 14px;">Cảm ơn chị đã đăng ký nhận tư vấn tại Thanh Lan Spa.</p>'
+        . '<p style="margin:0 0 14px;">Em đã ghi nhận số điện thoại có Zalo ' . esc_html($data['phone']) . '</p>'
+        . '<p style="margin:0 0 14px;">Dịch vụ cần tư vấn: ' . esc_html($service) . '.</p>'
+        . $when_line
+        . '<p style="margin:0 0 14px;">Trợ lý Ms Tô Lan - Thanh Lan Spa sẽ gọi hoặc nhắn Zalo để hẹn lịch phù hợp cho chị em mình ạ!</p>'
+        . '<p style="margin:0 0 18px;">Nếu chị cần gấp vui lòng gọi hotline: <a href="tel:0975399319" style="color:#1e88c4;font-weight:700;text-decoration:none;">0975.399.319</a> để được nhận tư vấn nhanh nhất ạ</p>'
+        . '<p style="margin:0 0 8px;">Theo dõi Thanh Lan Spa tại</p>'
+        . '<p style="margin:0 0 18px;">' . thanh_lan_mail_button(THANH_LAN_FACEBOOK, 'Facebook', '#1877f2') . thanh_lan_mail_button(THANH_LAN_TIKTOK, 'TikTok', '#111111') . '</p>'
+        . '<p style="margin:0;color:#1e88c4;font-weight:700;">Thanh Lan Spa</p>'
+        . '<p style="margin:6px 0 0;color:#5b6b7c;">“' . esc_html(THANH_LAN_SLOGAN) . '”</p>'
+        . '</div>';
     $headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Type: text/html; charset=UTF-8',
         'Reply-To: Thanh Lan Spa <' . THANH_LAN_LEAD_EMAIL . '>',
     );
     $sent = wp_mail($to, 'Thanh Lan Spa đã nhận đăng ký tư vấn của chị', $body, $headers);
     if ($sent) {
         return 'Đã gửi cảm ơn tới ' . $to;
     }
-    return 'Thư cảm ơn chưa đi';
+    $why = isset($GLOBALS['thanh_lan_mail_error']) ? $GLOBALS['thanh_lan_mail_error'] : '';
+    return 'Thư cảm ơn chưa đi' . ($why !== '' ? ' (' . $why . ')' : '');
 }
 
 function thanh_lan_lead_mail($text) {
@@ -155,7 +199,8 @@ function thanh_lan_lead_mail($text) {
     if ($sent) {
         return 'Đã gửi ' . $to;
     }
-    return 'Mail chưa đi. Lead vẫn nằm trong quản trị.';
+    $why = isset($GLOBALS['thanh_lan_mail_error']) ? $GLOBALS['thanh_lan_mail_error'] : '';
+    return 'Mail chưa đi' . ($why !== '' ? ' (' . $why . ')' : '') . '. Lead vẫn nằm trong quản trị.';
 }
 
 function thanh_lan_lead_telegram($text) {
@@ -252,6 +297,14 @@ function thanh_lan_lead_from_request() {
     if ($customer_email !== '' && !is_email($customer_email)) {
         return new WP_Error('email', 'Email chưa đúng.');
     }
+    $when_raw = $pick('when', '');
+    if ($when_raw === '' || $when_raw === 'Chưa chọn') {
+        $when_raw = $pick('date', 'Chưa chọn');
+    }
+    $when = thanh_lan_format_when($when_raw);
+    if ($source === 'Form tư vấn' && ($when === '' || $when === 'Chưa chọn')) {
+        return new WP_Error('when', 'Chọn ngày giờ có thể nghe máy.');
+    }
     return array(
         'name' => $name,
         'phone' => $phone,
@@ -259,7 +312,7 @@ function thanh_lan_lead_from_request() {
         'stage' => $pick('stage', 'Chưa chọn'),
         'service' => $pick('service', 'Chưa chọn'),
         'district' => $pick('district', 'Chưa ghi'),
-        'date' => $pick('date', 'Chưa chọn'),
+        'date' => $when === '' ? 'Chưa chọn' : $when,
         'message' => isset($_POST['message']) ? sanitize_textarea_field(wp_unslash($_POST['message'])) : '',
         'source' => $source,
     );
@@ -345,14 +398,20 @@ function thanh_lan_lead_settings_page() {
         update_option('thanh_lan_telegram_chat', trim(sanitize_text_field(wp_unslash($_POST['telegram_chat'] ?? ''))));
         update_option('thanh_lan_zalo_token', trim(sanitize_text_field(wp_unslash($_POST['zalo_token'] ?? ''))));
         update_option('thanh_lan_zalo_user', trim(sanitize_text_field(wp_unslash($_POST['zalo_user'] ?? ''))));
-        update_option('thanh_lan_smtp_host', trim(sanitize_text_field(wp_unslash($_POST['smtp_host'] ?? ''))));
-        update_option('thanh_lan_smtp_port', (int) ($_POST['smtp_port'] ?? 587));
-        update_option('thanh_lan_smtp_user', trim(sanitize_email(wp_unslash($_POST['smtp_user'] ?? ''))));
-        $smtp_pass = (string) wp_unslash($_POST['smtp_pass'] ?? '');
+        $smtp_host = trim(sanitize_text_field(wp_unslash($_POST['smtp_host'] ?? '')));
+        $smtp_user = trim(sanitize_email(wp_unslash($_POST['smtp_user'] ?? '')));
+        if ($smtp_host === '' && $smtp_user !== '') {
+            $smtp_host = 'smtp.gmail.com';
+        }
+        update_option('thanh_lan_smtp_host', $smtp_host);
+        update_option('thanh_lan_smtp_port', (int) ($_POST['smtp_port'] ?? 587) ?: 587);
+        update_option('thanh_lan_smtp_user', $smtp_user);
+        $smtp_pass = preg_replace('/\s+/', '', (string) wp_unslash($_POST['smtp_pass'] ?? ''));
         if ($smtp_pass !== '') {
             update_option('thanh_lan_smtp_pass', $smtp_pass);
         }
-        update_option('thanh_lan_smtp_secure', trim(sanitize_text_field(wp_unslash($_POST['smtp_secure'] ?? 'tls'))));
+        $smtp_secure = trim(sanitize_text_field(wp_unslash($_POST['smtp_secure'] ?? 'tls')));
+        update_option('thanh_lan_smtp_secure', $smtp_secure !== '' ? $smtp_secure : 'tls');
         $notice = 'Đã lưu.';
         if (isset($_POST['send_test'])) {
             $sample = array(
@@ -367,7 +426,8 @@ function thanh_lan_lead_settings_page() {
                 'source' => 'Nút gửi thử',
             );
             $text = thanh_lan_lead_text($sample);
-            $notice = 'Email: ' . thanh_lan_lead_mail($text)
+            $notice = 'Email báo lead: ' . thanh_lan_lead_mail($text)
+                . '. Thư cảm ơn: ' . thanh_lan_lead_thanks($sample)
                 . '. Telegram: ' . thanh_lan_lead_telegram($text)
                 . '. Zalo: ' . thanh_lan_lead_zalo($text) . '.';
         }
@@ -383,7 +443,7 @@ function thanh_lan_lead_settings_page() {
         <input type="hidden" name="thanh_lan_lead_settings" value="1" />
         <table class="form-table">
           <tr><th>Email nhận lead</th><td><input name="lead_email" type="email" class="regular-text" value="<?php echo esc_attr($email); ?>" /></td></tr>
-          <tr><th>SMTP host</th><td><input name="smtp_host" type="text" class="regular-text" value="<?php echo esc_attr(get_option('thanh_lan_smtp_host', '')); ?>" placeholder="smtp.gmail.com" /><p class="description">Host này chưa có chương trình gửi mail. Điền SMTP thì lead mới tới hộp thư. Gmail dùng smtp.gmail.com, cổng 587, mã bảo mật ứng dụng.</p></td></tr>
+          <tr><th>SMTP host</th><td><input name="smtp_host" type="text" class="regular-text" value="<?php echo esc_attr(get_option('thanh_lan_smtp_host', '') ?: 'smtp.gmail.com'); ?>" /><p class="description">Gõ đúng smtp.gmail.com. Ô này để trống thì thư không đi, dù đã dán mật khẩu. Dòng chữ mờ trong ô không được tính là đã điền.</p></td></tr>
           <tr><th>SMTP cổng</th><td><input name="smtp_port" type="number" value="<?php echo esc_attr(get_option('thanh_lan_smtp_port', 587)); ?>" /></td></tr>
           <tr><th>SMTP tài khoản</th><td><input name="smtp_user" type="email" class="regular-text" value="<?php echo esc_attr(get_option('thanh_lan_smtp_user', '')); ?>" /></td></tr>
           <tr><th>SMTP mật khẩu</th><td><input name="smtp_pass" type="password" class="regular-text" value="" autocomplete="new-password" placeholder="Để trống nếu giữ mật khẩu đã lưu" /></td></tr>

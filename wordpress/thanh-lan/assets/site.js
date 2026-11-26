@@ -162,9 +162,15 @@ if (handbook) {
       return;
     }
     if (emailError) emailError.textContent = "";
+    const when = document.getElementById("leadWhen");
+    const note = document.getElementById("leadNote");
+    if (when && !when.value) {
+      note.textContent = "Chọn ngày giờ có thể nghe máy.";
+      note.classList.add("show");
+      return;
+    }
     const name = document.getElementById("leadName").value.trim();
     const stage = document.getElementById("leadStage").value;
-    const note = document.getElementById("leadNote");
     const service = document.getElementById("leadService");
     const district = document.getElementById("leadDistrict");
     const message = document.getElementById("leadMessage");
@@ -177,6 +183,7 @@ if (handbook) {
       service: service ? service.value : stage,
       district: district ? district.value : "",
       message: message ? message.value : "",
+      when: when ? when.value : "",
       source: "Form tư vấn",
       website: website ? website.value : ""
     }).then((result) => {
