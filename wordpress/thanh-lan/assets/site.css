@@ -222,6 +222,7 @@ footer ul { margin: 0; padding: 0; }
 @media (max-width: 680px) {
   .grid.services, .grid.four, .grid.three, .shots, footer .grid, .facts { grid-template-columns: 1fr; }
   .frame img, .card img, .panel img.cover, .hero-slides { height: 210px; }
-  .dock a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .dock a { width: 46px; height: 46px; border-radius: 50%; padding: 0; display: grid; place-items: center; }
+  .dock a.fb span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .dock a.fb { width: 46px; height: 46px; border-radius: 50%; padding: 0; display: grid; place-items: center; }
+  .dock a.zalo, .dock a.call { width: auto; white-space: nowrap; font-size: 0.82rem; padding: 10px 12px; }
 }
