@@ -40,9 +40,12 @@ add_shortcode('thanh_lan_tu_van', function () {
     ?>
     <section class="section band"><div class="wrap">
       <div class="band-box">
-      <div>
+      <div class="consult-copy">
         <h2 class="consult-title">ĐĂNG KÍ NHẬN TƯ VẤN</h2>
         <p>Anh/Chị vui lòng để lại thông tin để Trợ Lý Ms. Tô Lan - Thanh Lan Spa liên hệ lại tư vấn cụ thể cho mình nhé!</p>
+        <figure class="consult-visual">
+          <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/tu-van-me-be.jpg'); ?>" alt="Chuyên viên Thanh Lan Spa tư vấn cho mẹ và bé" />
+        </figure>
       </div>
       <form id="leadForm">
         <div class="field hp" aria-hidden="true"><label for="leadWebsite">Website</label><input id="leadWebsite" name="website" tabindex="-1" autocomplete="off" /></div>
