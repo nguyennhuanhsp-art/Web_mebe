@@ -51,13 +51,13 @@ if ($hero === '') {
         $slides .= tl_img('doi-ngu-' . $n . '.jpg', 'Đội Ngũ Thanh Lan Spa');
     }
     $hero = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicker">Thanh Lan Spa</p><h1>Chăm mẹ và bé trước và sau sinh</h1>'
-        . '<p class="lead">Tô Thị Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
+        . '<p class="lead">Ms. Tô Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
         . '<div class="actions"><a class="btn" href="' . $u('dich-vu/') . '">Xem Dịch Vụ</a><a class="btn light" href="' . $u('tu-van/') . '">Nhận tư vấn</a></div>'
         . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2018</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article></div></div>'
         . '<figure class="frame"><div class="hero-slides">' . $slides . '</div><figcaption class="caption">Đội Ngũ Thanh Lan Spa</figcaption></figure></div></section>';
 }
 
-$intro = '<section class="section"><div class="wrap"><h2>Thanh Lan đồng hành</h2><p class="intro">Hình ảnh đội ngũ và những buổi chăm tại nhà. <a href="' . $u('gioi-thieu/') . '">Đọc câu chuyện chị Tô Lan</a>.</p><div class="shots">'
+$intro = '<section class="section"><div class="wrap"><h2>Thanh Lan đồng hành</h2><div class="shots">'
     . '<figure>' . tl_img('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa') . '<figcaption class="caption">Đội Ngũ Thanh Lan Spa.</figcaption></figure>'
     . '<figure>' . tl_img('day-thang-be-2.jpg', 'Kỹ thuật viên và gia đình') . '<figcaption class="caption">Có mặt cùng gia đình trong lễ đầy tháng.</figcaption></figure>'
     . '<figure>' . tl_img('tam-be.jpg', 'Kỹ thuật viên bế bé') . '<figcaption class="caption">Sau buổi tắm và massage cho bé.</figcaption></figure>'

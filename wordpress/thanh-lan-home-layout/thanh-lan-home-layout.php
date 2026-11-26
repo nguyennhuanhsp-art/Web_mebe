@@ -58,13 +58,25 @@ function thanh_lan_home_layout_run() {
             $slides .= tl_img('doi-ngu-' . $n . '.jpg', 'Đội Ngũ Thanh Lan Spa');
         }
         $hero = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicker">Thanh Lan Spa</p><h1>Chăm mẹ và bé trước và sau sinh</h1>'
-            . '<p class="lead">Tô Thị Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
+            . '<p class="lead">Ms. Tô Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
             . '<div class="actions"><a class="btn" href="' . $u('dich-vu/') . '">Xem Dịch Vụ</a><a class="btn light" href="' . $u('tu-van/') . '">Nhận tư vấn</a></div>'
             . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2018</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article></div></div>'
             . '<figure class="frame"><div class="hero-slides">' . $slides . '</div><figcaption class="caption">Đội Ngũ Thanh Lan Spa</figcaption></figure></div></section>';
     }
 
-    $intro = '<section class="section"><div class="wrap"><h2>Thanh Lan đồng hành</h2><p class="intro">Hình ảnh đội ngũ và những buổi chăm tại nhà. <a href="' . $u('gioi-thieu/') . '">Đọc câu chuyện chị Tô Lan</a>.</p><div class="shots">'
+    $belief = '<section class="section belief"><div class="wrap"><div class="belief-top">'
+        . '<article class="belief-card mission"><h2>Sứ mệnh</h2><p>Đồng hành chăm sóc và nâng đỡ người mẹ từ gốc rễ, để ươm mầm thế hệ tương lai khỏe mạnh, trí tuệ và nhân ái.</p></article>'
+        . '<article class="belief-card vision"><h2>Tầm nhìn</h2><p>Trở thành hệ sinh thái chăm sóc - giáo dục mẹ và bé hàng đầu Việt Nam, tiên phong nâng tầm người mẹ, góp phần kiến tạo một thế hệ tương lai ưu tú.</p></article>'
+        . '</div><article class="belief-card values"><h2>Giá trị cốt lõi</h2><div class="value-grid">'
+        . '<article><strong>1. Tận tâm</strong><p>Chăm sóc bằng cả trái tim: thấu hiểu, yêu thương và đặt lợi ích của mẹ và bé làm trọng tâm trong mọi hành động.</p></article>'
+        . '<article><strong>2. Chất lượng</strong><p>Lấy an toàn làm nền tảng: kiên định với tiêu chuẩn chuyên môn, an toàn và chất lượng trong từng dịch vụ.</p></article>'
+        . '<article><strong>3. Trí tuệ</strong><p>Trao tri thức, tạo giá trị: không ngừng học hỏi, chia sẻ kiến thức và nâng cao năng lực của người mẹ trên hành trình nuôi dưỡng thế hệ tương lai.</p></article>'
+        . '<article><strong>4. Chính trực</strong><p>Giữ trọn niềm tin: trung thực, minh bạch, trách nhiệm và nhất quán giữa lời nói với hành động.</p></article>'
+        . '<article><strong>5. Đồng hành</strong><p>Cùng mẹ kiến tạo tương lai: gắn bó, thấu hiểu và hỗ trợ người mẹ, trẻ em và gia đình trong những giai đoạn quan trọng của cuộc sống.</p></article>'
+        . '<article><strong>6. Khát vọng</strong><p>Vươn xa vì thế hệ mai sau: không ngừng đổi mới và phát triển để tạo ra những giá trị bền vững cho gia đình, cộng đồng và xã hội.</p></article>'
+        . '</div></article></div></section>';
+
+    $intro = $belief . '<section class="section"><div class="wrap"><h2>Thanh Lan đồng hành</h2><div class="shots">'
         . '<figure>' . tl_img('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa') . '<figcaption class="caption">Đội Ngũ Thanh Lan Spa.</figcaption></figure>'
         . '<figure>' . tl_img('day-thang-be-2.jpg', 'Kỹ thuật viên và gia đình') . '<figcaption class="caption">Có mặt cùng gia đình trong lễ đầy tháng.</figcaption></figure>'
         . '<figure>' . tl_img('tam-be.jpg', 'Kỹ thuật viên bế bé') . '<figcaption class="caption">Sau buổi tắm và massage cho bé.</figcaption></figure>'
