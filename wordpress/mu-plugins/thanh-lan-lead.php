@@ -93,26 +93,42 @@ function thanh_lan_lead_text($data) {
     return implode("\n", $lines);
 }
 
-add_action('phpmailer_init', function ($phpmailer) {
+function thanh_lan_mail_fail($error) {
+    $GLOBALS['thanh_lan_mail_error'] = $error->get_error_message();
+}
+add_action('wp_mail_failed', 'thanh_lan_mail_fail');
+
+function thanh_lan_smtp_ready() {
+    $user = trim((string) get_option('thanh_lan_smtp_user', ''));
     $host = trim((string) get_option('thanh_lan_smtp_host', ''));
-    if ($host === '') {
+    if ($host === '' && $user !== '') {
+        $host = 'smtp.gmail.com';
+    }
+    $pass = preg_replace('/\s+/', '', (string) get_option('thanh_lan_smtp_pass', ''));
+    return array(
+        'host' => $host,
+        'port' => (int) get_option('thanh_lan_smtp_port', 587) ?: 587,
+        'user' => $user,
+        'pass' => $pass,
+        'secure' => trim((string) get_option('thanh_lan_smtp_secure', 'tls')) ?: 'tls',
+    );
+}
+
+add_action('phpmailer_init', function ($phpmailer) {
+    $smtp = thanh_lan_smtp_ready();
+    if ($smtp['host'] === '' || $smtp['user'] === '' || $smtp['pass'] === '') {
         return;
     }
     $phpmailer->isSMTP();
-    $phpmailer->Host = $host;
-    $phpmailer->Port = (int) get_option('thanh_lan_smtp_port', 587);
+    $phpmailer->Host = $smtp['host'];
+    $phpmailer->Port = $smtp['port'];
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Username = (string) get_option('thanh_lan_smtp_user', '');
-    $phpmailer->Password = (string) get_option('thanh_lan_smtp_pass', '');
-    $secure = (string) get_option('thanh_lan_smtp_secure', 'tls');
-    if ($secure !== '') {
-        $phpmailer->SMTPSecure = $secure;
-    }
-    $from = (string) get_option('thanh_lan_smtp_user', '');
-    if ($from !== '') {
-        $phpmailer->From = $from;
-        $phpmailer->FromName = 'Thanh Lan Spa';
-    }
+    $phpmailer->Username = $smtp['user'];
+    $phpmailer->Password = $smtp['pass'];
+    $phpmailer->SMTPSecure = $smtp['secure'];
+    $phpmailer->Timeout = 15;
+    $phpmailer->From = $smtp['user'];
+    $phpmailer->FromName = 'Thanh Lan Spa';
 });
 
 function thanh_lan_lead_thanks($data) {
@@ -141,7 +157,8 @@ function thanh_lan_lead_thanks($data) {
     if ($sent) {
         return 'Đã gửi cảm ơn tới ' . $to;
     }
-    return 'Thư cảm ơn chưa đi';
+    $why = isset($GLOBALS['thanh_lan_mail_error']) ? $GLOBALS['thanh_lan_mail_error'] : '';
+    return 'Thư cảm ơn chưa đi' . ($why !== '' ? ' (' . $why . ')' : '');
 }
 
 function thanh_lan_lead_mail($text) {
@@ -155,7 +172,8 @@ function thanh_lan_lead_mail($text) {
     if ($sent) {
         return 'Đã gửi ' . $to;
     }
-    return 'Mail chưa đi. Lead vẫn nằm trong quản trị.';
+    $why = isset($GLOBALS['thanh_lan_mail_error']) ? $GLOBALS['thanh_lan_mail_error'] : '';
+    return 'Mail chưa đi' . ($why !== '' ? ' (' . $why . ')' : '') . '. Lead vẫn nằm trong quản trị.';
 }
 
 function thanh_lan_lead_telegram($text) {
@@ -345,14 +363,20 @@ function thanh_lan_lead_settings_page() {
         update_option('thanh_lan_telegram_chat', trim(sanitize_text_field(wp_unslash($_POST['telegram_chat'] ?? ''))));
         update_option('thanh_lan_zalo_token', trim(sanitize_text_field(wp_unslash($_POST['zalo_token'] ?? ''))));
         update_option('thanh_lan_zalo_user', trim(sanitize_text_field(wp_unslash($_POST['zalo_user'] ?? ''))));
-        update_option('thanh_lan_smtp_host', trim(sanitize_text_field(wp_unslash($_POST['smtp_host'] ?? ''))));
-        update_option('thanh_lan_smtp_port', (int) ($_POST['smtp_port'] ?? 587));
-        update_option('thanh_lan_smtp_user', trim(sanitize_email(wp_unslash($_POST['smtp_user'] ?? ''))));
-        $smtp_pass = (string) wp_unslash($_POST['smtp_pass'] ?? '');
+        $smtp_host = trim(sanitize_text_field(wp_unslash($_POST['smtp_host'] ?? '')));
+        $smtp_user = trim(sanitize_email(wp_unslash($_POST['smtp_user'] ?? '')));
+        if ($smtp_host === '' && $smtp_user !== '') {
+            $smtp_host = 'smtp.gmail.com';
+        }
+        update_option('thanh_lan_smtp_host', $smtp_host);
+        update_option('thanh_lan_smtp_port', (int) ($_POST['smtp_port'] ?? 587) ?: 587);
+        update_option('thanh_lan_smtp_user', $smtp_user);
+        $smtp_pass = preg_replace('/\s+/', '', (string) wp_unslash($_POST['smtp_pass'] ?? ''));
         if ($smtp_pass !== '') {
             update_option('thanh_lan_smtp_pass', $smtp_pass);
         }
-        update_option('thanh_lan_smtp_secure', trim(sanitize_text_field(wp_unslash($_POST['smtp_secure'] ?? 'tls'))));
+        $smtp_secure = trim(sanitize_text_field(wp_unslash($_POST['smtp_secure'] ?? 'tls')));
+        update_option('thanh_lan_smtp_secure', $smtp_secure !== '' ? $smtp_secure : 'tls');
         $notice = 'Đã lưu.';
         if (isset($_POST['send_test'])) {
             $sample = array(
@@ -367,7 +391,8 @@ function thanh_lan_lead_settings_page() {
                 'source' => 'Nút gửi thử',
             );
             $text = thanh_lan_lead_text($sample);
-            $notice = 'Email: ' . thanh_lan_lead_mail($text)
+            $notice = 'Email báo lead: ' . thanh_lan_lead_mail($text)
+                . '. Thư cảm ơn: ' . thanh_lan_lead_thanks($sample)
                 . '. Telegram: ' . thanh_lan_lead_telegram($text)
                 . '. Zalo: ' . thanh_lan_lead_zalo($text) . '.';
         }
@@ -383,7 +408,7 @@ function thanh_lan_lead_settings_page() {
         <input type="hidden" name="thanh_lan_lead_settings" value="1" />
         <table class="form-table">
           <tr><th>Email nhận lead</th><td><input name="lead_email" type="email" class="regular-text" value="<?php echo esc_attr($email); ?>" /></td></tr>
-          <tr><th>SMTP host</th><td><input name="smtp_host" type="text" class="regular-text" value="<?php echo esc_attr(get_option('thanh_lan_smtp_host', '')); ?>" placeholder="smtp.gmail.com" /><p class="description">Host này chưa có chương trình gửi mail. Điền SMTP thì lead mới tới hộp thư. Gmail dùng smtp.gmail.com, cổng 587, mã bảo mật ứng dụng.</p></td></tr>
+          <tr><th>SMTP host</th><td><input name="smtp_host" type="text" class="regular-text" value="<?php echo esc_attr(get_option('thanh_lan_smtp_host', '') ?: 'smtp.gmail.com'); ?>" /><p class="description">Gõ đúng smtp.gmail.com. Ô này để trống thì thư không đi, dù đã dán mật khẩu. Dòng chữ mờ trong ô không được tính là đã điền.</p></td></tr>
           <tr><th>SMTP cổng</th><td><input name="smtp_port" type="number" value="<?php echo esc_attr(get_option('thanh_lan_smtp_port', 587)); ?>" /></td></tr>
           <tr><th>SMTP tài khoản</th><td><input name="smtp_user" type="email" class="regular-text" value="<?php echo esc_attr(get_option('thanh_lan_smtp_user', '')); ?>" /></td></tr>
           <tr><th>SMTP mật khẩu</th><td><input name="smtp_pass" type="password" class="regular-text" value="" autocomplete="new-password" placeholder="Để trống nếu giữ mật khẩu đã lưu" /></td></tr>
