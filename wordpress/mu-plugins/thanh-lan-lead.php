@@ -339,8 +339,20 @@ function thanh_lan_lead_ajax() {
     if (is_wp_error($data)) {
         wp_send_json(array('ok' => false, 'message' => $data->get_error_message()));
     }
+    $once = 'tl_lead_once_' . md5($data['phone'] . '|' . $data['customer_email']);
+    if (!add_option($once, time(), '', false)) {
+        $age = time() - (int) get_option($once);
+        if ($age >= 0 && $age < 3 * MINUTE_IN_SECONDS) {
+            $message = $data['customer_email'] !== ''
+                ? 'Đã nhận đăng ký. Thư cảm ơn đã gửi tới ' . $data['customer_email'] . '.'
+                : 'Đã nhận. Thanh Lan sẽ gọi hoặc nhắn Zalo số ' . $data['phone'] . '.';
+            wp_send_json(array('ok' => true, 'message' => $message));
+        }
+        update_option($once, time(), false);
+    }
     $saved = thanh_lan_lead_store($data);
     if (is_wp_error($saved)) {
+        delete_option($once);
         wp_send_json(array('ok' => false, 'message' => 'Chưa lưu được. Chị gọi 0975.399.319 giúp em.'));
     }
     set_transient($key, $count + 1, HOUR_IN_SECONDS);

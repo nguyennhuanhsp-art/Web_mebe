@@ -100,6 +100,8 @@ document.addEventListener("keydown", (event) => {
 
 document.getElementById("bookingForm").addEventListener("submit", (event) => {
   event.preventDefault();
+  const form = event.currentTarget;
+  if (form.dataset.sending === "1") return;
   const phone = document.getElementById("bookPhone").value;
   const error = document.getElementById("bookPhoneError");
   if (!digitsOk(phone)) {
@@ -116,6 +118,9 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
   const note = document.getElementById("bookNote");
   const website = document.getElementById("bookWebsite");
   const bookEmail = document.getElementById("bookEmail");
+  const button = form.querySelector("button[type=submit]");
+  form.dataset.sending = "1";
+  if (button) button.disabled = true;
   postLead({
     name: item.name,
     phone: item.phone,
@@ -135,6 +140,10 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
       note.textContent = result.message || "Đã nhận.";
     }
     note.classList.add("show");
+    if (!result.ok) {
+      form.dataset.sending = "";
+      if (button) button.disabled = false;
+    }
   });
 });
 
@@ -147,6 +156,7 @@ if (handbook) {
   };
   handbook.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (handbook.dataset.sending === "1") return;
     const phone = document.getElementById("leadPhone").value;
     const error = document.getElementById("leadPhoneError");
     if (!digitsOk(phone)) {
@@ -175,6 +185,9 @@ if (handbook) {
     const district = document.getElementById("leadDistrict");
     const message = document.getElementById("leadMessage");
     const website = document.getElementById("leadWebsite");
+    const button = handbook.querySelector("button[type=submit]");
+    handbook.dataset.sending = "1";
+    if (button) button.disabled = true;
     postLead({
       name,
       phone: phone.trim(),
@@ -202,6 +215,10 @@ if (handbook) {
         note.textContent = result.message || "Đã nhận.";
       }
       note.classList.add("show");
+      if (!result.ok) {
+        handbook.dataset.sending = "";
+        if (button) button.disabled = false;
+      }
     });
   });
 }
