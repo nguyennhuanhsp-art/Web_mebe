@@ -230,7 +230,7 @@ $pages['feedback'] = '<section class="section"><div class="wrap"><p class="crumb
     . '</div></div></section>';
 
 $pages['kien-thuc'] = '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . esc_url($home) . '">Trang chủ</a> / Kiến thức</p><h2>Kiến thức</h2>'
-    . '<p class="intro">Năm chuyên mục trong menu. Nhân viên thêm bài ở mục Bài viết và chọn đúng chuyên mục. Ảnh đại diện lấy từ Thư viện.</p>[thanh_lan_bai_viet]</div></section>';
+    . '<p class="intro">Ba chuyên mục trong menu. Nhân viên thêm bài ở mục Bài viết và chọn đúng chuyên mục. Ảnh đại diện lấy từ Thư viện.</p>[thanh_lan_bai_viet]</div></section>';
 
 $pages['tu-van'] = '<section class="page-hero"><div class="wrap split"><div><p class="crumbs"><a href="' . esc_url($home) . '">Trang chủ</a> / Nhận tư vấn</p><p class="kicker">Liên hệ</p><h1>Nhận tư vấn</h1>'
     . '<p class="lead">Gọi hoặc nhắn Zalo 0975.399.319, gặp Ms Tô Lan. Mail thanhlanspa238@gmail.com.</p>'

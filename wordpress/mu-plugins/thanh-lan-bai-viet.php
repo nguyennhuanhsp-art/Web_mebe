@@ -11,11 +11,9 @@ if (!defined('ABSPATH')) {
 
 add_shortcode('thanh_lan_bai_viet', function () {
     $order = array(
-        'huong-dan-cham-soc-be' => 'Hướng dẫn chăm sóc bé',
-        'huong-dan-me' => 'Hướng dẫn mẹ',
         'me-bau-can-biet' => 'Mẹ bầu cần biết',
         'me-sau-sinh-can-biet' => 'Mẹ sau sinh cần biết',
-        'dau-an-thanh-lan' => 'Dấu ấn Thanh Lan Spa',
+        'huong-dan-cham-soc-be' => 'Hướng dẫn chăm sóc bé',
     );
     ob_start();
     echo '<div class="grid three">';

@@ -89,24 +89,19 @@ function thanh_lan_home_layout_run() {
     }
     $baby_cat_url = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $baby_cat_url);
     $baby = '<section class="section" style="background:#fff"><div class="wrap"><h2>Dịch vụ cho bé</h2><p class="intro">Chọn một thẻ để đọc nội dung buổi chăm. Bảng giá nằm ở cuối trang dịch vụ.</p><div class="grid services">'
-        . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm và massage bé', 'Massage, tắm, vệ sinh và hơ lá trầu. Mỗi buổi 45 phút tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
-        . tl_card('ho-la-trau-2.jpg', 'Hơ lá trầu cho bé', 'Kinh nghiệm chăm bé', 'Cách tắm, massage và dùng lá trầu trong buổi chăm sơ sinh.', $u('tam-massage-va-la-trau-cho-be/'), 'Đọc bài')
-        . tl_card('matxa-cho-be.jpg', 'Massage cho bé', 'Hướng dẫn chăm sóc bé', 'Mục bài viết để mẹ xem lại cách chăm bé tại nhà.', $baby_cat_url, 'Mở chuyên mục')
+        . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm bé sơ sinh', 'Massage, tắm, vệ sinh và hơ lá trầu. Mỗi buổi 45 phút tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
         . '</div></div></section>';
 
     $mother = '<section class="section"><div class="wrap"><h2>Dịch vụ cho mẹ</h2><p class="intro">Mỗi dịch vụ một trang. Giá của gói được ghi ở phần dưới trang đó.</p><div class="grid services">'
         . tl_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ tại nhà', 'Chăm sóc mẹ sau sinh', 'Liệu trình 10, 20 hoặc 30 ngày. Mỗi buổi 90 phút.', $u('cham-soc-me-be/'), 'Xem dịch vụ')
-        . tl_card('cham-me-tai-nha-2.jpg', 'Mẹ và bé ở nhà', 'Combo mẹ và bé', 'Mẹ và bé được chăm trong cùng một lịch đến nhà.', $u('o-cu-tai-nha/'), 'Xem dịch vụ')
-        . tl_card('doi-ngu-6.jpg', 'Đội ngũ Thanh Lan', 'Chăm sóc bầu tại nhà', 'Massage nhẹ và cách nghỉ những tuần cuối.', $u('cham-soc-bau/'), 'Xem dịch vụ')
         . tl_card('cham-me-tai-nha-1.jpg', 'Buổi chăm mẹ', 'Thông tắc tia sữa', 'Làm trong liệu trình mẹ, theo tình trạng.', $u('thong-tac-tia-sua/'), 'Xem dịch vụ')
-        . tl_card('cham-me-tai-nha-3.jpg', 'Lều xông sau sinh', 'Giảm eo sau sinh', 'Nằm trong liệu trình mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
-        . tl_card('day-thang.jpg', 'Lễ đầy tháng', 'Kinh nghiệm cho mẹ', 'Nhịp một ngày ở cữ và những việc mẹ cần biết sau sinh.', $u('nhip-ngay-me-o-cu/'), 'Đọc bài')
+        . tl_card('cham-me-tai-nha-3.jpg', 'Lều xông sau sinh', 'Liệu trình giảm eo', 'Nằm trong liệu trình mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
         . '</div></div></section>';
 
     $knowledge = '<section class="section" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><p class="intro">Bài viết mẹ đọc thêm. Nhân viên đăng bài mới trong mục Kiến thức.</p><div class="grid three">'
         . tl_card('doi-ngu-4.jpg', 'Đội ngũ Thanh Lan Spa', 'Mẹ bầu cần biết', 'Cách nghỉ những tuần cuối. Buổi spa không thay lần khám.', $u('me-bau-nghi-nhung-tuan-cuoi/'), 'Đọc bài')
         . tl_card('day-thang-be-1.jpg', 'Bé trong lễ đầy tháng', 'Mẹ sau sinh cần biết', 'Ngày đầu sau sinh và mốc đầy tháng.', $u('ngay-dau-sau-sinh-va-day-thang/'), 'Đọc bài')
-        . tl_card('doi-ngu-1.jpg', 'Lễ tốt nghiệp kỹ thuật viên', 'Dấu ấn Thanh Lan', 'Hành trình đội ngũ từ năm 2018.', $u('dau-an-doi-ngu-va-le-day-thang/'), 'Đọc bài')
+        . tl_card('matxa-cho-be.jpg', 'Massage cho bé', 'Hướng dẫn chăm sóc bé', 'Mục bài viết để mẹ xem lại cách chăm bé tại nhà.', $baby_cat_url, 'Mở chuyên mục')
         . '</div><p style="text-align:center;margin-top:18px"><a class="more" href="' . $u('kien-thuc/') . '">Xem tất cả bài viết</a></p></div></section>';
 
     $shop = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : $u('cua-hang/');
@@ -152,16 +147,11 @@ function thanh_lan_home_layout_run() {
     $me30 = '<ul class="clean"><li>Gội đầu thảo dược 5 lần</li><li>Chăm sóc da mặt 6 lần</li><li>Giảm bọng mắt 15 lần</li><li>Massage ngực, thông tuyến sữa theo tình trạng</li><li>Massage body 6 lần</li><li>Làm sáng nách 15 lần</li><li>Định hình bằng máy EMS 15 lần</li><li>Tẩy tế bào chết body 5 lần</li><li>Ủ trắng body 5 lần</li><li>Thoa rượu gừng, nghệ 20 lần</li><li>Xông thảo dược toàn thân 5 lần</li><li>Xông vùng kín 20 lần</li><li>Ngâm chân muối thảo dược 15 lần</li><li>Ủ ấm bằng chăn điện 20 lần</li><li>Tặng 3 chai cốt nhàu, không quy đổi</li></ul>';
 
     $pages = array(
-        'dich-vu' => '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . $home . '">Trang chủ</a> / Dịch Vụ</p><h2>Dịch vụ</h2><p class="intro">Chọn dịch vụ để đọc nội dung. Bảng giá nằm ở cuối mỗi trang.</p>'
-            . '<h3>Cho bé</h3><div class="grid services">'
-            . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm và massage bé', 'Massage, tắm, vệ sinh và hơ lá trầu tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
-            . tl_card('ho-la-trau-2.jpg', 'Hơ lá trầu', 'Kinh nghiệm chăm bé', 'Bài viết về tắm, massage và lá trầu.', $u('tam-massage-va-la-trau-cho-be/'), 'Đọc bài')
-            . '</div><h3 style="margin-top:28px">Cho mẹ</h3><div class="grid services">'
+        'dich-vu' => '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . $home . '">Trang chủ</a> / Dịch Vụ</p><h2>Dịch vụ</h2><p class="intro">Chọn dịch vụ để đọc nội dung. Bảng giá nằm ở cuối mỗi trang.</p><div class="grid services">'
+            . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm bé sơ sinh', 'Massage, tắm, vệ sinh và hơ lá trầu tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
             . tl_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ', 'Chăm sóc mẹ sau sinh', 'Liệu trình 10, 20 hoặc 30 ngày.', $u('cham-soc-me-be/'), 'Xem dịch vụ')
-            . tl_card('cham-me-tai-nha-2.jpg', 'Mẹ và bé', 'Combo mẹ và bé', 'Cùng một lịch đến nhà.', $u('o-cu-tai-nha/'), 'Xem dịch vụ')
-            . tl_card('doi-ngu-6.jpg', 'Đội ngũ', 'Chăm sóc bầu tại nhà', 'Massage nhẹ những tuần cuối.', $u('cham-soc-bau/'), 'Xem dịch vụ')
             . tl_card('cham-me-tai-nha-1.jpg', 'Chăm mẹ', 'Thông tắc tia sữa', 'Theo tình trạng, trong liệu trình mẹ.', $u('thong-tac-tia-sua/'), 'Xem dịch vụ')
-            . tl_card('cham-me-tai-nha-3.jpg', 'Xông', 'Giảm eo sau sinh', 'Trong gói mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
+            . tl_card('cham-me-tai-nha-3.jpg', 'Xông', 'Liệu trình giảm eo', 'Trong gói mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
             . '</div></div></section>',
         'tam-be' => '<section class="page-hero"><div class="wrap split"><div><p class="crumbs"><a href="' . $home . '">Trang chủ</a> / <a href="' . $u('dich-vu/') . '">Dịch Vụ</a> / Tắm và massage bé</p>'
             . '<p class="kicker">Dịch vụ cho bé</p><h1>Tắm và massage bé</h1><p class="lead">Mỗi buổi 45 phút tại nhà. Bé được massage, tắm, vệ sinh và hơ lá trầu nếu mẹ muốn dùng.</p>'

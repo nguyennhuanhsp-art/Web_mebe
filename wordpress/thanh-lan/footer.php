@@ -3,11 +3,12 @@
     <div class="wrap grid">
       <div><h2>Thanh Lan Spa</h2><p class="company">CÔNG TY TNHH TM&amp;DV THANH LAN.</p><p class="company">MST 0319180928, đăng ký ngày 25/9/2025.</p><p class="company">Số 77, đường 537, Ấp Bàu Trăn, Xã Nhuận Đức, TPHCM.</p><p>CEO &amp; Founder: Tô Thị Lan.</p></div>
       <div><h3>Menu</h3><ul>
+        <li><a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a></li>
         <li><a href="<?php echo esc_url(home_url('/gioi-thieu/')); ?>">Giới thiệu</a></li>
         <li><a href="<?php echo esc_url(home_url('/dich-vu/')); ?>">Dịch Vụ</a></li>
         <li><a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/cua-hang/')); ?>">Cửa hàng</a></li>
-        <li><a href="<?php echo esc_url(home_url('/feedback/')); ?>">Feedback</a></li>
         <li><a href="<?php echo esc_url(home_url('/kien-thuc/')); ?>">Kiến thức</a></li>
+        <li><a href="<?php echo esc_url(home_url('/tu-van/')); ?>">Nhận tư vấn</a></li>
       </ul></div>
       <div><h3>Liên hệ</h3><p>Hotline / Zalo: <a href="tel:0975399319"><strong>0975.399.319</strong></a> (Ms Tô Lan)</p><p>Mail: <a href="mailto:thanhlanspa238@gmail.com">thanhlanspa238@gmail.com</a></p><p><a href="https://www.facebook.com/photo/?fbid=910401714429198&amp;set=a.481696227299751" target="_blank" rel="noopener">Fanpage</a> · <a href="https://www.tiktok.com/@anhxuan.mkt" target="_blank" rel="noopener">TikTok</a></p></div>
     </div>
