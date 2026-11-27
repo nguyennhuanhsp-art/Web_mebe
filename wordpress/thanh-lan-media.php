@@ -215,7 +215,7 @@ foreach ($articles as $article) {
 
 $knowledge = get_page_by_path('kien-thuc');
 if ($knowledge) {
-    $html = '<main><section class="section"><div class="wrap"><p class="crumbs"><a href="' . esc_url(home_url('/')) . '">Trang chủ</a> / Kiến thức</p><h2>Kiến thức</h2><p class="intro">Nhân viên đăng bài mới trong quản trị, chọn một trong ba chuyên mục. Bài vừa đăng hiện ở đây.</p>[thanh_lan_bai_viet]</div></section></main>';
+    $html = '<main><section class="section"><div class="wrap"><p class="crumbs"><a href="' . esc_url(home_url('/')) . '">Trang chủ</a> / Kiến thức</p><h2>Kiến thức</h2><p class="intro">Nhân viên đăng bài mới trong quản trị, chọn một trong bốn chuyên mục. Bài vừa đăng hiện ở đây.</p>[thanh_lan_bai_viet]</div></section></main>';
     wp_update_post(array('ID' => $knowledge->ID, 'post_content' => $html));
     $write('kien-thuc updated');
 }

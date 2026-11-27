@@ -66,6 +66,7 @@ $topic = function ($slug) {
             <li><a href="<?php echo esc_url($topic('me-bau-can-biet')); ?>">Mẹ bầu cần biết</a></li>
             <li><a href="<?php echo esc_url($topic('me-sau-sinh-can-biet')); ?>">Mẹ sau sinh cần biết</a></li>
             <li><a href="<?php echo esc_url($topic('huong-dan-cham-soc-be')); ?>">Hướng dẫn chăm sóc bé</a></li>
+            <li><a href="<?php echo esc_url($topic('dau-an-thanh-lan')); ?>">Dấu ấn Thanh Lan</a></li>
           </ul>
         </li>
         <li><a href="<?php echo esc_url(home_url('/tu-van/')); ?>">Nhận tư vấn</a></li>
