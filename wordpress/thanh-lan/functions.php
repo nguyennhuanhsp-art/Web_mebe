@@ -19,7 +19,7 @@ add_action('wp_enqueue_scripts', function () {
         null
     );
     wp_enqueue_style('thanh-lan-site', get_template_directory_uri() . '/assets/site.css', array('thanh-lan-fonts'), '1.7.9');
-    wp_enqueue_style('thanh-lan', get_stylesheet_uri(), array('thanh-lan-site'), '1.3.3');
+    wp_enqueue_style('thanh-lan', get_stylesheet_uri(), array('thanh-lan-site'), '1.3.4');
     wp_enqueue_script('thanh-lan-site', get_template_directory_uri() . '/assets/site.js', array(), '1.7.6', true);
     wp_localize_script('thanh-lan-site', 'thanhLanLead', array(
         'ajax' => admin_url('admin-ajax.php'),
@@ -109,14 +109,21 @@ function thanh_lan_product_label() {
 add_action('woocommerce_shop_loop_item_title', 'thanh_lan_product_label', 5);
 add_action('woocommerce_single_product_summary', 'thanh_lan_product_label', 4);
 
-function thanh_lan_quote_button() {
+function thanh_lan_quote_button($centered = false) {
     global $product;
     $name = $product ? $product->get_name() : '';
-    $url = add_query_arg('sanpham', rawurlencode($name), home_url('/tu-van/'));
-    echo '<a class="button quote" href="' . esc_url($url) . '">Liên Hệ Báo Giá</a>';
+    $url = add_query_arg('sanpham', $name, home_url('/tu-van/'));
+    $link = '<a class="button quote" href="' . esc_url($url) . '">Liên Hệ Báo Giá</a>';
+    if ($centered) {
+        echo '<p class="product-quote">' . $link . '</p>';
+        return;
+    }
+    echo $link;
 }
 add_action('woocommerce_after_shop_loop_item', 'thanh_lan_quote_button', 15);
-add_action('woocommerce_single_product_summary', 'thanh_lan_quote_button', 30);
+add_action('woocommerce_single_product_summary', function () {
+    thanh_lan_quote_button(true);
+}, 15);
 
 function thanh_lan_shop_note() {
     echo '<p class="shop-note">Sản phẩm được phân phối trong hệ thống Thanh Lan Spa và các cơ sở chăm sóc mẹ &amp; bé các bệnh viện Xuyên Á trên toàn quốc. Liên hệ để được báo giá sỉ.</p>';

@@ -69,8 +69,21 @@ Text Domain: thanh-lan
 .woocommerce div.product p.price,
 .woocommerce div.product form.cart,
 .woocommerce a.button.add_to_cart_button { display: none !important; }
-.woocommerce ul.products li.product .button,
-.woocommerce div.product .button.quote { margin: 8px 14px 0; }
+.woocommerce ul.products li.product .button { margin: 8px 14px 0; }
+.woocommerce div.product .product-quote {
+  text-align: center;
+  margin: 4px 0 18px;
+  clear: both;
+}
+.woocommerce div.product .product-quote .button.quote {
+  display: inline-flex;
+  margin: 0;
+  float: none;
+  padding: 12px 22px;
+  border-left: 0;
+  background: var(--pink);
+  color: #fff;
+}
 .product-label {
   display: inline-block;
   margin: 12px 14px 0;
