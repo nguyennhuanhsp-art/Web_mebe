@@ -76,11 +76,7 @@ function thanh_lan_home_layout_run() {
         . '<article><strong>6. Khát vọng</strong><p>Vươn xa vì thế hệ mai sau: không ngừng đổi mới và phát triển để tạo ra những giá trị bền vững cho gia đình, cộng đồng và xã hội.</p></article>'
         . '</div></article></div></section>';
 
-    $intro = $belief . '<section class="section"><div class="wrap"><h2>Thanh Lan đồng hành</h2><div class="shots">'
-        . '<figure>' . tl_img('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa') . '<figcaption class="caption">Đội Ngũ Thanh Lan Spa.</figcaption></figure>'
-        . '<figure>' . tl_img('day-thang-be-2.jpg', 'Kỹ thuật viên và gia đình') . '<figcaption class="caption">Có mặt cùng gia đình trong lễ đầy tháng.</figcaption></figure>'
-        . '<figure>' . tl_img('tam-be.jpg', 'Kỹ thuật viên bế bé') . '<figcaption class="caption">Sau buổi tắm và massage cho bé.</figcaption></figure>'
-        . '</div></div></section>';
+    $intro = $belief;
 
     $baby_cat = get_term_by('slug', 'huong-dan-cham-soc-be', 'category');
     $baby_cat_url = ($baby_cat && !is_wp_error($baby_cat)) ? get_term_link($baby_cat) : $u('kien-thuc/');
@@ -150,7 +146,19 @@ function thanh_lan_home_layout_run() {
         . '<div class="grid three shop-home">' . $product_cards . '</div></div></section>';
     $write('products ' . substr_count($product_cards, '<article'));
 
-    $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $baby . $mother . $knowledge . $products);
+    $service_card = static function ($file, $alt, $title) use ($u) {
+        $href = add_query_arg('dichvu', $title, 'https://www.tolan.vn/tu-van/');
+        return '<article class="card">' . tl_img($file, $alt)
+            . '<div class="pad"><h3>' . esc_html($title) . '</h3>'
+            . '<a class="btn" href="' . esc_url($href) . '">Liên hệ tư vấn</a></div></article>';
+    };
+    $services = '<section class="section" style="background:#fff"><div class="wrap"><h2>Dịch vụ</h2><div class="grid four service-home">'
+        . $service_card('tam-cho-be.jpg', 'Tắm bé sơ sinh', 'Tắm bé sơ sinh')
+        . $service_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ sau sinh', 'Chăm sóc mẹ sau sinh')
+        . $service_card('cham-me-tai-nha-2.jpg', 'Thông tắc tia sữa', 'Thông tắc tia sữa')
+        . $service_card('cham-me-tai-nha-3.jpg', 'Liệu trình giảm eo', 'Liệu trình giảm eo')
+        . '</div></div></section>';
+    $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $services . $knowledge . $products);
     wp_update_post(array('ID' => $front_id, 'post_content' => $front_html));
     $write('front ' . $front_id);
 

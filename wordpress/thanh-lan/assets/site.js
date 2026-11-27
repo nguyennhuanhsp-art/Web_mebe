@@ -143,10 +143,15 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
 
 const handbook = document.getElementById("leadForm") || document.getElementById("handbookForm");
 if (handbook) {
-  const asked = new URLSearchParams(location.search).get("sanpham");
+  const params = new URLSearchParams(location.search);
+  const asked = params.get("sanpham");
+  const askedService = params.get("dichvu");
   const messageBox = document.getElementById("leadMessage");
   if (asked && messageBox && !messageBox.value) {
     messageBox.value = "Em muốn được báo giá sỉ sản phẩm: " + asked;
+  }
+  if (askedService && messageBox && !messageBox.value) {
+    messageBox.value = "Em muốn được tư vấn dịch vụ: " + askedService;
   }
   const guides = {
     "Mẹ bầu": "Nằm nghiêng khi nghỉ, chuẩn bị túi đồ sinh, và nhắn Tô Lan để hẹn chăm sóc tuần cuối.",
