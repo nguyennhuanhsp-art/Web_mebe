@@ -84,7 +84,7 @@ $mother = '<section class="section"><div class="wrap"><h2>Dịch vụ cho mẹ</
     . tl_card('day-thang.jpg', 'Lễ đầy tháng', 'Kinh nghiệm cho mẹ', 'Nhịp một ngày ở cữ và những việc mẹ cần biết sau sinh.', $u('nhip-ngay-me-o-cu/'), 'Đọc bài')
     . '</div></div></section>';
 
-$knowledge = '<section class="section" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><p class="intro">Bài viết mẹ đọc thêm. Nhân viên đăng bài mới trong mục Kiến thức.</p><div class="grid three">'
+$knowledge = '<section class="section" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><div class="grid three">'
     . tl_card('doi-ngu-4.jpg', 'Đội ngũ Thanh Lan Spa', 'Mẹ bầu cần biết', 'Cách nghỉ những tuần cuối. Buổi spa không thay lần khám.', $u('me-bau-nghi-nhung-tuan-cuoi/'), 'Đọc bài')
     . tl_card('day-thang-be-1.jpg', 'Bé trong lễ đầy tháng', 'Mẹ sau sinh cần biết', 'Ngày đầu sau sinh và mốc đầy tháng.', $u('ngay-dau-sau-sinh-va-day-thang/'), 'Đọc bài')
     . tl_card('doi-ngu-1.jpg', 'Lễ tốt nghiệp kỹ thuật viên', 'Dấu ấn Thanh Lan', 'Hành trình đội ngũ từ năm 2018.', $u('dau-an-doi-ngu-va-le-day-thang/'), 'Đọc bài')

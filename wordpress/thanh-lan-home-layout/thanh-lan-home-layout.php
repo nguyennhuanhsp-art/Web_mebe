@@ -124,7 +124,7 @@ function thanh_lan_home_layout_run() {
             . '<p>' . esc_html($topic_text) . '</p><a class="more" href="' . esc_url($topic_link) . '">Đọc bài</a></div></article>';
         wp_reset_postdata();
     }
-    $knowledge = '<section class="section knowledge-home" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><p class="intro">Bài viết mẹ đọc thêm. Nhân viên đăng bài mới trong mục Kiến thức.</p><div class="grid three">'
+    $knowledge = '<section class="section knowledge-home" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><div class="grid three">'
         . $knowledge_cards
         . '</div><p style="text-align:center;margin-top:18px"><a class="more" href="' . $u('kien-thuc/') . '">Xem tất cả bài viết</a></p></div></section>';
 

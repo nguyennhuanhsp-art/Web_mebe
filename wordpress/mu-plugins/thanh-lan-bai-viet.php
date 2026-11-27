@@ -20,7 +20,10 @@ add_shortcode('thanh_lan_bai_viet', function () {
     echo '<div class="grid four knowledge-home">';
     foreach ($order as $slug => $label) {
         $term = get_term_by('slug', $slug, 'category');
-        $link = ($term && !is_wp_error($term)) ? get_term_link($term) : home_url('/category/' . $slug . '/');
+        $link = ($term && !is_wp_error($term)) ? get_term_link($term) : '';
+        if (!$link || is_wp_error($link)) {
+            $link = home_url('/category/' . $slug . '/');
+        }
         $query = new WP_Query(array(
             'post_type' => 'post',
             'posts_per_page' => 1,
