@@ -19,7 +19,7 @@ add_action('wp_enqueue_scripts', function () {
         null
     );
     wp_enqueue_style('thanh-lan-site', get_template_directory_uri() . '/assets/site.css', array('thanh-lan-fonts'), '1.7.9');
-    wp_enqueue_style('thanh-lan', get_stylesheet_uri(), array('thanh-lan-site'), '1.3.2');
+    wp_enqueue_style('thanh-lan', get_stylesheet_uri(), array('thanh-lan-site'), '1.3.3');
     wp_enqueue_script('thanh-lan-site', get_template_directory_uri() . '/assets/site.js', array(), '1.7.6', true);
     wp_localize_script('thanh-lan-site', 'thanhLanLead', array(
         'ajax' => admin_url('admin-ajax.php'),
@@ -28,6 +28,31 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+
+add_filter('woocommerce_product_tabs', function ($tabs) {
+    if (isset($tabs['description'])) {
+        $tabs['description']['title'] = 'Mô tả';
+    }
+    return $tabs;
+});
+add_filter('woocommerce_product_description_heading', function () {
+    return 'Mô tả';
+});
+add_filter('woocommerce_product_related_products_heading', function () {
+    return 'Sản phẩm liên quan';
+});
+add_filter('gettext', function ($translated, $text, $domain) {
+    if ($domain !== 'woocommerce') {
+        return $translated;
+    }
+    if ($text === 'Description') {
+        return 'Mô tả';
+    }
+    if ($text === 'Related products') {
+        return 'Sản phẩm liên quan';
+    }
+    return $translated;
+}, 10, 3);
 
 add_filter('woocommerce_is_purchasable', '__return_false');
 add_filter('woocommerce_cart_redirect_after_error', function () {
