@@ -9,7 +9,7 @@ Text Domain: thanh-lan
 
 .woocommerce ul.products {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   list-style: none;
   padding: 0;
@@ -25,19 +25,57 @@ Text Domain: thanh-lan
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  padding-bottom: 12px;
+  padding-bottom: 16px;
 }
-.woocommerce ul.products li.product a img {
+.woocommerce ul.products li.product a img,
+.woocommerce div.product div.images img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: contain;
+  background: linear-gradient(160deg, #f4f9fd, #fff4f8);
+  padding: 18px;
   margin: 0;
+  box-sizing: border-box;
 }
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
 .woocommerce div.product .product_title { padding: 0 14px; }
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 6px 0 8px;
+}
+.product-blurb { margin: 0 14px 14px; padding: 0; color: var(--muted); font-size: 0.92rem; }
+.woocommerce ul.products li.product .button.quote { display: inline-flex; margin: 0 14px 4px; }
 .woocommerce ul.products li.product .price,
-.woocommerce div.product p.price { padding: 0 14px; color: var(--pink); font-weight: 700; }
-.woocommerce ul.products li.product .button { margin: 8px 14px 0; }
+.woocommerce div.product p.price,
+.woocommerce div.product form.cart,
+.woocommerce a.button.add_to_cart_button { display: none !important; }
+.woocommerce ul.products li.product .button,
+.woocommerce div.product .button.quote { margin: 8px 14px 0; }
+.product-label {
+  display: inline-block;
+  margin: 12px 14px 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e7f5fc;
+  color: var(--blue-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.shop-note {
+  background: #fff;
+  border-radius: 16px;
+  border-top: 4px solid var(--pink);
+  padding: 14px 16px;
+  margin: 0 0 8px;
+}
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,

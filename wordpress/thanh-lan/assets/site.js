@@ -143,6 +143,11 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
 
 const handbook = document.getElementById("leadForm") || document.getElementById("handbookForm");
 if (handbook) {
+  const asked = new URLSearchParams(location.search).get("sanpham");
+  const messageBox = document.getElementById("leadMessage");
+  if (asked && messageBox && !messageBox.value) {
+    messageBox.value = "Em muốn được báo giá sỉ sản phẩm: " + asked;
+  }
   const guides = {
     "Mẹ bầu": "Nằm nghiêng khi nghỉ, chuẩn bị túi đồ sinh, và nhắn Tô Lan để hẹn chăm sóc tuần cuối.",
     "Tuần đầu sau sinh": "Theo dõi rốn bé, nghỉ khi bé ngủ, và gọi nếu ngực căng quá một ngày.",

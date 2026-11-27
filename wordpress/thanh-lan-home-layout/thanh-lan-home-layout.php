@@ -107,35 +107,47 @@ function thanh_lan_home_layout_run() {
     $shop = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : $u('cua-hang/');
     $shop = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', (string) $shop);
     $product_cards = '';
-    if (function_exists('wc_get_product')) {
-        $product_query = new WP_Query(array(
+    $catalog = array(
+        'cham-soc-bau' => 'Chăm sóc bầu',
+        'cham-soc-be' => 'Chăm sóc bé',
+        'cham-soc-me' => 'Chăm sóc mẹ',
+    );
+    foreach ($catalog as $slug => $label) {
+        $found = new WP_Query(array(
             'post_type' => 'product',
             'post_status' => 'publish',
-            'posts_per_page' => 4,
-            'orderby' => 'date',
-            'order' => 'DESC',
+            'posts_per_page' => 1,
+            'tax_query' => array(array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $slug,
+            )),
         ));
-        foreach ($product_query->posts as $product_post) {
-            $product = wc_get_product($product_post->ID);
-            if (!$product) {
-                continue;
-            }
-            $image = get_the_post_thumbnail_url($product_post->ID, 'medium');
-            if (!$image) {
-                $image = tl_src('doi-ngu-1.jpg');
-            }
-            $image = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $image);
-            $link = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', get_permalink($product_post));
-            $amount = number_format((float) $product->get_price(), 0, ',', '.') . 'đ';
-            $product_cards .= '<article class="card"><img src="' . esc_url($image) . '" alt="' . esc_attr($product->get_name()) . '" />'
-                . '<div class="pad"><h3>' . esc_html($product->get_name()) . '</h3><p class="price">' . esc_html($amount) . '</p>'
-                . '<a class="more" href="' . esc_url($link) . '">Xem sản phẩm</a></div></article>';
+        if (!$found->have_posts()) {
+            wp_reset_postdata();
+            continue;
         }
+        $product_post = $found->posts[0];
+        $product = function_exists('wc_get_product') ? wc_get_product($product_post->ID) : null;
+        $image = get_the_post_thumbnail_url($product_post->ID, 'medium');
+        if (!$image) {
+            $image = tl_src('doi-ngu-1.jpg');
+        }
+        $image = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $image);
+        $term = get_term_by('slug', $slug, 'product_cat');
+        $link = ($term && !is_wp_error($term)) ? get_term_link($term) : $shop;
+        if (is_wp_error($link)) {
+            $link = $shop;
+        }
+        $link = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $link);
+        $blurb = $product ? wp_strip_all_tags($product->get_short_description()) : '';
+        $product_cards .= '<article class="card"><img src="' . esc_url($image) . '" alt="' . esc_attr($product ? $product->get_name() : $label) . '" />'
+            . '<div class="pad"><p class="product-label static">' . esc_html($label) . '</p><h3>' . esc_html($product ? $product->get_name() : $label) . '</h3>'
+            . '<p>' . esc_html($blurb) . '</p><a class="btn" href="' . esc_url($link) . '">Vào xem cửa hàng</a></div></article>';
         wp_reset_postdata();
     }
-    $products = '<section class="section"><div class="wrap"><h2>Sản phẩm nổi bật</h2><p class="intro">Sản phẩm mẹ và bé đang có tại cửa hàng. Admin đăng, sửa và xóa trong quản trị.</p>'
-        . '<div class="grid four">' . $product_cards . '</div>'
-        . '<p style="text-align:center;margin-top:18px"><a class="btn" href="' . esc_url($shop) . '">Xem cửa hàng</a></p></div></section>';
+    $products = '<section class="section"><div class="wrap"><h2>Cửa hàng</h2><p class="shop-note">Sản phẩm được phân phối trong hệ thống Thanh Lan Spa và các cơ sở chăm sóc mẹ &amp; bé các bệnh viện Xuyên Á trên toàn quốc. Liên hệ để được báo giá sỉ.</p>'
+        . '<div class="grid three shop-home">' . $product_cards . '</div></div></section>';
     $write('products ' . substr_count($product_cards, '<article'));
 
     $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $baby . $mother . $knowledge . $products);
