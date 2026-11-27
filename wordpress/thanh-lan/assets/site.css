@@ -156,6 +156,18 @@ main { padding-right: 58px; }
   object-position: center;
 }
 .service-home .btn { margin-top: 4px; align-self: flex-start; }
+.knowledge-home .card img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+.knowledge-home .card > p { display: none; }
+.knowledge-home .pad { display: flex; flex-direction: column; flex: 1; }
+.knowledge-home .card p { flex: 0 1 auto; }
+.knowledge-home .kicker { margin: 0 0 6px; }
+.knowledge-home .more { margin-top: auto; }
 .shop-home .card img, img.shop-frame {
   aspect-ratio: 1 / 1;
   height: auto;
@@ -273,7 +285,7 @@ footer ul { margin: 0; padding: 0; }
 @media (max-width: 680px) {
   .grid.services, .grid.four, .grid.three, .shots, footer .grid, .facts, .belief-top, .value-grid { grid-template-columns: 1fr; }
   .frame img, .card img, .panel img.cover, .hero-slides { height: 210px; }
-  .shop-home .card img, .service-home .card img, img.shop-frame, .panel img.shop-frame { height: auto; }
+  .shop-home .card img, .service-home .card img, .knowledge-home .card img, img.shop-frame, .panel img.shop-frame { height: auto; }
   .dock a.fb span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .dock a.fb { width: 46px; height: 46px; border-radius: 50%; padding: 0; display: grid; place-items: center; }
   .dock a.zalo, .dock a.call { width: auto; white-space: nowrap; font-size: 0.82rem; padding: 10px 12px; }

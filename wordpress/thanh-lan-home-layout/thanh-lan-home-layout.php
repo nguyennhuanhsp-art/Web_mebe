@@ -94,10 +94,38 @@ function thanh_lan_home_layout_run() {
         . tl_card('cham-me-tai-nha-3.jpg', 'Lều xông sau sinh', 'Liệu trình giảm eo', 'Nằm trong liệu trình mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
         . '</div></div></section>';
 
-    $knowledge = '<section class="section" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><p class="intro">Bài viết mẹ đọc thêm. Nhân viên đăng bài mới trong mục Kiến thức.</p><div class="grid three">'
-        . tl_card('doi-ngu-4.jpg', 'Đội ngũ Thanh Lan Spa', 'Mẹ bầu cần biết', 'Cách nghỉ những tuần cuối. Buổi spa không thay lần khám.', $u('me-bau-nghi-nhung-tuan-cuoi/'), 'Đọc bài')
-        . tl_card('day-thang-be-1.jpg', 'Bé trong lễ đầy tháng', 'Mẹ sau sinh cần biết', 'Ngày đầu sau sinh và mốc đầy tháng.', $u('ngay-dau-sau-sinh-va-day-thang/'), 'Đọc bài')
-        . tl_card('matxa-cho-be.jpg', 'Massage cho bé', 'Hướng dẫn chăm sóc bé', 'Mục bài viết để mẹ xem lại cách chăm bé tại nhà.', $baby_cat_url, 'Mở chuyên mục')
+    $knowledge_cards = '';
+    $knowledge_topics = array(
+        'me-bau-can-biet' => 'Mẹ bầu cần biết',
+        'me-sau-sinh-can-biet' => 'Mẹ sau sinh cần biết',
+        'dau-an-thanh-lan' => 'Dấu ấn Thanh Lan',
+    );
+    foreach ($knowledge_topics as $topic_slug => $topic_label) {
+        $topic_query = new WP_Query(array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'posts_per_page' => 1,
+            'category_name' => $topic_slug,
+        ));
+        if (!$topic_query->have_posts()) {
+            wp_reset_postdata();
+            continue;
+        }
+        $topic_post = $topic_query->posts[0];
+        $topic_image = get_the_post_thumbnail_url($topic_post->ID, 'large');
+        if (!$topic_image) {
+            $topic_image = tl_src('kien-thuc.jpg');
+        }
+        $topic_image = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $topic_image);
+        $topic_link = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', get_permalink($topic_post));
+        $topic_text = wp_trim_words(wp_strip_all_tags(get_the_excerpt($topic_post) ?: $topic_post->post_content), 22);
+        $knowledge_cards .= '<article class="card"><img src="' . esc_url($topic_image) . '" alt="' . esc_attr(get_the_title($topic_post)) . '" />'
+            . '<div class="pad"><p class="kicker">' . esc_html($topic_label) . '</p><h3>' . esc_html(get_the_title($topic_post)) . '</h3>'
+            . '<p>' . esc_html($topic_text) . '</p><a class="more" href="' . esc_url($topic_link) . '">Đọc bài</a></div></article>';
+        wp_reset_postdata();
+    }
+    $knowledge = '<section class="section knowledge-home" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><p class="intro">Bài viết mẹ đọc thêm. Nhân viên đăng bài mới trong mục Kiến thức.</p><div class="grid three">'
+        . $knowledge_cards
         . '</div><p style="text-align:center;margin-top:18px"><a class="more" href="' . $u('kien-thuc/') . '">Xem tất cả bài viết</a></p></div></section>';
 
     $shop = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : $u('cua-hang/');
@@ -152,13 +180,13 @@ function thanh_lan_home_layout_run() {
             . '<div class="pad"><h3>' . esc_html($title) . '</h3>'
             . '<a class="btn" href="' . esc_url($href) . '">Liên hệ tư vấn</a></div></article>';
     };
-    $services = '<section class="section" style="background:#fff"><div class="wrap"><h2>Dịch vụ</h2><div class="grid four service-home">'
+    $services = '<section class="section" style="background:#fff"><div class="wrap"><h2>Dịch vụ Tại Thanh Lan Spa</h2><div class="grid four service-home">'
         . $service_card('tam-cho-be.jpg', 'Tắm bé sơ sinh', 'Tắm bé sơ sinh')
         . $service_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ sau sinh', 'Chăm sóc mẹ sau sinh')
         . $service_card('cham-me-tai-nha-2.jpg', 'Thông tắc tia sữa', 'Thông tắc tia sữa')
         . $service_card('cham-me-tai-nha-3.jpg', 'Liệu trình giảm eo', 'Liệu trình giảm eo')
         . '</div></div></section>';
-    $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $services . $knowledge . $products);
+    $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $knowledge . $services . $products);
     wp_update_post(array('ID' => $front_id, 'post_content' => $front_html));
     $write('front ' . $front_id);
 
