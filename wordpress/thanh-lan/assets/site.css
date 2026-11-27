@@ -214,6 +214,13 @@ main { padding-right: 58px; }
 .shots figure { margin: 0; }
 .shots img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; }
 .shots figcaption, .caption { color: var(--muted); font-size: 0.82rem; margin-top: 6px; }
+.page-hero article .wp-block-image { margin: 18px 0 22px; text-align: center; }
+.page-hero article .wp-block-image img { width: auto; max-width: 100%; height: auto; border-radius: 16px; display: inline-block; }
+.page-hero .panel img.cover { width: auto; max-width: 100%; height: auto; object-fit: contain; background: #f7f4f2; }
+.page-hero article .wp-element-caption,
+.page-hero article figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 8px; text-align: center; }
+.page-hero article .wp-block-quote { border-left: 4px solid var(--pink); margin: 18px 0; padding: 8px 16px; background: #fff; border-radius: 12px; }
+.page-hero article .wp-block-quote cite { display: block; margin-top: 8px; font-style: normal; font-weight: 700; color: var(--pink-dark); }
 ul.clean { margin: 0 0 12px; padding-left: 18px; }
 .quote { border-left: 4px solid var(--pink); background: #fff; padding: 16px 18px; border-radius: 12px; }
 .quote span { display: block; margin-top: 8px; font-weight: 700; color: var(--pink-dark); }
