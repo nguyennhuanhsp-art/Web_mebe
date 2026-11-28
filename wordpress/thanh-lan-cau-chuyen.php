@@ -1,6 +1,6 @@
 <?php
 /**
- * Trang Giới thiệu theo bài chị viết trong bảng: câu chuyện, quá trình hình thành, sứ mệnh, tầm nhìn, giá trị.
+ * Trang Giới thiệu: câu chuyện và quá trình hình thành. Sứ mệnh, tầm nhìn và giá trị cốt lõi nằm ở trang chủ.
  */
 if (!function_exists('thanh_lan_cau_chuyen_html')) {
     function thanh_lan_anh($file, $alt, $class = '') {
@@ -36,20 +36,7 @@ if (!function_exists('thanh_lan_cau_chuyen_html')) {
             . '<p>Với chị Tô Lan, điều đáng kể không nằm ở con số. Đó là khoảnh khắc một người mẹ từng mệt mỏi trở nên vững hơn, em bé khỏe mạnh, và cả nhà có thêm sự bình yên.</p>'
             . '<p>Tên quốc tế: THANH LAN MOM BABY CARE.<br />Tên thương mại: Mẹ và Bé Thanh Lan.<br />CÔNG TY TNHH TM&amp;DV THANH LAN.<br />MST 0319180928, đăng ký ngày 25/9/2025.<br />Số 77, đường 537, Ấp Bàu Trăn, Xã Nhuận Đức, TPHCM.</p>'
             . '</div></div>'
-            . '<div class="grid three" style="margin-top:22px">'
-            . '<article class="panel"><h3>Sứ mệnh</h3><p>Đồng hành chăm sóc và nâng đỡ người mẹ từ gốc rễ, để ươm mầm thế hệ tương lai khỏe mạnh, trí tuệ và nhân ái.</p></article>'
-            . '<article class="panel"><h3>Tầm nhìn</h3><p>Trở thành hệ sinh thái chăm sóc và giáo dục mẹ và bé hàng đầu Việt Nam, tiên phong nâng tầm người mẹ, góp phần kiến tạo một thế hệ tương lai ưu tú.</p></article>'
-            . '<article class="panel"><h3>Cách chị làm nghề</h3><p>Tử tế trong từng buổi chăm. Không nhận mình giỏi nhất. Tự hào vì làm bằng sự chân thành.</p></article>'
-            . '</div>'
-            . '<h2 style="margin-top:28px">Giá trị cốt lõi</h2>'
-            . '<div class="grid three">'
-            . '<article class="panel"><h3>Tận tâm</h3><p>Chăm sóc bằng cả trái tim. Thấu hiểu, yêu thương, và đặt lợi ích của mẹ và bé làm trọng tâm.</p></article>'
-            . '<article class="panel"><h3>Chất lượng</h3><p>Lấy an toàn làm nền. Giữ tiêu chuẩn chuyên môn trong từng dịch vụ.</p></article>'
-            . '<article class="panel"><h3>Trí tuệ</h3><p>Trao kiến thức cho mẹ trên hành trình nuôi con, và không ngừng học thêm.</p></article>'
-            . '<article class="panel"><h3>Chính trực</h3><p>Giữ niềm tin bằng sự trung thực, minh bạch, và lời nói đi cùng việc làm.</p></article>'
-            . '<article class="panel"><h3>Đồng hành</h3><p>Ở cạnh mẹ, bé và gia đình trong những giai đoạn quan trọng của cuộc sống.</p></article>'
-            . '<article class="panel"><h3>Khát vọng</h3><p>Làm tốt hơn mỗi ngày, để giá trị ấy bền với gia đình và cộng đồng.</p></article>'
-            . '</div>'
+            . '<div class="panel" style="margin-top:22px"><h3>Cách chị làm nghề</h3><p>Tử tế trong từng buổi chăm. Không nhận mình giỏi nhất. Tự hào vì làm bằng sự chân thành.</p></div>'
             . '<div class="shots">'
             . $h('doi-ngu-1.jpg', 'Kỹ thuật viên Thanh Lan trong lễ tốt nghiệp', 'Lễ tốt nghiệp của kỹ thuật viên.')
             . $h('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa', 'Đội ngũ trước biển hiệu Thanh Lan.')

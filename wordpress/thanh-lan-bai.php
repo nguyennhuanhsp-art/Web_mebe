@@ -134,7 +134,7 @@ foreach ($services as $item) {
 }
 
 $front = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicker">Thanh Lan Spa</p><h1>Chăm mẹ và bé trước và sau sinh</h1>'
-    . '<p class="lead">Tô Thị Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
+    . '<p class="lead">Ms. Tô Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
     . '<div class="actions"><a class="btn" href="' . esc_url($u('dich-vu/')) . '">Xem Dịch Vụ</a><a class="btn light" href="' . esc_url($u('tu-van/')) . '">Nhận tư vấn</a></div>'
     . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2018</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article></div></div>'
     . '<figure class="frame"><div class="hero-slides">'
@@ -230,7 +230,7 @@ $pages['feedback'] = '<section class="section"><div class="wrap"><p class="crumb
     . '</div></div></section>';
 
 $pages['kien-thuc'] = '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . esc_url($home) . '">Trang chủ</a> / Kiến thức</p><h2>Kiến thức</h2>'
-    . '<p class="intro">Năm chuyên mục trong menu. Nhân viên thêm bài ở mục Bài viết và chọn đúng chuyên mục. Ảnh đại diện lấy từ Thư viện.</p>[thanh_lan_bai_viet]</div></section>';
+    . '<p class="intro">Bốn chuyên mục trong menu. Nhân viên thêm bài ở mục Bài viết và chọn đúng chuyên mục. Ảnh đại diện lấy từ Thư viện.</p>[thanh_lan_bai_viet]</div></section>';
 
 $pages['tu-van'] = '<section class="page-hero"><div class="wrap split"><div><p class="crumbs"><a href="' . esc_url($home) . '">Trang chủ</a> / Nhận tư vấn</p><p class="kicker">Liên hệ</p><h1>Nhận tư vấn</h1>'
     . '<p class="lead">Gọi hoặc nhắn Zalo 0975.399.319, gặp Ms Tô Lan. Mail thanhlanspa238@gmail.com.</p>'

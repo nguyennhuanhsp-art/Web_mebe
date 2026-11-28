@@ -33,22 +33,22 @@
       <a class="brand" href="index.html"><img src="assets/logo-thanh-lan.jpg" alt="Logo Thanh Lan Spa" /><div><strong>Thanh Lan Spa</strong><span>Mẹ và bé, trước và sau sinh</span></div></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul class="menu" id="menu">
+    <li><a href="index.html">Trang chủ</a></li>
     <li><a href="gioi-thieu.html">Giới thiệu</a></li>
     <li>
     <a href="dich-vu.html">Dịch Vụ</a>
     <button class="sub-btn" type="button" aria-expanded="false" aria-label="Mở menu Dịch Vụ">+</button>
-    <ul class="sub"><li><a href="tam-be.html">Tắm bé sơ sinh</a></li><li><a href="cham-soc-me-be.html">Chăm sóc mẹ bé</a></li><li><a href="o-cu-tai-nha.html">Ở cữ tại nhà</a></li><li><a href="cham-soc-bau.html">Chăm sóc bầu tại nhà</a></li><li><a href="thong-tac-tia-sua.html">Thông tắc tia sữa</a></li><li><a href="giam-eo.html">Giảm eo sau sinh</a></li></ul>
+    <ul class="sub"><li><a href="tam-be.html">Tắm bé sơ sinh</a></li><li><a href="cham-soc-me-be.html">Chăm sóc mẹ sau sinh</a></li><li><a href="thong-tac-tia-sua.html">Thông tắc tia sữa</a></li><li><a href="giam-eo.html">Liệu trình giảm eo</a></li></ul>
   </li>
     <li>
     <a href="cua-hang.html">Cửa hàng</a>
     <button class="sub-btn" type="button" aria-expanded="false" aria-label="Mở menu Cửa hàng">+</button>
-    <ul class="sub"><li><a href="san-pham-bau.html">Chăm sóc bầu</a></li><li><a href="san-pham-be.html">Chăm sóc bé</a></li><li><a href="san-pham-me.html">Chăm sóc mẹ</a></li><li><a href="san-pham-toc.html">Chăm sóc tóc</a></li></ul>
+    <ul class="sub"><li><a href="san-pham-bau.html">Chăm sóc bầu</a></li><li><a href="san-pham-be.html">Chăm sóc bé</a></li><li><a href="san-pham-me.html">Chăm sóc mẹ</a></li></ul>
   </li>
-    <li><a href="feedback.html">Feedback</a></li>
     <li>
     <a href="kien-thuc.html">Kiến thức</a>
     <button class="sub-btn" type="button" aria-expanded="false" aria-label="Mở menu Kiến thức">+</button>
-    <ul class="sub"><li><a href="cham-soc-be.html">Hướng dẫn chăm sóc bé</a></li><li><a href="huong-dan-me.html">Hướng dẫn mẹ</a></li><li><a href="me-bau.html">Mẹ bầu cần biết</a></li><li><a href="me-sau-sinh.html">Mẹ sau sinh cần biết</a></li><li><a href="dau-an.html">Dấu ấn Thanh Lan Spa</a></li></ul>
+    <ul class="sub"><li><a href="me-bau.html">Mẹ bầu cần biết</a></li><li><a href="me-sau-sinh.html">Mẹ sau sinh cần biết</a></li><li><a href="cham-soc-be.html">Hướng dẫn chăm sóc bé</a></li><li><a href="dau-an.html">Dấu ấn Thanh Lan</a></li></ul>
   </li>
     <li><a href="tu-van.html" class="current">Nhận tư vấn</a></li>
   </ul>
@@ -56,33 +56,44 @@
       <a class="btn nav-cta" href="tu-van.html">Nhận tư vấn</a>
     </div>
   </header>
-  <main><section class="section band"><div class="wrap band-box">
-    <div>
-      <p class="kicker">Nhận tư vấn</p>
-      <h2 style="text-align:left">Để lại số, Tô Lan gọi lại</h2>
-      <p>Chọn giai đoạn để xem gợi ý cẩm nang ngay trên trang. Bản demo lưu trên trình duyệt, chưa gửi Zalo.</p>
-      <div id="handbookPreview" hidden class="quote"><h3>Cẩm nang vừa mở</h3><p id="handbookText"></p></div>
+  <main><section class="section band"><div class="wrap">
+    <div class="band-box">
+    <div class="consult-copy">
+      <h2 class="consult-title">ĐĂNG KÍ NHẬN TƯ VẤN</h2>
+      <p>Anh/Chị vui lòng để lại thông tin để Trợ Lý Ms. Tô Lan - Thanh Lan Spa liên hệ lại tư vấn cụ thể cho mình nhé!</p>
+      <figure class="consult-visual">
+        <img src="assets/tu-van-me-be.jpg" alt="Chuyên viên Thanh Lan Spa tư vấn cho mẹ và bé" />
+      </figure>
     </div>
     <form id="handbookForm">
       <div class="field"><label for="leadName">Họ và tên</label><input id="leadName" required /></div>
       <div class="field"><label for="leadPhone">Số điện thoại hoặc Zalo</label><input id="leadPhone" required inputmode="tel" /><div class="error" id="leadPhoneError"></div></div>
-      <div class="field"><label for="leadStage">Giai đoạn</label><select id="leadStage"><option>Mẹ bầu</option><option>Tuần đầu sau sinh</option><option>Bé 1 đến 6 tháng</option></select></div>
-      <button class="btn block" type="submit">Xem cẩm nang</button>
-      <p class="note" id="leadNote">Đã ghi trên máy này. Nội dung hiện bên cạnh.</p>
-      <p style="margin-top:12px"><button class="btn light" type="button" data-book="Tư vấn gói chăm sóc phù hợp">Hoặc đặt lịch dịch vụ</button></p>
+      <div class="field"><label for="leadEmail">Email</label><input id="leadEmail" type="email" required /></div>
+      <div class="field"><label for="leadStage">Giai đoạn</label><select id="leadStage"><option>Mẹ bầu</option><option>Mẹ sau sinh</option><option>Bé sơ sinh</option><option>Muốn hỏi gói</option></select></div>
+      <div class="field"><label for="leadService">Dịch vụ quan tâm</label><select id="leadService"><option>Chưa chọn</option><option>Tắm và massage bé</option><option>Chăm sóc mẹ sau sinh</option><option>Combo mẹ và bé</option><option>Chăm sóc bầu tại nhà</option><option>Thông tắc tia sữa</option><option>Giảm eo sau sinh</option></select></div>
+      <div class="field"><label for="leadWhen">Ngày giờ có thể nghe máy</label><input id="leadWhen" type="datetime-local" required /></div>
+      <div class="field"><label for="leadMessage">Lời nhắn</label><textarea id="leadMessage"></textarea></div>
+      <button class="btn block" type="submit">Đăng ký nhận tư vấn</button>
+      <p class="note" id="leadNote"></p>
     </form>
+    </div>
+    <div class="consult-foot">
+      <img src="assets/apple-touch-icon.png" alt="Logo Thanh Lan Spa" />
+      <p class="slogan">“Đồng hành chăm sóc và nâng đỡ người mẹ từ gốc rễ, để ươm mầm thế hệ tương lai khỏe mạnh, trí tuệ và nhân ái.”</p>
+      <p class="hotline">Hotline: <a href="tel:0975399319"><strong>0975.399.319</strong></a></p>
+    </div>
   </div></section></main>
   <footer>
     <div class="wrap grid">
       <div><h2>Thanh Lan Spa</h2><p class="company">CÔNG TY TNHH TM&amp;DV THANH LAN.</p><p class="company">MST 0319180928, đăng ký ngày 25/9/2025.</p><p class="company">Số 77, đường 537, Ấp Bàu Trăn, Xã Nhuận Đức, TPHCM.</p><p>CEO &amp; Founder: Tô Thị Lan.</p></div>
-      <div><h3>Menu</h3><ul><li><a href="gioi-thieu.html">Giới thiệu</a></li><li><a href="dich-vu.html">Dịch Vụ</a></li><li><a href="cua-hang.html">Cửa hàng</a></li><li><a href="feedback.html">Feedback</a></li><li><a href="kien-thuc.html">Kiến thức</a></li></ul></div>
+      <div><h3>Menu</h3><ul><li><a href="index.html">Trang chủ</a></li><li><a href="gioi-thieu.html">Giới thiệu</a></li><li><a href="dich-vu.html">Dịch Vụ</a></li><li><a href="cua-hang.html">Cửa hàng</a></li><li><a href="kien-thuc.html">Kiến thức</a></li><li><a href="tu-van.html">Nhận tư vấn</a></li></ul></div>
       <div><h3>Liên hệ</h3><p>Hotline / Zalo: <a href="tel:0975399319"><strong>0975.399.319</strong></a> (Ms Tô Lan)</p><p>Mail: <a href="mailto:thanhlanspa238@gmail.com">thanhlanspa238@gmail.com</a></p><p><a href="https://www.facebook.com/photo/?fbid=910401714429198&amp;set=a.481696227299751" target="_blank" rel="noopener">Fanpage</a> · <a href="https://www.tiktok.com/@anhxuan.mkt" target="_blank" rel="noopener">TikTok</a></p></div>
     </div>
   </footer>
   <div class="dock">
-    <a class="zalo" href="https://zalo.me/0975399319" target="_blank" rel="noopener">Zalo <span>Chat</span></a>
+    <a class="zalo" href="https://zalo.me/0975399319" target="_blank" rel="noopener">Zalo <span>Tư Vấn</span></a>
     <a class="fb" href="https://www.facebook.com/photo/?fbid=910401714429198&amp;set=a.481696227299751" target="_blank" rel="noopener">FB <span>Fanpage</span></a>
-    <a class="call" href="tel:0975399319">Gọi <span>0975.399.319</span></a>
+    <a class="call" href="tel:0975399319">Hotline: <span>0975.399.319</span></a>
   </div>
   <div class="overlay" id="booking">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookTitle">

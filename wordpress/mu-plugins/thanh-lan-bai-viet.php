@@ -11,17 +11,19 @@ if (!defined('ABSPATH')) {
 
 add_shortcode('thanh_lan_bai_viet', function () {
     $order = array(
-        'huong-dan-cham-soc-be' => 'Hướng dẫn chăm sóc bé',
-        'huong-dan-me' => 'Hướng dẫn mẹ',
         'me-bau-can-biet' => 'Mẹ bầu cần biết',
         'me-sau-sinh-can-biet' => 'Mẹ sau sinh cần biết',
-        'dau-an-thanh-lan' => 'Dấu ấn Thanh Lan Spa',
+        'huong-dan-cham-soc-be' => 'Hướng dẫn chăm sóc bé',
+        'dau-an-thanh-lan' => 'Dấu ấn Thanh Lan',
     );
     ob_start();
-    echo '<div class="grid three">';
+    echo '<div class="grid four knowledge-home">';
     foreach ($order as $slug => $label) {
         $term = get_term_by('slug', $slug, 'category');
-        $link = ($term && !is_wp_error($term)) ? get_term_link($term) : home_url('/category/' . $slug . '/');
+        $link = ($term && !is_wp_error($term)) ? get_term_link($term) : '';
+        if (!$link || is_wp_error($link)) {
+            $link = home_url('/category/' . $slug . '/');
+        }
         $query = new WP_Query(array(
             'post_type' => 'post',
             'posts_per_page' => 1,

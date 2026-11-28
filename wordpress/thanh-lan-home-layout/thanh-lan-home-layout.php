@@ -58,17 +58,25 @@ function thanh_lan_home_layout_run() {
             $slides .= tl_img('doi-ngu-' . $n . '.jpg', 'Đội Ngũ Thanh Lan Spa');
         }
         $hero = '<section class="hero"><div class="wrap hero-grid"><div><p class="kicker">Thanh Lan Spa</p><h1>Chăm mẹ và bé trước và sau sinh</h1>'
-            . '<p class="lead">Tô Thị Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
+            . '<p class="lead">Ms. Tô Lan và đội ngũ đồng hành cùng mẹ bầu, mẹ sau sinh và bé. Cơ sở có mặt tại 4 chi nhánh Bệnh viện Đa khoa Xuyên Á.</p>'
             . '<div class="actions"><a class="btn" href="' . $u('dich-vu/') . '">Xem Dịch Vụ</a><a class="btn light" href="' . $u('tu-van/') . '">Nhận tư vấn</a></div>'
             . '<div class="facts"><article><strong>Gần 10 năm</strong><span>Kinh nghiệm mẹ và bé, từ 2018</span></article><article><strong>20.000+</strong><span>Em bé và bà mẹ đã đồng hành</span></article><article><strong>4 chi nhánh</strong><span>Trong bệnh viện Xuyên Á</span></article></div></div>'
             . '<figure class="frame"><div class="hero-slides">' . $slides . '</div><figcaption class="caption">Đội Ngũ Thanh Lan Spa</figcaption></figure></div></section>';
     }
 
-    $intro = '<section class="section"><div class="wrap"><h2>Thanh Lan đồng hành</h2><p class="intro">Hình ảnh đội ngũ và những buổi chăm tại nhà. <a href="' . $u('gioi-thieu/') . '">Đọc câu chuyện chị Tô Lan</a>.</p><div class="shots">'
-        . '<figure>' . tl_img('doi-ngu-3.jpg', 'Đội Ngũ Thanh Lan Spa') . '<figcaption class="caption">Đội Ngũ Thanh Lan Spa.</figcaption></figure>'
-        . '<figure>' . tl_img('day-thang-be-2.jpg', 'Kỹ thuật viên và gia đình') . '<figcaption class="caption">Có mặt cùng gia đình trong lễ đầy tháng.</figcaption></figure>'
-        . '<figure>' . tl_img('tam-be.jpg', 'Kỹ thuật viên bế bé') . '<figcaption class="caption">Sau buổi tắm và massage cho bé.</figcaption></figure>'
-        . '</div></div></section>';
+    $belief = '<section class="section belief"><div class="wrap"><div class="belief-top">'
+        . '<article class="belief-card mission"><h2>Sứ mệnh</h2><p>Đồng hành chăm sóc và nâng đỡ người mẹ từ gốc rễ, để ươm mầm thế hệ tương lai khỏe mạnh, trí tuệ và nhân ái.</p></article>'
+        . '<article class="belief-card vision"><h2>Tầm nhìn</h2><p>Trở thành hệ sinh thái chăm sóc - giáo dục mẹ và bé hàng đầu Việt Nam, tiên phong nâng tầm người mẹ, góp phần kiến tạo một thế hệ tương lai ưu tú.</p></article>'
+        . '</div><article class="belief-card values"><h2>Giá trị cốt lõi</h2><div class="value-grid">'
+        . '<article><strong>1. Tận tâm</strong><p>Chăm sóc bằng cả trái tim: thấu hiểu, yêu thương và đặt lợi ích của mẹ và bé làm trọng tâm trong mọi hành động.</p></article>'
+        . '<article><strong>2. Chất lượng</strong><p>Lấy an toàn làm nền tảng: kiên định với tiêu chuẩn chuyên môn, an toàn và chất lượng trong từng dịch vụ.</p></article>'
+        . '<article><strong>3. Trí tuệ</strong><p>Trao tri thức, tạo giá trị: không ngừng học hỏi, chia sẻ kiến thức và nâng cao năng lực của người mẹ trên hành trình nuôi dưỡng thế hệ tương lai.</p></article>'
+        . '<article><strong>4. Chính trực</strong><p>Giữ trọn niềm tin: trung thực, minh bạch, trách nhiệm và nhất quán giữa lời nói với hành động.</p></article>'
+        . '<article><strong>5. Đồng hành</strong><p>Cùng mẹ kiến tạo tương lai: gắn bó, thấu hiểu và hỗ trợ người mẹ, trẻ em và gia đình trong những giai đoạn quan trọng của cuộc sống.</p></article>'
+        . '<article><strong>6. Khát vọng</strong><p>Vươn xa vì thế hệ mai sau: không ngừng đổi mới và phát triển để tạo ra những giá trị bền vững cho gia đình, cộng đồng và xã hội.</p></article>'
+        . '</div></article></div></section>';
+
+    $intro = $belief;
 
     $baby_cat = get_term_by('slug', 'huong-dan-cham-soc-be', 'category');
     $baby_cat_url = ($baby_cat && !is_wp_error($baby_cat)) ? get_term_link($baby_cat) : $u('kien-thuc/');
@@ -77,61 +85,108 @@ function thanh_lan_home_layout_run() {
     }
     $baby_cat_url = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $baby_cat_url);
     $baby = '<section class="section" style="background:#fff"><div class="wrap"><h2>Dịch vụ cho bé</h2><p class="intro">Chọn một thẻ để đọc nội dung buổi chăm. Bảng giá nằm ở cuối trang dịch vụ.</p><div class="grid services">'
-        . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm và massage bé', 'Massage, tắm, vệ sinh và hơ lá trầu. Mỗi buổi 45 phút tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
-        . tl_card('ho-la-trau-2.jpg', 'Hơ lá trầu cho bé', 'Kinh nghiệm chăm bé', 'Cách tắm, massage và dùng lá trầu trong buổi chăm sơ sinh.', $u('tam-massage-va-la-trau-cho-be/'), 'Đọc bài')
-        . tl_card('matxa-cho-be.jpg', 'Massage cho bé', 'Hướng dẫn chăm sóc bé', 'Mục bài viết để mẹ xem lại cách chăm bé tại nhà.', $baby_cat_url, 'Mở chuyên mục')
+        . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm bé sơ sinh', 'Massage, tắm, vệ sinh và hơ lá trầu. Mỗi buổi 45 phút tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
         . '</div></div></section>';
 
     $mother = '<section class="section"><div class="wrap"><h2>Dịch vụ cho mẹ</h2><p class="intro">Mỗi dịch vụ một trang. Giá của gói được ghi ở phần dưới trang đó.</p><div class="grid services">'
         . tl_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ tại nhà', 'Chăm sóc mẹ sau sinh', 'Liệu trình 10, 20 hoặc 30 ngày. Mỗi buổi 90 phút.', $u('cham-soc-me-be/'), 'Xem dịch vụ')
-        . tl_card('cham-me-tai-nha-2.jpg', 'Mẹ và bé ở nhà', 'Combo mẹ và bé', 'Mẹ và bé được chăm trong cùng một lịch đến nhà.', $u('o-cu-tai-nha/'), 'Xem dịch vụ')
-        . tl_card('doi-ngu-6.jpg', 'Đội ngũ Thanh Lan', 'Chăm sóc bầu tại nhà', 'Massage nhẹ và cách nghỉ những tuần cuối.', $u('cham-soc-bau/'), 'Xem dịch vụ')
         . tl_card('cham-me-tai-nha-1.jpg', 'Buổi chăm mẹ', 'Thông tắc tia sữa', 'Làm trong liệu trình mẹ, theo tình trạng.', $u('thong-tac-tia-sua/'), 'Xem dịch vụ')
-        . tl_card('cham-me-tai-nha-3.jpg', 'Lều xông sau sinh', 'Giảm eo sau sinh', 'Nằm trong liệu trình mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
-        . tl_card('day-thang.jpg', 'Lễ đầy tháng', 'Kinh nghiệm cho mẹ', 'Nhịp một ngày ở cữ và những việc mẹ cần biết sau sinh.', $u('nhip-ngay-me-o-cu/'), 'Đọc bài')
+        . tl_card('cham-me-tai-nha-3.jpg', 'Lều xông sau sinh', 'Liệu trình giảm eo', 'Nằm trong liệu trình mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
         . '</div></div></section>';
 
-    $knowledge = '<section class="section" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><p class="intro">Bài viết mẹ đọc thêm. Nhân viên đăng bài mới trong mục Kiến thức.</p><div class="grid three">'
-        . tl_card('doi-ngu-4.jpg', 'Đội ngũ Thanh Lan Spa', 'Mẹ bầu cần biết', 'Cách nghỉ những tuần cuối. Buổi spa không thay lần khám.', $u('me-bau-nghi-nhung-tuan-cuoi/'), 'Đọc bài')
-        . tl_card('day-thang-be-1.jpg', 'Bé trong lễ đầy tháng', 'Mẹ sau sinh cần biết', 'Ngày đầu sau sinh và mốc đầy tháng.', $u('ngay-dau-sau-sinh-va-day-thang/'), 'Đọc bài')
-        . tl_card('doi-ngu-1.jpg', 'Lễ tốt nghiệp kỹ thuật viên', 'Dấu ấn Thanh Lan', 'Hành trình đội ngũ từ năm 2018.', $u('dau-an-doi-ngu-va-le-day-thang/'), 'Đọc bài')
+    $knowledge_cards = '';
+    $knowledge_topics = array(
+        'me-bau-can-biet' => 'Mẹ bầu cần biết',
+        'me-sau-sinh-can-biet' => 'Mẹ sau sinh cần biết',
+        'dau-an-thanh-lan' => 'Dấu ấn Thanh Lan',
+    );
+    foreach ($knowledge_topics as $topic_slug => $topic_label) {
+        $topic_query = new WP_Query(array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'posts_per_page' => 1,
+            'category_name' => $topic_slug,
+        ));
+        if (!$topic_query->have_posts()) {
+            wp_reset_postdata();
+            continue;
+        }
+        $topic_post = $topic_query->posts[0];
+        $topic_image = get_the_post_thumbnail_url($topic_post->ID, 'large');
+        if (!$topic_image) {
+            $topic_image = tl_src('kien-thuc.jpg');
+        }
+        $topic_image = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $topic_image);
+        $topic_link = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', get_permalink($topic_post));
+        $topic_text = wp_trim_words(wp_strip_all_tags(get_the_excerpt($topic_post) ?: $topic_post->post_content), 22);
+        $knowledge_cards .= '<article class="card"><img src="' . esc_url($topic_image) . '" alt="' . esc_attr(get_the_title($topic_post)) . '" />'
+            . '<div class="pad"><p class="kicker">' . esc_html($topic_label) . '</p><h3>' . esc_html(get_the_title($topic_post)) . '</h3>'
+            . '<p>' . esc_html($topic_text) . '</p><a class="more" href="' . esc_url($topic_link) . '">Đọc bài</a></div></article>';
+        wp_reset_postdata();
+    }
+    $knowledge = '<section class="section knowledge-home" style="background:#fff"><div class="wrap"><h2>Kinh nghiệm chăm sóc</h2><div class="grid three">'
+        . $knowledge_cards
         . '</div><p style="text-align:center;margin-top:18px"><a class="more" href="' . $u('kien-thuc/') . '">Xem tất cả bài viết</a></p></div></section>';
 
     $shop = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : $u('cua-hang/');
     $shop = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', (string) $shop);
     $product_cards = '';
-    if (function_exists('wc_get_product')) {
-        $product_query = new WP_Query(array(
+    $catalog = array(
+        'cham-soc-bau' => 'Chăm sóc bầu',
+        'cham-soc-be' => 'Chăm sóc bé',
+        'cham-soc-me' => 'Chăm sóc mẹ',
+    );
+    foreach ($catalog as $slug => $label) {
+        $found = new WP_Query(array(
             'post_type' => 'product',
             'post_status' => 'publish',
-            'posts_per_page' => 4,
-            'orderby' => 'date',
-            'order' => 'DESC',
+            'posts_per_page' => 1,
+            'tax_query' => array(array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $slug,
+            )),
         ));
-        foreach ($product_query->posts as $product_post) {
-            $product = wc_get_product($product_post->ID);
-            if (!$product) {
-                continue;
-            }
-            $image = get_the_post_thumbnail_url($product_post->ID, 'medium');
-            if (!$image) {
-                $image = tl_src('doi-ngu-1.jpg');
-            }
-            $image = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $image);
-            $link = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', get_permalink($product_post));
-            $amount = number_format((float) $product->get_price(), 0, ',', '.') . 'đ';
-            $product_cards .= '<article class="card"><img src="' . esc_url($image) . '" alt="' . esc_attr($product->get_name()) . '" />'
-                . '<div class="pad"><h3>' . esc_html($product->get_name()) . '</h3><p class="price">' . esc_html($amount) . '</p>'
-                . '<a class="more" href="' . esc_url($link) . '">Xem sản phẩm</a></div></article>';
+        if (!$found->have_posts()) {
+            wp_reset_postdata();
+            continue;
         }
+        $product_post = $found->posts[0];
+        $product = function_exists('wc_get_product') ? wc_get_product($product_post->ID) : null;
+        $image = get_the_post_thumbnail_url($product_post->ID, 'medium');
+        if (!$image) {
+            $image = tl_src('doi-ngu-1.jpg');
+        }
+        $image = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $image);
+        $term = get_term_by('slug', $slug, 'product_cat');
+        $link = ($term && !is_wp_error($term)) ? get_term_link($term) : $shop;
+        if (is_wp_error($link)) {
+            $link = $shop;
+        }
+        $link = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $link);
+        $blurb = $product ? wp_strip_all_tags($product->get_short_description()) : '';
+        $product_cards .= '<article class="card"><img src="' . esc_url($image) . '" alt="' . esc_attr($product ? $product->get_name() : $label) . '" />'
+            . '<div class="pad"><p class="product-label static">' . esc_html($label) . '</p><h3>' . esc_html($product ? $product->get_name() : $label) . '</h3>'
+            . '<p>' . esc_html($blurb) . '</p><a class="btn" href="' . esc_url($link) . '">Vào xem cửa hàng</a></div></article>';
         wp_reset_postdata();
     }
-    $products = '<section class="section"><div class="wrap"><h2>Sản phẩm nổi bật</h2><p class="intro">Sản phẩm mẹ và bé đang có tại cửa hàng. Admin đăng, sửa và xóa trong quản trị.</p>'
-        . '<div class="grid four">' . $product_cards . '</div>'
-        . '<p style="text-align:center;margin-top:18px"><a class="btn" href="' . esc_url($shop) . '">Xem cửa hàng</a></p></div></section>';
+    $products = '<section class="section"><div class="wrap"><h2>Cửa hàng</h2><p class="shop-note">Sản phẩm được phân phối trong hệ thống Thanh Lan Spa và các cơ sở chăm sóc mẹ &amp; bé các bệnh viện Xuyên Á trên toàn quốc. Liên hệ để được báo giá sỉ.</p>'
+        . '<div class="grid three shop-home">' . $product_cards . '</div></div></section>';
     $write('products ' . substr_count($product_cards, '<article'));
 
-    $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $baby . $mother . $knowledge . $products);
+    $service_card = static function ($file, $alt, $title) use ($u) {
+        $href = add_query_arg('dichvu', $title, 'https://www.tolan.vn/tu-van/');
+        return '<article class="card">' . tl_img($file, $alt)
+            . '<div class="pad"><h3>' . esc_html($title) . '</h3>'
+            . '<a class="btn" href="' . esc_url($href) . '">Liên hệ tư vấn</a></div></article>';
+    };
+    $services = '<section class="section" style="background:#fff"><div class="wrap"><h2>Dịch vụ Tại Thanh Lan Spa</h2><div class="grid four service-home">'
+        . $service_card('tam-cho-be.jpg', 'Tắm bé sơ sinh', 'Tắm bé sơ sinh')
+        . $service_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ sau sinh', 'Chăm sóc mẹ sau sinh')
+        . $service_card('cham-me-tai-nha-2.jpg', 'Thông tắc tia sữa', 'Thông tắc tia sữa')
+        . $service_card('cham-me-tai-nha-3.jpg', 'Liệu trình giảm eo', 'Liệu trình giảm eo')
+        . '</div></div></section>';
+    $front_html = str_replace('http://www.tolan.vn', 'https://www.tolan.vn', $hero . $intro . $knowledge . $services . $products);
     wp_update_post(array('ID' => $front_id, 'post_content' => $front_html));
     $write('front ' . $front_id);
 
@@ -140,16 +195,11 @@ function thanh_lan_home_layout_run() {
     $me30 = '<ul class="clean"><li>Gội đầu thảo dược 5 lần</li><li>Chăm sóc da mặt 6 lần</li><li>Giảm bọng mắt 15 lần</li><li>Massage ngực, thông tuyến sữa theo tình trạng</li><li>Massage body 6 lần</li><li>Làm sáng nách 15 lần</li><li>Định hình bằng máy EMS 15 lần</li><li>Tẩy tế bào chết body 5 lần</li><li>Ủ trắng body 5 lần</li><li>Thoa rượu gừng, nghệ 20 lần</li><li>Xông thảo dược toàn thân 5 lần</li><li>Xông vùng kín 20 lần</li><li>Ngâm chân muối thảo dược 15 lần</li><li>Ủ ấm bằng chăn điện 20 lần</li><li>Tặng 3 chai cốt nhàu, không quy đổi</li></ul>';
 
     $pages = array(
-        'dich-vu' => '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . $home . '">Trang chủ</a> / Dịch Vụ</p><h2>Dịch vụ</h2><p class="intro">Chọn dịch vụ để đọc nội dung. Bảng giá nằm ở cuối mỗi trang.</p>'
-            . '<h3>Cho bé</h3><div class="grid services">'
-            . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm và massage bé', 'Massage, tắm, vệ sinh và hơ lá trầu tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
-            . tl_card('ho-la-trau-2.jpg', 'Hơ lá trầu', 'Kinh nghiệm chăm bé', 'Bài viết về tắm, massage và lá trầu.', $u('tam-massage-va-la-trau-cho-be/'), 'Đọc bài')
-            . '</div><h3 style="margin-top:28px">Cho mẹ</h3><div class="grid services">'
+        'dich-vu' => '<section class="section"><div class="wrap"><p class="crumbs"><a href="' . $home . '">Trang chủ</a> / Dịch Vụ</p><h2>Dịch vụ</h2><p class="intro">Chọn dịch vụ để đọc nội dung. Bảng giá nằm ở cuối mỗi trang.</p><div class="grid services">'
+            . tl_card('tam-cho-be.jpg', 'Tắm cho bé', 'Tắm bé sơ sinh', 'Massage, tắm, vệ sinh và hơ lá trầu tại nhà.', $u('tam-be/'), 'Xem dịch vụ')
             . tl_card('cham-me-tai-nha-1.jpg', 'Chăm sóc mẹ', 'Chăm sóc mẹ sau sinh', 'Liệu trình 10, 20 hoặc 30 ngày.', $u('cham-soc-me-be/'), 'Xem dịch vụ')
-            . tl_card('cham-me-tai-nha-2.jpg', 'Mẹ và bé', 'Combo mẹ và bé', 'Cùng một lịch đến nhà.', $u('o-cu-tai-nha/'), 'Xem dịch vụ')
-            . tl_card('doi-ngu-6.jpg', 'Đội ngũ', 'Chăm sóc bầu tại nhà', 'Massage nhẹ những tuần cuối.', $u('cham-soc-bau/'), 'Xem dịch vụ')
             . tl_card('cham-me-tai-nha-1.jpg', 'Chăm mẹ', 'Thông tắc tia sữa', 'Theo tình trạng, trong liệu trình mẹ.', $u('thong-tac-tia-sua/'), 'Xem dịch vụ')
-            . tl_card('cham-me-tai-nha-3.jpg', 'Xông', 'Giảm eo sau sinh', 'Trong gói mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
+            . tl_card('cham-me-tai-nha-3.jpg', 'Xông', 'Liệu trình giảm eo', 'Trong gói mẹ 20 ngày và 30 ngày.', $u('giam-eo/'), 'Xem dịch vụ')
             . '</div></div></section>',
         'tam-be' => '<section class="page-hero"><div class="wrap split"><div><p class="crumbs"><a href="' . $home . '">Trang chủ</a> / <a href="' . $u('dich-vu/') . '">Dịch Vụ</a> / Tắm và massage bé</p>'
             . '<p class="kicker">Dịch vụ cho bé</p><h1>Tắm và massage bé</h1><p class="lead">Mỗi buổi 45 phút tại nhà. Bé được massage, tắm, vệ sinh và hơ lá trầu nếu mẹ muốn dùng.</p>'

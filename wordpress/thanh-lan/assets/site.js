@@ -23,23 +23,17 @@ const pages = [
   ["Giới thiệu", "gioi-thieu.html", "Tô Lan đại diện thương hiệu Thanh Lan Spa"],
   ["Dịch Vụ", "dich-vu.html", "Các dịch vụ chăm sóc tại nhà"],
   ["Tắm bé sơ sinh", "tam-be.html", "Tắm và massage bé sơ sinh tại nhà"],
-  ["Chăm sóc mẹ bé", "cham-soc-me-be.html", "Chăm sóc mẹ sau sinh"],
-  ["Ở cữ tại nhà", "o-cu-tai-nha.html", "Đồng hành những tuần ở cữ tại nhà"],
-  ["Chăm sóc bầu tại nhà", "cham-soc-bau.html", "Massage và nghỉ ngơi cho mẹ bầu"],
+  ["Chăm sóc mẹ sau sinh", "cham-soc-me-be.html", "Liệu trình chăm mẹ sau sinh"],
   ["Thông tắc tia sữa", "thong-tac-tia-sua.html", "Hỗ trợ thông tắc tia sữa tại nhà"],
-  ["Giảm eo sau sinh", "giam-eo.html", "Lấy lại dáng nhẹ nhàng sau sinh"],
-  ["Cửa hàng", "cua-hang.html", "Sản phẩm minh họa cho mẹ bầu mẹ và bé"],
+  ["Liệu trình giảm eo", "giam-eo.html", "Lấy lại dáng nhẹ nhàng sau sinh"],
+  ["Cửa hàng", "cua-hang.html", "Sản phẩm cho mẹ bầu, mẹ và bé"],
   ["Chăm sóc bầu", "san-pham-bau.html", "Dầu massage bầu"],
   ["Chăm sóc bé", "san-pham-be.html", "Dầu tắm bé"],
   ["Chăm sóc mẹ", "san-pham-me.html", "Muối thảo dược"],
-  ["Chăm sóc tóc", "san-pham-toc.html", "Dầu dưỡng tóc sau sinh"],
-  ["Feedback", "feedback.html", "Nhật ký mẹ sau buổi chăm"],
-  ["Kiến thức", "kien-thuc.html", "Bài viết minh họa trước và sau sinh"],
-  ["Hướng dẫn chăm sóc bé", "cham-soc-be.html", "Massage bụng và giấc ngủ của bé"],
-  ["Hướng dẫn mẹ", "huong-dan-me.html", "Việc mẹ làm trong tuần đầu"],
+  ["Kiến thức", "kien-thuc.html", "Bài viết trước và sau sinh"],
   ["Mẹ bầu cần biết", "me-bau.html", "Nghỉ ngơi những tuần cuối"],
   ["Mẹ sau sinh cần biết", "me-sau-sinh.html", "Ở cữ và tắc tia sữa"],
-  ["Dấu ấn Thanh Lan Spa", "dau-an.html", "Hành trình Tô Lan và Thanh Lan Spa"],
+  ["Hướng dẫn chăm sóc bé", "cham-soc-be.html", "Massage bụng và giấc ngủ của bé"],
   ["Nhận tư vấn", "tu-van.html", "Đặt lịch và nhận cẩm nang"]
 ];
 
@@ -100,6 +94,8 @@ document.addEventListener("keydown", (event) => {
 
 document.getElementById("bookingForm").addEventListener("submit", (event) => {
   event.preventDefault();
+  const form = event.currentTarget;
+  if (form.dataset.sending === "1") return;
   const phone = document.getElementById("bookPhone").value;
   const error = document.getElementById("bookPhoneError");
   if (!digitsOk(phone)) {
@@ -116,6 +112,9 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
   const note = document.getElementById("bookNote");
   const website = document.getElementById("bookWebsite");
   const bookEmail = document.getElementById("bookEmail");
+  const button = form.querySelector("button[type=submit]");
+  form.dataset.sending = "1";
+  if (button) button.disabled = true;
   postLead({
     name: item.name,
     phone: item.phone,
@@ -135,11 +134,25 @@ document.getElementById("bookingForm").addEventListener("submit", (event) => {
       note.textContent = result.message || "Đã nhận.";
     }
     note.classList.add("show");
+    if (!result.ok) {
+      form.dataset.sending = "";
+      if (button) button.disabled = false;
+    }
   });
 });
 
 const handbook = document.getElementById("leadForm") || document.getElementById("handbookForm");
 if (handbook) {
+  const params = new URLSearchParams(location.search);
+  const asked = params.get("sanpham");
+  const askedService = params.get("dichvu");
+  const messageBox = document.getElementById("leadMessage");
+  if (asked && messageBox && !messageBox.value) {
+    messageBox.value = "Em muốn được báo giá sỉ sản phẩm: " + asked;
+  }
+  if (askedService && messageBox && !messageBox.value) {
+    messageBox.value = "Em muốn được tư vấn dịch vụ: " + askedService;
+  }
   const guides = {
     "Mẹ bầu": "Nằm nghiêng khi nghỉ, chuẩn bị túi đồ sinh, và nhắn Tô Lan để hẹn chăm sóc tuần cuối.",
     "Tuần đầu sau sinh": "Theo dõi rốn bé, nghỉ khi bé ngủ, và gọi nếu ngực căng quá một ngày.",
@@ -147,6 +160,7 @@ if (handbook) {
   };
   handbook.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (handbook.dataset.sending === "1") return;
     const phone = document.getElementById("leadPhone").value;
     const error = document.getElementById("leadPhoneError");
     if (!digitsOk(phone)) {
@@ -162,13 +176,22 @@ if (handbook) {
       return;
     }
     if (emailError) emailError.textContent = "";
+    const when = document.getElementById("leadWhen");
+    const note = document.getElementById("leadNote");
+    if (when && !when.value) {
+      note.textContent = "Chọn ngày giờ có thể nghe máy.";
+      note.classList.add("show");
+      return;
+    }
     const name = document.getElementById("leadName").value.trim();
     const stage = document.getElementById("leadStage").value;
-    const note = document.getElementById("leadNote");
     const service = document.getElementById("leadService");
     const district = document.getElementById("leadDistrict");
     const message = document.getElementById("leadMessage");
     const website = document.getElementById("leadWebsite");
+    const button = handbook.querySelector("button[type=submit]");
+    handbook.dataset.sending = "1";
+    if (button) button.disabled = true;
     postLead({
       name,
       phone: phone.trim(),
@@ -177,6 +200,7 @@ if (handbook) {
       service: service ? service.value : stage,
       district: district ? district.value : "",
       message: message ? message.value : "",
+      when: when ? when.value : "",
       source: "Form tư vấn",
       website: website ? website.value : ""
     }).then((result) => {
@@ -195,6 +219,10 @@ if (handbook) {
         note.textContent = result.message || "Đã nhận.";
       }
       note.classList.add("show");
+      if (!result.ok) {
+        handbook.dataset.sending = "";
+        if (button) button.disabled = false;
+      }
     });
   });
 }
